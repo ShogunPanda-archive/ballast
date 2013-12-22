@@ -1,0 +1,9 @@
+Gemfile.lock
+tester.rb
+coverage/
+pkg/
+.idea/
+.yardoc/
+/metrics
+/.metrics
+/tmp/metric_fu
