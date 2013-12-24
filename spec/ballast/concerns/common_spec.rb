@@ -56,11 +56,8 @@ describe Ballast::Concerns::Common do
   end
 
   describe "#format_long_date" do
-    around(:each) do |example|
-      Timecop.freeze(Date.civil(2013, 7, 11)) { example.call }
-    end
-
     before(:each) do
+      expect_any_instance_of(DateTime).to receive(:dst?).and_return(true)
       expect(Time).to receive(:zone).at_least(1).and_return(ActiveSupport::TimeZone["UTC"], ActiveSupport::TimeZone["Pacific Time (US & Canada)"])
     end
 

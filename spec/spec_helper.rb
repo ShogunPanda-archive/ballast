@@ -5,7 +5,6 @@
 
 require "rubygems"
 require "spork"
-require "timecop"
 require "rspec"
 require "bundler/setup"
 require "ballast"

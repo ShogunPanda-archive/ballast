@@ -68,7 +68,7 @@ module Ballast
       #   and `%:Z` for the zone name considering also DST.
       def format_long_date(date, separator = "•", format = "%I:%M%p %- %b %o, %Y (%:Z)")
         tz = Time.zone
-        replacements = {"%-" => separator, "%o" => date.day.ordinalize, "%:Z" => tz.send(tz.uses_dst? && Time.now.dst? ? :dst_name : :name)}
+        replacements = {"%-" => separator, "%o" => date.day.ordinalize, "%:Z" => tz.send(tz.uses_dst? && date.dst? ? :dst_name : :name)}
         date.strftime(format).gsub(/%(-|o|(:Z))/) {|r| replacements.fetch(r, r) }
       end
 
