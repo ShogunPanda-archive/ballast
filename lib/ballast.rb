@@ -7,8 +7,11 @@ require "lazier"
 require "brauser"
 require "interactor"
 require "addressable/uri"
+require "rack/utils"
 require "rack/fiber_pool"
 require "em-synchrony"
+
+Lazier.load!
 
 require "ballast/version" if !defined?(Ballast::Version)
 require "ballast/errors"

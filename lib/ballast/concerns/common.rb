@@ -45,51 +45,53 @@ module Ballast
         end
       end
 
+      # Format a short amount of time (less than one hour).
+      #
+      # @param amount [Fixnum] The amount to format.
+      # @param suffix [String] The suffix to add to the formatted amount.
+      # @return [String] The formatted amount.
+      def format_short_amount(amount, suffix)
+        if amount < 1.minute then
+          "#{amount.floor}s#{suffix}"
+        elsif amount < 1.hour then
+          "#{(amount / 60).floor}m#{suffix}"
+        else
+          "#{(amount / 3600).floor}h#{suffix}"
+        end
+      end
+
       # Formats a long date.
       #
       # @param date [DateTime] The date to format.
       # @param separator [String] The separator between date and time.
-      def format_long_date(date, separator = "•")
+      # @param format [String] The format of the date, like in strftime. Use `%-` for the separator, `%o` for the ordinalized version of the day of the month
+      #   and `%:Z` for the zone name considering also DST.
+      def format_long_date(date, separator = "•", format = "%I:%M%p %- %b %o, %Y (%:Z)")
         tz = Time.zone
-        date.strftime("%I:%M%p #{separator} %b #{date.day.ordinalize}, %Y (#{tz.send(tz.uses_dst? && Time.now.dst? ? :dst_name : :name)})")
+        replacements = {"%-" => separator, "%o" => date.day.ordinalize, "%:Z" => tz.send(tz.uses_dst? && Time.now.dst? ? :dst_name : :name)}
+        date.strftime(format).gsub(/%(-|o|(:Z))/) {|r| replacements.fetch(r, r) }
       end
 
-      private
-        # Authenticates a user via HTTP, handling the error if the authentication failed.
-        #
-        # @param area [String] The name of the area.
-        # @param title [String] A title for authentication errors.
-        # @param message [String] A message for authentication errors.
-        # @param authenticator [Proc] A block to verify if authentication is valid.
-        def authenticate_user(area = nil, title = nil, message = nil, &authenticator)
-          area ||= "Private Area"
-          title ||= "Authentication required."
-          message ||= "To view this resource you have to authenticate."
-          authenticated = authenticate_with_http_basic { |username, password| authenticator.call(username, password) }
+      # Authenticates a user via HTTP, handling the error if the authentication failed.
+      #
+      # @param area [String] The name of the area.
+      # @param title [String] A title for authentication errors.
+      # @param message [String] A message for authentication errors.
+      # @param authenticator [Proc] A block to verify if authentication is valid.
+      def authenticate_user(area = nil, title = nil, message = nil, &authenticator)
+        area ||= "Private Area"
+        title ||= "Authentication required."
+        message ||= "To view this resource you have to authenticate."
+        authenticated = authenticate_with_http_basic { |username, password| authenticator.call(username, password) }
 
-          if !authenticated then
-            headers["WWW-Authenticate"] = "Basic realm=\"#{area}\""
-            @error_title = title
-            @error_code = 401
-            @error_message = message
-            handle_error
-          end
+        if !authenticated then
+          headers["WWW-Authenticate"] = "Basic realm=\"#{area}\""
+          @error_title = title
+          @error_code = 401
+          @error_message = message
+          handle_error
         end
-
-        # Format a short amount of time (less than one hour).
-        #
-        # @param amount [Fixnum] The amount to format.
-        # @param suffix [String] The suffix to add to the formatted amount.
-        # @return [String] The formatted amount.
-        def format_short_amount(amount, suffix)
-          if amount < 1.minute then
-            "#{amount.floor}s#{suffix}"
-          elsif amount < 1.hour then
-            "#{(amount / 60).floor}m#{suffix}"
-          else
-            "#{(amount / 3600).floor}h#{suffix}"
-          end
-        end
+      end
     end
   end
 end

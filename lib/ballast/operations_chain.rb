@@ -14,16 +14,15 @@ module Ballast
 
     # Performs the chain.
     #
-    # @param owner_or_context [Object|Context] If is a context, then it will be the context of the operation, unless a blank a context with the object
+    # @param argument [Object|Context] If is a context, then it will be the context of the operation, unless a blank a context with the object
     #   as owner will be created.
     # @param operations [Array] The list of operations to perform.
     # @param context [NilClass] The context for the operation. *Ignored if `owner_or_context` is a context.
     # @param params [Hash] The additional parameters for the new context. *Ignored if `owner_or_context` is a context.
     # @return [Operation] The performed chain.
-    def self.perform(owner_or_context, operations, context: nil, params: {})
-      arg = owner_or_context
-      arg = (context || ::Ballast::Context.build(owner_or_context, params)) if !arg.is_a?(::Ballast::Context)
-      new(operations, arg).tap(&:perform)
+    def self.perform(argument, operations, context: nil, params: {})
+      argument = (context || ::Ballast::Context.build(argument, params)) if !argument.is_a?(::Ballast::Context)
+      new(operations, argument).tap(&:perform)
     end
 
     # Creates a new chain.

@@ -6,7 +6,7 @@
 module Ballast
   module Concerns
     # A mixin to help view handling.
-    module ApplicationHelper
+    module View
       # Scope the CSS of the current page using the controller and action name.
       #
       # @return [String] The scoped string.
@@ -26,7 +26,8 @@ module Ballast
       # @param conf_file [String] The configuration file which holds the definitions.
       # @return [Boolean] `true` if the browser is supported, `false` otherwise.
       def browser_supported?(conf_file = nil)
-        browser.supported?(conf_file || (Rails.root + "config/supported-browsers.yml").to_s)
+        conf_file ||= (Rails.root + "config/supported-browsers.yml").to_s if defined?(Rails)
+        browser.supported?(conf_file)
       end
 
       # Outputs the Javascript parameters.
@@ -41,7 +42,7 @@ module Ballast
 
       # Appends new Javascript parameters.
       #
-      # @param key [String|Symbol] The key of the new parameters.
+      # @param key [String|Symbol] The key of the new parameters. If `nil`, the root will be merged/replaced.
       # @param data [Hash] The data to add.
       # @param replace [Boolean] Whether to replace existing data rather than merge.
       def add_javascript_params(key, data, replace = false)
@@ -52,7 +53,7 @@ module Ballast
           @javascript_params[key] ||= {}
           @javascript_params[key].merge!(data)
         elsif replace
-          @javascript_params = data
+          @javascript_params = data.with_indifferent_access
         else
           @javascript_params.merge!(data)
         end

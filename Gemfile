@@ -10,6 +10,8 @@ gemspec
 # Testing
 gem "rspec", "~> 2.14.1"
 gem "rake", "~> 10.1.1"
+gem "spork", "~> 1.0rc"
+gem "timecop", "~> 0.7.0"
 
 # Documentation
 gem "simplecov", ">= 0.8.2"

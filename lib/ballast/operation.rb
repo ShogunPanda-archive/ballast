@@ -61,11 +61,10 @@ module Ballast
       end
     end
 
-    # TODO@PI: Rename this
-    # Handles the operation handling base errors.
+    # Perform the operation handling base errors.
     #
     # @param setup_response_after [Boolean] Whether to setup the response after processing.
-    def handling_error_and_response(setup_response_after = true)
+    def perform_with_handling(setup_response_after = true)
       begin
         yield
       rescue Lazier::Exceptions::Debug => de

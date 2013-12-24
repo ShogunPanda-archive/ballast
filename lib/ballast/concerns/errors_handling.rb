@@ -13,14 +13,15 @@ module Ballast
       #
       # @param exception [Hash|Exception] The exception to handle.
       # @param layout [String] The layout to use to render the error.
-      def handle_error(exception = nil, layout = "error")
+      # @param title [String] The title to set in case of custom errors.
+      def handle_error(exception = nil, layout = "error", title = "Error - Application")
         @error ||= exception
 
         if @error.is_a?(Lazier::Exceptions::Debug) then
           @error_title = "Debug"
           @error_code = 503
         elsif @error.is_a?(Hash) then
-          @error_title = "Error - Application"
+          @error_title = title
           @error_code = @error[:status]
           @error_message = @error[:error]
         else
