@@ -1,3 +1,7 @@
+### 1.1.2 / 2013-12-25
+
+* Made Concerns::Common#format_short_amount second parameter optional.
+
 ### 1.1.1 / 2013-12-25
 
 * Fixed authentication error handling.
