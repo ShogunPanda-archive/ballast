@@ -17,8 +17,8 @@ module Ballast
     # @param argument [Object|Context] If is a context, then it will be the context of the operation, unless a blank a context with the object
     #   as owner will be created.
     # @param operations [Array] The list of operations to perform.
-    # @param context [NilClass] The context for the operation. *Ignored if `owner_or_context` is a context.
-    # @param params [Hash] The additional parameters for the new context. *Ignored if `owner_or_context` is a context.
+    # @param context [NilClass] The context for the operation. *Ignored if `owner_or_context` is a context.*
+    # @param params [Hash] The additional parameters for the new context. *Ignored if `owner_or_context` is a context.*
     # @return [Operation] The performed chain.
     def self.perform(argument, operations, context: nil, params: {})
       argument = (context || ::Ballast::Context.build(argument, params)) if !argument.is_a?(::Ballast::Context)

@@ -5,9 +5,9 @@
 
 module Ballast
   module Concerns
-    # A mixin to help view handling.
+    # A concern to help view handling.
     module View
-      # Scope the CSS of the current page using the controller and action name.
+      # Scopes the CSS of the current page using the controller and action name.
       #
       # @return [String] The scoped string.
       def scope_css
@@ -21,7 +21,7 @@ module Ballast
         @browser ||= Brauser::Browser.new(request.user_agent)
       end
 
-      # Check if the current browser is supported according to a definition YAML file.
+      # Checks if the current browser is supported according to a definition YAML file.
       #
       # @param conf_file [String] The configuration file which holds the definitions.
       # @return [Boolean] `true` if the browser is supported, `false` otherwise.

@@ -5,7 +5,7 @@
 
 module Ballast
   module Concerns
-    # A mixin to handle errors
+    # A concern to handle errors.
     module ErrorsHandling
       extend ActiveSupport::Concern
 

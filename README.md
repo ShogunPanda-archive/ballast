@@ -13,7 +13,15 @@ http://sw.cow.tc/ballast
 
 http://rdoc.info/gems/ballast
 
-# TODO
+# Description
+
+Ballast is a gem which tries to solve common issues which we all (or, at least, me) usually encounter when we develop with Ruby On Rails.
+
+The first big issue is having fat controllers. To solve this, ballast enbraces the idea of the [interactor](https://github.com/collectiveidea/interactor) gem and it extends it using operations and operations chains.
+
+The second issue is handling AJAX actions in a short way. To solve this, ballast provides the Ajax concern to ease the handling of JSON data, both inbound and outbound.
+
+Finally, minor concerns are provided to scope CSS and handling errors.
 
 ## Contributing to ballast
  

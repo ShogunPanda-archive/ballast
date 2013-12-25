@@ -4,9 +4,9 @@
 #
 
 module Ballast
-  # A set of mixins to address common usages.
+  # A set of concerns to address common issues.
   module Concerns
-    # A mixin to handle AJAX and HTTP requests.
+    # A concern to handle AJAX and HTTP requests.
     module Ajax
       extend ActiveSupport::Concern
 

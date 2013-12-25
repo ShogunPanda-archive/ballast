@@ -5,7 +5,7 @@
 
 module Ballast
   module Concerns
-    # A mixin to handle common tasks in an application.
+    # A concern to handle common tasks in an application.
     module Common
       # Checks if the user is sending any data.
       #
@@ -45,7 +45,7 @@ module Ballast
         end
       end
 
-      # Format a short amount of time (less than one hour).
+      # Formats a short amount of time (less than one hour).
       #
       # @param amount [Fixnum] The amount to format.
       # @param suffix [String] The suffix to add to the formatted amount.

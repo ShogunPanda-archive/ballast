@@ -12,10 +12,10 @@ module Ballast
 
     # Performs the operation.
     #
-    # @param owner_or_context [Object|Context] If is a context, then it will be the context of the operation, unless a blank a context with the object
+    # @param owner_or_context [Object|Context] If is a context, then it will be the context of the operation, otherwise a blank a context with the object
     #   as owner will be created.
-    # @param context [NilClass] The context for the operation. *Ignored if `owner_or_context` is a context.
-    # @param params [Hash] The additional parameters for the new context. *Ignored if `owner_or_context` is a context.
+    # @param context [NilClass] The context for the operation. *Ignored if `owner_or_context` is a context.*
+    # @param params [Hash] The additional parameters for the new context. *Ignored if `owner_or_context` is a context.*
     # @return [Operation] The performed operation.
     def self.perform(owner_or_context, context: nil, params: {})
       arg = owner_or_context
@@ -61,7 +61,7 @@ module Ballast
       end
     end
 
-    # Perform the operation handling base errors.
+    # Performs the operation handling base errors.
     #
     # @param setup_response_after [Boolean] Whether to setup the response after processing.
     def perform_with_handling(setup_response_after = true)
@@ -113,7 +113,7 @@ module Ballast
       only_message ? rv[:error] : rv
     end
 
-    # If running under eventmachine, run the block in of its threadpool. Otherwise it will run the block normally.
+    # If running under eventmachine, run the block in a thread of its threadpool using EM::Synchrony, otherwise run the block normally.
     #
     # @param block [Proc] The block to run.
     def in_em_thread(&block)

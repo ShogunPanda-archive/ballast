@@ -1,0 +1,585 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en" lang="en">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>
+  Class: Ballast::OperationsChain
+  
+    &mdash; Documentation by YARD 0.8.7.3
+  
+</title>
+
+  <link rel="stylesheet" href="../css/style.css" type="text/css" charset="utf-8" />
+
+  <link rel="stylesheet" href="../css/common.css" type="text/css" charset="utf-8" />
+
+<script type="text/javascript" charset="utf-8">
+  hasFrames = window.top.frames.main ? true : false;
+  relpath = '../';
+  framesUrl = "../frames.html#!" + escape(window.location.href);
+</script>
+
+
+  <script type="text/javascript" charset="utf-8" src="../js/jquery.js"></script>
+
+  <script type="text/javascript" charset="utf-8" src="../js/app.js"></script>
+
+
+  </head>
+  <body>
+    <div id="header">
+      <div id="menu">
+  
+    <a href="../_index.html">Index (O)</a> &raquo;
+    <span class='title'><span class='object_link'><a href="../Ballast.html" title="Ballast (module)">Ballast</a></span></span>
+     &raquo; 
+    <span class="title">OperationsChain</span>
+  
+
+  <div class="noframes"><span class="title">(</span><a href="." target="_top">no frames</a><span class="title">)</span></div>
+</div>
+
+      <div id="search">
+  
+    <a class="full_list_link" id="class_list_link"
+        href="../class_list.html">
+      Class List
+    </a>
+  
+    <a class="full_list_link" id="method_list_link"
+        href="../method_list.html">
+      Method List
+    </a>
+  
+    <a class="full_list_link" id="file_list_link"
+        href="../file_list.html">
+      File List
+    </a>
+  
+</div>
+      <div class="clear"></div>
+    </div>
+
+    <iframe id="search_frame"></iframe>
+
+    <div id="content"><h1>Class: Ballast::OperationsChain
+  
+  
+  
+</h1>
+
+<dl class="box">
+  
+    <dt class="r1">Inherits:</dt>
+    <dd class="r1">
+      <span class="inheritName"><span class='object_link'><a href="Operation.html" title="Ballast::Operation (class)">Operation</a></span></span>
+      
+        <ul class="fullTree">
+          <li>Object</li>
+          
+            <li class="next"><span class='object_link'><a href="Operation.html" title="Ballast::Operation (class)">Operation</a></span></li>
+          
+            <li class="next">Ballast::OperationsChain</li>
+          
+        </ul>
+        <a href="#" class="inheritanceTree">show all</a>
+      
+      </dd>
+    
+  
+  
+    
+  
+    
+      <dt class="r2">Includes:</dt>
+      <dd class="r2">Interactor::Organizer</dd>
+      
+    
+  
+  
+  
+    <dt class="r1 last">Defined in:</dt>
+    <dd class="r1 last">lib/ballast/operations_chain.rb</dd>
+  
+</dl>
+<div class="clear"></div>
+
+<h2>Overview</h2><div class="docstring">
+  <div class="discussion">
+    <p>A operation made of several operation run sequentially passing the common context. The chain will stop on the first failure.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+
+</div>
+
+
+
+  <h2>Instance Attribute Summary <small>(<a href="#" class="summary_toggle">collapse</a>)</small></h2>
+  <ul class="summary">
+    
+      <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#operations-instance_method" title="#operations (instance method)">- (Array) <strong>operations</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+    
+      <span class="note title readonly">readonly</span>
+    
+    
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>The list of operations performed.</p>
+</div></span>
+  
+</li>
+
+    
+  </ul>
+
+
+
+
+  
+    <h2>
+      Class Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#perform-class_method" title="perform (class method)">+ (Operation) <strong>perform</strong>(argument, operations, context: nil, params: {}) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Performs the chain.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+    <h2>
+      Instance Method Summary
+      <small>(<a href="#" class="summary_toggle">collapse</a>)</small>
+    </h2>
+
+    <ul class="summary">
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (OperationsChain) <strong>initialize</strong>(operations, context) </a>
+    
+
+    
+  </span>
+  
+  
+    <span class="note title constructor">constructor</span>
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Creates a new chain.</p>
+</div></span>
+  
+</li>
+
+      
+    </ul>
+  
+
+
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <h3 class="inherited">Methods inherited from <span class='object_link'><a href="Operation.html" title="Ballast::Operation (class)">Operation</a></span></h3>
+  <p class="inherited"><span class='object_link'><a href="Operation.html#fail%21-instance_method" title="Ballast::Operation#fail! (method)">#fail!</a></span>, <span class='object_link'><a href="Operation.html#import_error-instance_method" title="Ballast::Operation#import_error (method)">#import_error</a></span>, <span class='object_link'><a href="Operation.html#import_response-instance_method" title="Ballast::Operation#import_response (method)">#import_response</a></span>, <span class='object_link'><a href="Operation.html#in_em_thread-instance_method" title="Ballast::Operation#in_em_thread (method)">#in_em_thread</a></span>, <span class='object_link'><a href="Operation.html#method_missing-instance_method" title="Ballast::Operation#method_missing (method)">#method_missing</a></span>, <span class='object_link'><a href="Operation.html#perform_with_handling-instance_method" title="Ballast::Operation#perform_with_handling (method)">#perform_with_handling</a></span>, <span class='object_link'><a href="Operation.html#resolve_error-instance_method" title="Ballast::Operation#resolve_error (method)">#resolve_error</a></span>, <span class='object_link'><a href="Operation.html#setup_response-instance_method" title="Ballast::Operation#setup_response (method)">#setup_response</a></span></p>
+
+  
+  <div id="constructor_details" class="method_details_list">
+  <h2>Constructor Details</h2>
+  
+    <div class="method_details first">
+  <h3 class="signature first" id="initialize-instance_method">
+  
+    - (<tt><span class='object_link'><a href="" title="Ballast::OperationsChain (class)">OperationsChain</a></span></tt>) <strong>initialize</strong>(operations, context) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Creates a new chain.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>operations</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The list of operations to perform.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>context</span>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Context.html" title="Ballast::Context (class)">Context</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The context for the chain.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+32
+33
+34
+35
+36</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/ballast/operations_chain.rb', line 32</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_operations'>operations</span><span class='comma'>,</span> <span class='id identifier rubyid_context'>context</span><span class='rparen'>)</span>
+  <span class='ivar'>@context</span> <span class='op'>=</span> <span class='id identifier rubyid_context'>context</span>
+  <span class='ivar'>@operations</span> <span class='op'>=</span> <span class='id identifier rubyid_operations'>operations</span><span class='period'>.</span><span class='id identifier rubyid_ensure_array'>ensure_array</span>
+  <span class='id identifier rubyid_setup'>setup</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+  
+</div>
+<div id="method_missing_details" class="method_details_list">
+  <h2>Dynamic Method Handling</h2>
+  <p class="notice super">
+    This class handles dynamic methods through the <tt>method_missing</tt> method
+    
+      in the class <span class='object_link'><a href="Operation.html#method_missing-instance_method" title="Ballast::Operation#method_missing (method)">Ballast::Operation</a></span>
+    
+  </p>
+  
+</div>
+
+  <div id="instance_attr_details" class="attr_details">
+    <h2>Instance Attribute Details</h2>
+    
+      
+      <span id=""></span>
+      <div class="method_details first">
+  <h3 class="signature first" id="operations-instance_method">
+  
+    - (<tt>Array</tt>) <strong>operations</strong>  <span class="extras">(readonly)</span>
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Returns The list of operations performed.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The list of operations performed.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/ballast/operations_chain.rb', line 11</span>
+
+<span class='kw'>class</span> <span class='const'>OperationsChain</span> <span class='op'>&lt;</span> <span class='const'>Operation</span>
+  <span class='id identifier rubyid_include'>include</span> <span class='op'>::</span><span class='const'>Interactor</span><span class='op'>::</span><span class='const'>Organizer</span>
+  <span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:operations</span>
+
+  <span class='comment'># Performs the chain.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param argument [Object|Context] If is a context, then it will be the context of the operation, unless a blank a context with the object
+</span>  <span class='comment'>#   as owner will be created.
+</span>  <span class='comment'># @param operations [Array] The list of operations to perform.
+</span>  <span class='comment'># @param context [NilClass] The context for the operation. *Ignored if `owner_or_context` is a context.*
+</span>  <span class='comment'># @param params [Hash] The additional parameters for the new context. *Ignored if `owner_or_context` is a context.*
+</span>  <span class='comment'># @return [Operation] The performed chain.
+</span>  <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span><span class='lparen'>(</span><span class='id identifier rubyid_argument'>argument</span><span class='comma'>,</span> <span class='id identifier rubyid_operations'>operations</span><span class='comma'>,</span> <span class='label'>context:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>params:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_argument'>argument</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_context'>context</span> <span class='op'>||</span> <span class='op'>::</span><span class='const'>Ballast</span><span class='op'>::</span><span class='const'>Context</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span><span class='lparen'>(</span><span class='id identifier rubyid_argument'>argument</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_argument'>argument</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>Ballast</span><span class='op'>::</span><span class='const'>Context</span><span class='rparen'>)</span>
+    <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_operations'>operations</span><span class='comma'>,</span> <span class='id identifier rubyid_argument'>argument</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:perform</span><span class='rparen'>)</span>
+  <span class='kw'>end</span>
+
+  <span class='comment'># Creates a new chain.
+</span>  <span class='comment'>#
+</span>  <span class='comment'># @param operations [Array] The list of operations to perform.
+</span>  <span class='comment'># @param context [Context] The context for the chain.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_operations'>operations</span><span class='comma'>,</span> <span class='id identifier rubyid_context'>context</span><span class='rparen'>)</span>
+    <span class='ivar'>@context</span> <span class='op'>=</span> <span class='id identifier rubyid_context'>context</span>
+    <span class='ivar'>@operations</span> <span class='op'>=</span> <span class='id identifier rubyid_operations'>operations</span><span class='period'>.</span><span class='id identifier rubyid_ensure_array'>ensure_array</span>
+    <span class='id identifier rubyid_setup'>setup</span>
+  <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+
+  <div id="class_method_details" class="method_details_list">
+    <h2>Class Method Details</h2>
+
+    
+      <div class="method_details first">
+  <h3 class="signature first" id="perform-class_method">
+  
+    + (<tt><span class='object_link'><a href="Operation.html" title="Ballast::Operation (class)">Operation</a></span></tt>) <strong>perform</strong>(argument, operations, context: nil, params: {}) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Performs the chain.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>argument</span>
+      
+      
+        <span class='type'>(<tt>Object|<span class='object_link'><a href="Context.html" title="Ballast::Context (class)">Context</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>If is a context, then it will be the context of the operation, unless a blank a context with the object
+as owner will be created.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>operations</span>
+      
+      
+        <span class='type'>(<tt>Array</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The list of operations to perform.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>context</span>
+      
+      
+        <span class='type'>(<tt>NilClass</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The context for the operation. <em>Ignored if <code>owner_or_context</code> is a context.</em></p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>params</span>
+      
+      
+        <span class='type'>(<tt>Hash</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The additional parameters for the new context. <em>Ignored if <code>owner_or_context</code> is a context.</em></p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Operation.html" title="Ballast::Operation (class)">Operation</a></span></tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The performed chain.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+23
+24
+25
+26</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/ballast/operations_chain.rb', line 23</span>
+
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span><span class='lparen'>(</span><span class='id identifier rubyid_argument'>argument</span><span class='comma'>,</span> <span class='id identifier rubyid_operations'>operations</span><span class='comma'>,</span> <span class='label'>context:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>params:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_argument'>argument</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_context'>context</span> <span class='op'>||</span> <span class='op'>::</span><span class='const'>Ballast</span><span class='op'>::</span><span class='const'>Context</span><span class='period'>.</span><span class='id identifier rubyid_build'>build</span><span class='lparen'>(</span><span class='id identifier rubyid_argument'>argument</span><span class='comma'>,</span> <span class='id identifier rubyid_params'>params</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_argument'>argument</span><span class='period'>.</span><span class='id identifier rubyid_is_a?'>is_a?</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>Ballast</span><span class='op'>::</span><span class='const'>Context</span><span class='rparen'>)</span>
+  <span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='id identifier rubyid_operations'>operations</span><span class='comma'>,</span> <span class='id identifier rubyid_argument'>argument</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_tap'>tap</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='symbol'>:perform</span><span class='rparen'>)</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+  </div>
+
+</div>
+
+    <div id="footer">
+  Generated on Wed Dec 25 11:35:23 2013 by
+  <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
+  0.8.7.3 (ruby-2.0.0).
+</div>
+
+  </body>
+</html>

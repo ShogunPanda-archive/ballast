@@ -9,7 +9,7 @@ module Ballast
     # The base error raised from an application.
     #
     # @attribute [r] response
-    #   @return [String|Hash] The response which contains a status and a error message.
+    #   @return [String|Hash] The response which contains either a message or an hash with status code and a error message.
     class BaseError < RuntimeError
       attr_reader :response
 
