@@ -1,3 +1,7 @@
+### 1.2.0 / 2013-12-25
+
+* Changed Javascript parameters output interface.
+
 ### 1.1.2 / 2013-12-25
 
 * Made Concerns::Common#format_short_amount second parameter optional.
