@@ -6,11 +6,12 @@
 require "spec_helper"
 
 describe Ballast::Errors::BaseError do
+  subject { Ballast::Errors::BaseError.new("ERROR") }
+
   describe ".initialize" do
     it "should propagate the message also as a response" do
-      reference = Ballast::Errors::BaseError.new("ERROR")
-      expect(reference.message).to eq("ERROR")
-      expect(reference.response).to eq("ERROR")
+      expect(subject.message).to eq("ERROR")
+      expect(subject.response).to eq("ERROR")
     end
   end
 end
