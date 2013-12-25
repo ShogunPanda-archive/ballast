@@ -62,11 +62,12 @@ describe Ballast::Concerns::View do
 
     it "should output Javascript as HTML" do
       expect(subject).to receive(:content_tag).with(:tag, '{"a":"1","b":2}', {"data-jid" => "ID"}).and_return("HTML")
-      expect(subject.javascript_params(true, :tag, "ID")).to eq("HTML")
+      expect(subject.javascript_params("ID", :tag)).to eq("HTML")
     end
 
     it "should return Javascript as Hash" do
       expect(subject.javascript_params(false)).to eq({a: "1", b: 2})
+      expect(subject.javascript_params(nil)).to eq({a: "1", b: 2})
     end
   end
 

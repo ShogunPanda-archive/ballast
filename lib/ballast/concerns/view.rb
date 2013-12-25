@@ -32,12 +32,11 @@ module Ballast
 
       # Outputs the Javascript parameters.
       #
-      # @param as_html [Boolean] Whether to return the parameters as HTML rather than hash.
+      # @param id [String|NilClass|FalseClass] The id for the tag. If `nil` or `false`, the parameters will be returned as an hash.
       # @param tag [Symbol] The tag to use for HTML.
-      # @param id [String] The id for the tag.
       # @return [String|Hash] Javascript parameters as HTML or the hash.
-      def javascript_params(as_html = true, tag = :details, id = nil)
-        as_html ? content_tag(tag, @javascript_params.to_json.html_safe, "data-jid" => id): @javascript_params
+      def javascript_params(id = nil, tag = :details)
+        id ? content_tag(tag, @javascript_params.to_json.html_safe, "data-jid" => id): @javascript_params
       end
 
       # Appends new Javascript parameters.
