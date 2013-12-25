@@ -78,23 +78,18 @@ describe Ballast::Concerns::Common do
 
     it "in case of failure, it should set error" do
       expect(subject).to receive(:authenticate_with_http_basic).and_return(false)
-      expect(subject).to receive(:handle_error)
-      subject.authenticate_user
+      expect(subject).to receive(:handle_error).with({status: 401, title: "Authentication required.", message: "To view this resource you have to authenticate."})
 
+      subject.authenticate_user
       expect(subject.headers["WWW-Authenticate"]).to eq("Basic realm=\"Private Area\"")
-      expect(subject.instance_variable_get(:@error_title)).to eq("Authentication required.")
-      expect(subject.instance_variable_get(:@error_message)).to eq("To view this resource you have to authenticate.")
-      expect(subject.instance_variable_get(:@error_code)).to eq(401)
     end
 
     it "in case of failure, it should show custom messages" do
       expect(subject).to receive(:authenticate_with_http_basic).and_return(false)
-      expect(subject).to receive(:handle_error)
-      subject.authenticate_user("AREA", "TITLE", "MESSAGE")
+      expect(subject).to receive(:handle_error).with({status: 401, title: "TITLE", message: "MESSAGE"})
 
+      subject.authenticate_user("AREA", "TITLE", "MESSAGE")
       expect(subject.headers["WWW-Authenticate"]).to eq("Basic realm=\"AREA\"")
-      expect(subject.instance_variable_get(:@error_title)).to eq("TITLE")
-      expect(subject.instance_variable_get(:@error_message)).to eq("MESSAGE")
     end
   end
 end

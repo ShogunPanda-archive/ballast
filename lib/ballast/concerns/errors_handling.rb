@@ -5,7 +5,7 @@
 
 module Ballast
   module Concerns
-    # A concern to handle errors.
+    # A concern to handle errors. It requires the Ajax concern.
     module ErrorsHandling
       extend ActiveSupport::Concern
 
@@ -21,7 +21,7 @@ module Ballast
           @error_title = "Debug"
           @error_code = 503
         elsif @error.is_a?(Hash) then
-          @error_title = title
+          @error_title = @error[:title] || title
           @error_code = @error[:status]
           @error_message = @error[:error]
         else

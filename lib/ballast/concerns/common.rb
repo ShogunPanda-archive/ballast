@@ -86,10 +86,7 @@ module Ballast
 
         if !authenticated then
           headers["WWW-Authenticate"] = "Basic realm=\"#{area}\""
-          @error_title = title
-          @error_code = 401
-          @error_message = message
-          handle_error
+          handle_error({status: 401, title: title, message: message})
         end
       end
     end
