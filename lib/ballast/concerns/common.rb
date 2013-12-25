@@ -50,7 +50,7 @@ module Ballast
       # @param amount [Fixnum] The amount to format.
       # @param suffix [String] The suffix to add to the formatted amount.
       # @return [String] The formatted amount.
-      def format_short_amount(amount, suffix)
+      def format_short_amount(amount, suffix = "")
         if amount < 1.minute then
           "#{amount.floor}s#{suffix}"
         elsif amount < 1.hour then
