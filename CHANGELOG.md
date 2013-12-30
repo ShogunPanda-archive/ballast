@@ -1,3 +1,7 @@
+### 1.3.0 / 2013-12-30
+
+* Added ApplicationConfiguration class.
+
 ### 1.2.0 / 2013-12-25
 
 * Changed Javascript parameters output interface.
