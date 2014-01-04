@@ -1,3 +1,7 @@
+### 1.5.1 / 2014-01-04
+
+* Fixed is_json? detection.
+
 ### 1.5.0 / 2014-01-04
 
 * Added is_json? to Concerns::Common.

@@ -11,7 +11,7 @@ module Ballast
       #
       # @return [Boolean] `true` if the request is JSON, `false` otherwise.
       def is_json?
-        request.format.to_s =~ /^json/ || params[:json].to_boolean ? true : false
+        ([:json, :jsonp].include?(request.format.to_sym) || params[:json].to_boolean) ? true : false
       end
 
       # Checks if the user is sending any data.
