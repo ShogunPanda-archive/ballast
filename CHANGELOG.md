@@ -1,4 +1,8 @@
-### 1.4.0 / 2013-12-30
+### 1.5.0 / 2014-01-04
+
+* Added is_json? to Concerns::Common.
+
+### 1.4.0 / 2014-01-04
 
 * Added format parameter to ErrorsHandling#handle_error.
 

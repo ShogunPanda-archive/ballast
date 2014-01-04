@@ -23,6 +23,20 @@ describe Ballast::Concerns::Common do
 
   subject{ CommonMockClass.new(request: OpenStruct.new(headers: {}), headers: {}, params: {}, performed?: false) }
 
+  describe "#is_json?" do
+    it "should return false by default" do
+      expect(CommonMockClass.new(request: OpenStruct.new({format: ""}), params: {}).is_json?).to be(false)
+    end
+
+    it "should return true when the request is JSON" do
+      expect(CommonMockClass.new(request: OpenStruct.new(format: "json")).is_json?).to be(true)
+    end
+
+    it "should return true when the parameter is overriden" do
+      expect(CommonMockClass.new(request: OpenStruct.new({format: ""}), params: {json: true}).is_json?).to be(true)
+    end
+  end
+
   describe "#sending_data?" do
     it "should return the current status" do
       expect(CommonMockClass.new(request: OpenStruct.new(post?: false, put?: false)).sending_data?).to be(false)

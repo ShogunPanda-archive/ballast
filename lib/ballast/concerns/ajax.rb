@@ -14,7 +14,7 @@ module Ballast
       #
       # @return [Boolean] `true` if the request is AJAX, `false` otherwise.
       def is_ajax?
-        (request.respond_to?(:xhr?) && request.xhr?) || params[:xhr].to_boolean
+        (request.respond_to?(:xhr?) && request.xhr?) || params[:xhr].to_boolean ? true : false
       end
 
       # Prepares an AJAX response.

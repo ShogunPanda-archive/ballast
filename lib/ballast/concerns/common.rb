@@ -7,6 +7,13 @@ module Ballast
   module Concerns
     # A concern to handle common tasks in an application.
     module Common
+      # Checks if the current request wants JSON or JSONP as response.
+      #
+      # @return [Boolean] `true` if the request is JSON, `false` otherwise.
+      def is_json?
+        request.format.to_s =~ /^json/ || params[:json].to_boolean ? true : false
+      end
+
       # Checks if the user is sending any data.
       #
       # @return [Boolean] `true` if the user is sending data, `false` otherwise.

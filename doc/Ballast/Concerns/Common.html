@@ -204,6 +204,29 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#is_json%3F-instance_method" title="#is_json? (instance method)">- (Boolean) <strong>is_json?</strong> </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Checks if the current request wants JSON or JSONP as response.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#perform_operation-instance_method" title="#perform_operation (instance method)">- (Operation) <strong>perform_operation</strong>(klass, owner = nil, **kwargs) </a>
     
 
@@ -351,20 +374,20 @@
       <pre class="lines">
 
 
-81
-82
-83
-84
-85
-86
-87
 88
 89
 90
-91</pre>
+91
+92
+93
+94
+95
+96
+97
+98</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 81</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 88</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_authenticate_user'>authenticate_user</span><span class='lparen'>(</span><span class='id identifier rubyid_area'>area</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_title'>title</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_message'>message</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_authenticator'>authenticator</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_area'>area</span> <span class='op'>||=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>Private Area</span><span class='tstring_end'>&quot;</span></span>
@@ -461,14 +484,14 @@ and <code>%:Z</code> for the zone name considering also DST.</p>
       <pre class="lines">
 
 
-69
-70
-71
-72
-73</pre>
+76
+77
+78
+79
+80</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 69</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_long_date'>format_long_date</span><span class='lparen'>(</span><span class='id identifier rubyid_date'>date</span><span class='comma'>,</span> <span class='id identifier rubyid_separator'>separator</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>•</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='id identifier rubyid_format'>format</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%I:%M%p %- %b %o, %Y (%:Z)</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_tz'>tz</span> <span class='op'>=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_zone'>zone</span>
@@ -558,18 +581,18 @@ and <code>%:Z</code> for the zone name considering also DST.</p>
       <pre class="lines">
 
 
-53
-54
-55
-56
-57
-58
-59
 60
-61</pre>
+61
+62
+63
+64
+65
+66
+67
+68</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 53</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_short_amount'>format_short_amount</span><span class='lparen'>(</span><span class='id identifier rubyid_amount'>amount</span><span class='comma'>,</span> <span class='id identifier rubyid_suffix'>suffix</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='id identifier rubyid_amount'>amount</span> <span class='op'>&lt;</span> <span class='int'>1</span><span class='period'>.</span><span class='id identifier rubyid_minute'>minute</span> <span class='kw'>then</span>
@@ -680,23 +703,23 @@ and <code>%:Z</code> for the zone name considering also DST.</p>
       <pre class="lines">
 
 
-33
-34
-35
-36
-37
-38
-39
 40
 41
 42
 43
 44
 45
-46</pre>
+46
+47
+48
+49
+50
+51
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 33</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 40</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_format_short_duration'>format_short_duration</span><span class='lparen'>(</span><span class='id identifier rubyid_date'>date</span><span class='comma'>,</span> <span class='id identifier rubyid_reference'>reference</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='id identifier rubyid_suffix'>suffix</span> <span class='op'>=</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='id identifier rubyid_reference'>reference</span> <span class='op'>||=</span> <span class='const'>Time</span><span class='period'>.</span><span class='id identifier rubyid_now'>now</span>
@@ -711,6 +734,63 @@ and <code>%:Z</code> for the zone name considering also DST.</p>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_date'>date</span><span class='period'>.</span><span class='id identifier rubyid_strftime'>strftime</span><span class='lparen'>(</span><span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>%b %d %Y</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
   <span class='kw'>end</span>
+<span class='kw'>end</span></pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="is_json?-instance_method">
+  
+    - (<tt>Boolean</tt>) <strong>is_json?</strong> 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Checks if the current request wants JSON or JSONP as response.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  
+<p class="tag_title">Returns:</p>
+<ul class="return">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p><code>true</code> if the request is JSON, <code>false</code> otherwise.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+13
+14
+15</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 13</span>
+
+<span class='kw'>def</span> <span class='id identifier rubyid_is_json?'>is_json?</span>
+  <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_format'>format</span><span class='period'>.</span><span class='id identifier rubyid_to_s'>to_s</span> <span class='op'>=~</span> <span class='tstring'><span class='regexp_beg'>/</span><span class='tstring_content'>^json</span><span class='regexp_end'>/</span></span> <span class='op'>||</span> <span class='id identifier rubyid_params'>params</span><span class='lbracket'>[</span><span class='symbol'>:json</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_to_boolean'>to_boolean</span> <span class='op'>?</span> <span class='kw'>true</span> <span class='op'>:</span> <span class='kw'>false</span>
 <span class='kw'>end</span></pre>
     </td>
   </tr>
@@ -810,12 +890,12 @@ and <code>%:Z</code> for the zone name considering also DST.</p>
       <pre class="lines">
 
 
-23
-24
-25</pre>
+30
+31
+32</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 23</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 30</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_perform_operation'>perform_operation</span><span class='lparen'>(</span><span class='id identifier rubyid_klass'>klass</span><span class='comma'>,</span> <span class='id identifier rubyid_owner'>owner</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_kwargs'>kwargs</span><span class='rparen'>)</span>
   <span class='ivar'>@operation</span> <span class='op'>=</span> <span class='id identifier rubyid_klass'>klass</span><span class='period'>.</span><span class='id identifier rubyid_perform'>perform</span><span class='lparen'>(</span><span class='id identifier rubyid_owner'>owner</span> <span class='op'>||</span> <span class='kw'>self</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_kwargs'>kwargs</span><span class='rparen'>)</span>
@@ -867,12 +947,12 @@ and <code>%:Z</code> for the zone name considering also DST.</p>
       <pre class="lines">
 
 
-13
-14
-15</pre>
+20
+21
+22</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 13</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/common.rb', line 20</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_sending_data?'>sending_data?</span>
   <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_post?'>post?</span> <span class='op'>||</span> <span class='id identifier rubyid_request'>request</span><span class='period'>.</span><span class='id identifier rubyid_put?'>put?</span>
@@ -887,7 +967,7 @@ and <code>%:Z</code> for the zone name considering also DST.</p>
 </div>
 
     <div id="footer">
-  Generated on Sat Jan  4 10:09:07 2014 by
+  Generated on Sat Jan  4 10:24:04 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.1.0).
 </div>
