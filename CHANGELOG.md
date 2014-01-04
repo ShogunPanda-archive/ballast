@@ -1,3 +1,7 @@
+### 1.5.2 / 2014-01-04
+
+* Improved pretty JSON handling.
+
 ### 1.5.1 / 2014-01-04
 
 * Fixed is_json? detection.

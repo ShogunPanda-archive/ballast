@@ -10,8 +10,10 @@ require "addressable/uri"
 require "rack/utils"
 require "rack/fiber_pool"
 require "em-synchrony"
+require "oj"
 
 Lazier.load!
+Oj.default_options = Oj.default_options.merge(mode: :compat, indent: 2, symbol_keys: true)
 
 require "ballast/version" if !defined?(Ballast::Version)
 require "ballast/errors"

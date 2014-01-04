@@ -34,7 +34,8 @@ module Ballast
       # @param data [Hash] The response to send.
       # @param status [Symbol|Fixnum] The HTTP status of the response, *ignored if already set in data*.
       # @param format [Symbol] The content type of the response.
-      def send_ajax(data, status: :ok, format: :json)
+      # @param pretty_json [Boolean] If JSON response must be pretty formatted.
+      def send_ajax(data, status: :ok, format: :json, pretty_json: false)
         if !performed? then
           # Prepare data
           data = prepare_ajax_send(data, status)
@@ -43,8 +44,8 @@ module Ballast
           format, callback, content_type = format_ajax_send(format)
           status = data[:status]
 
-          # Prepare data for formatting
-          data = ActiveSupport::JSON.encode(data) if [:json, :jsonp, :pretty_json, :pretty_jsonp, :text].include?(format)
+          # Adjust data
+          data = (pretty_json ? Oj.dump(data) : ActiveSupport::JSON.encode(data)) if [:json, :jsonp, :text].include?(format)
 
           # Render
           render(format => data, status: status, callback: callback, content_type: content_type)
@@ -104,9 +105,8 @@ module Ballast
         # @param format [Symbol] The format of the data.
         # @return [Array] An array of format, callback and content_type.
         def format_ajax_send(format)
-          format ||= params[:format] || request.format || "json"
-          format = format.to_sym
-          callback = format == :jsonp ? (params[:callback] || "jsonp#{Time.now.to_i}") : nil
+          format = (format || params[:format] || request.format || "json").to_sym
+          callback = [:jsonp, :pretty_jsonp].include?(format) ? (params[:callback] || "jsonp#{Time.now.to_i}") : nil
           content_type = (format == :text) ? "text/plain" : nil
 
           [format, callback, content_type]

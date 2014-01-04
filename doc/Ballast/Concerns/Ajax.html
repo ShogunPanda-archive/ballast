@@ -231,7 +231,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#send_ajax-instance_method" title="#send_ajax (instance method)">- (Object) <strong>send_ajax</strong>(data, status: :ok, format: :json) </a>
+      <a href="#send_ajax-instance_method" title="#send_ajax (instance method)">- (Object) <strong>send_ajax</strong>(data, status: :ok, format: :json, pretty_json: false) </a>
     
 
     
@@ -309,17 +309,17 @@
       <pre class="lines">
 
 
-75
 76
 77
 78
 79
 80
 81
-82</pre>
+82
+83</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/ajax.rb', line 75</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/ajax.rb', line 76</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_allow_cors'>allow_cors</span>
   <span class='id identifier rubyid_headers'>headers</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='lbrace'>{</span>
@@ -359,12 +359,12 @@
       <pre class="lines">
 
 
-85
 86
-87</pre>
+87
+88</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/ajax.rb', line 85</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/ajax.rb', line 86</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_disallow_robots'>disallow_robots</span>
   <span class='id identifier rubyid_render'>render</span><span class='lparen'>(</span><span class='label'>text:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>User-agent: *\nDisallow: /</span><span class='tstring_end'>&quot;</span></span><span class='comma'>,</span> <span class='label'>content_type:</span> <span class='tstring'><span class='tstring_beg'>&quot;</span><span class='tstring_content'>text/plain</span><span class='tstring_end'>&quot;</span></span><span class='rparen'>)</span>
@@ -557,16 +557,16 @@
       <pre class="lines">
 
 
-66
 67
 68
 69
 70
 71
-72</pre>
+72
+73</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/ajax.rb', line 66</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/ajax.rb', line 67</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_prevent_caching'>prevent_caching</span>
   <span class='id identifier rubyid_response'>response</span><span class='period'>.</span><span class='id identifier rubyid_headers'>headers</span><span class='period'>.</span><span class='id identifier rubyid_merge!'>merge!</span><span class='lparen'>(</span><span class='lbrace'>{</span>
@@ -583,7 +583,7 @@
       <div class="method_details ">
   <h3 class="signature " id="send_ajax-instance_method">
   
-    - (<tt>Object</tt>) <strong>send_ajax</strong>(data, status: :ok, format: :json) 
+    - (<tt>Object</tt>) <strong>send_ajax</strong>(data, status: :ok, format: :json, pretty_json: false) 
   
 
   
@@ -645,6 +645,21 @@
       
     </li>
   
+    <li>
+      
+        <span class='name'>pretty_json</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>If JSON response must be pretty formatted.</p>
+</div>
+      
+    </li>
+  
 </ul>
 
 
@@ -654,7 +669,6 @@
       <pre class="lines">
 
 
-37
 38
 39
 40
@@ -669,12 +683,13 @@
 49
 50
 51
-52</pre>
+52
+53</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/ajax.rb', line 37</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/ajax.rb', line 38</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_send_ajax'>send_ajax</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>format:</span> <span class='symbol'>:json</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_send_ajax'>send_ajax</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>format:</span> <span class='symbol'>:json</span><span class='comma'>,</span> <span class='label'>pretty_json:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='op'>!</span><span class='id identifier rubyid_performed?'>performed?</span> <span class='kw'>then</span>
     <span class='comment'># Prepare data
 </span>    <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='id identifier rubyid_prepare_ajax_send'>prepare_ajax_send</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_status'>status</span><span class='rparen'>)</span>
@@ -683,8 +698,8 @@
 </span>    <span class='id identifier rubyid_format'>format</span><span class='comma'>,</span> <span class='id identifier rubyid_callback'>callback</span><span class='comma'>,</span> <span class='id identifier rubyid_content_type'>content_type</span> <span class='op'>=</span> <span class='id identifier rubyid_format_ajax_send'>format_ajax_send</span><span class='lparen'>(</span><span class='id identifier rubyid_format'>format</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_status'>status</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span><span class='lbracket'>[</span><span class='symbol'>:status</span><span class='rbracket'>]</span>
 
-    <span class='comment'># Prepare data for formatting
-</span>    <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='const'>ActiveSupport</span><span class='op'>::</span><span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_encode'>encode</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='lbracket'>[</span><span class='symbol'>:json</span><span class='comma'>,</span> <span class='symbol'>:jsonp</span><span class='comma'>,</span> <span class='symbol'>:pretty_json</span><span class='comma'>,</span> <span class='symbol'>:pretty_jsonp</span><span class='comma'>,</span> <span class='symbol'>:text</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_format'>format</span><span class='rparen'>)</span>
+    <span class='comment'># Adjust data
+</span>    <span class='id identifier rubyid_data'>data</span> <span class='op'>=</span> <span class='lparen'>(</span><span class='id identifier rubyid_pretty_json'>pretty_json</span> <span class='op'>?</span> <span class='const'>Oj</span><span class='period'>.</span><span class='id identifier rubyid_dump'>dump</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='const'>ActiveSupport</span><span class='op'>::</span><span class='const'>JSON</span><span class='period'>.</span><span class='id identifier rubyid_encode'>encode</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='rparen'>)</span><span class='rparen'>)</span> <span class='kw'>if</span> <span class='lbracket'>[</span><span class='symbol'>:json</span><span class='comma'>,</span> <span class='symbol'>:jsonp</span><span class='comma'>,</span> <span class='symbol'>:text</span><span class='rbracket'>]</span><span class='period'>.</span><span class='id identifier rubyid_include?'>include?</span><span class='lparen'>(</span><span class='id identifier rubyid_format'>format</span><span class='rparen'>)</span>
 
     <span class='comment'># Render
 </span>    <span class='id identifier rubyid_render'>render</span><span class='lparen'>(</span><span class='id identifier rubyid_format'>format</span> <span class='op'>=&gt;</span> <span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='label'>status:</span> <span class='id identifier rubyid_status'>status</span><span class='comma'>,</span> <span class='label'>callback:</span> <span class='id identifier rubyid_callback'>callback</span><span class='comma'>,</span> <span class='label'>content_type:</span> <span class='id identifier rubyid_content_type'>content_type</span><span class='rparen'>)</span>
@@ -773,14 +788,14 @@
       <pre class="lines">
 
 
-59
 60
 61
 62
-63</pre>
+63
+64</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/ajax.rb', line 59</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/concerns/ajax.rb', line 60</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_update_ajax'>update_ajax</span><span class='lparen'>(</span><span class='id identifier rubyid_data'>data</span><span class='comma'>,</span> <span class='id identifier rubyid_operation'>operation</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_operation'>operation</span> <span class='op'>||=</span> <span class='ivar'>@operation</span>
@@ -797,7 +812,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sat Jan  4 10:31:57 2014 by
+  Generated on Sat Jan  4 11:33:08 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.1.0).
 </div>
