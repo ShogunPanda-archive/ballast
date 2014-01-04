@@ -1,3 +1,7 @@
+### 1.4.0 / 2013-12-30
+
+* Added format parameter to ErrorsHandling#handle_error.
+
 ### 1.3.0 / 2013-12-30
 
 * Added ApplicationConfiguration class.

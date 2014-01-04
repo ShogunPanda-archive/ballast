@@ -13,7 +13,7 @@ module Ballast
     MAJOR = 1
 
     # The minor version.
-    MINOR = 3
+    MINOR = 4
 
     # The patch version.
     PATCH = 0

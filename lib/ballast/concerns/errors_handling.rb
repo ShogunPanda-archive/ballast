@@ -14,7 +14,8 @@ module Ballast
       # @param exception [Hash|Exception] The exception to handle.
       # @param layout [String] The layout to use to render the error.
       # @param title [String] The title to set in case of custom errors.
-      def handle_error(exception = nil, layout = "error", title = "Error - Application")
+      # @param format [String|Symbol] The format of the response.
+      def handle_error(exception = nil, layout = "error", title = "Error - Application", format = nil)
         @error ||= exception
 
         if @error.is_a?(Lazier::Exceptions::Debug) then
@@ -29,17 +30,22 @@ module Ballast
           @error_code = 500
         end
 
-        send_or_render_error(layout)
+        send_or_render_error(layout, format)
       end
 
       private
         # Send an AJAX error o renders it.
         #
         # @param layout [String] The layout to use to render the error.
-        def send_or_render_error(layout)
-          if is_ajax? then
-            data = prepare_ajax(@error_code, {type: @error_title, backtrace: @error.backtrace.join("\n")}, @error_message || @error.message)
-            send_ajax(data)
+        # @param format [String|Symbol] The format of the response.
+        def send_or_render_error(layout, format = nil)
+          format ||= request.format.to_sym
+
+          if is_ajax? || format.to_s =~ /^json/ then
+            details = {type: @error_title}
+            details[:backtrace] = @error.backtrace.join("\n") if @error.respond_to?(:backtrace)
+            data = prepare_ajax(@error_code, details, @error_message || @error.message)
+            send_ajax(data, format: format)
           else
             render(nothing: true, status: @error_code, layout: layout, formats: [:html])
           end

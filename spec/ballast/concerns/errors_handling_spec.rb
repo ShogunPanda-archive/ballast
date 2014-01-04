@@ -21,7 +21,7 @@ describe Ballast::Concerns::ErrorsHandling do
   describe "#handle_error" do
     it "should handle a custom error" do
       error = {status: "STATUS", error: "ERROR"}
-      expect(subject).to receive(:send_or_render_error).with("LAYOUT")
+      expect(subject).to receive(:send_or_render_error).with("LAYOUT", nil)
       subject.handle_error(error, "LAYOUT", "TITLE")
 
       expect(subject.instance_variable_get(:@error)).to eq(error)
@@ -50,12 +50,19 @@ describe Ballast::Concerns::ErrorsHandling do
 
     it "should render an AJAX error" do
       expect_any_instance_of(RuntimeError).to receive(:backtrace).and_return(["A", "B"])
-      expect(subject).to receive(:is_ajax?).and_return(true)
-      expect(subject).to receive(:send_ajax).with({status: 500, error: "ERROR", data: {type: "Error - RuntimeError", backtrace: "A\nB"}}.with_indifferent_access)
+      allow(subject).to receive(:request).and_return(OpenStruct.new(format: :json))
+      expect(subject).to receive(:is_ajax?).exactly(2).and_return(true, false)
+      
+      expect(subject).to receive(:send_ajax).with({status: 500, error: "ERROR", data: {type: "Error - RuntimeError", backtrace: "A\nB"}}.with_indifferent_access, {format: :json})
+      expect(subject).to receive(:send_ajax).with({status: :forbidden, error: "ERROR", data: {type: "TITLE"}}.with_indifferent_access, {format: :json})
+
       subject.handle_error(RuntimeError.new("ERROR"), "LAYOUT")
+      subject.instance_variable_set(:@error, nil)
+      subject.handle_error({title: "TITLE", status: :forbidden, error: "ERROR"}, :json)
     end
 
     it "should render a HTML error" do
+      allow(subject).to receive(:request).and_return(OpenStruct.new(format: :html))
       expect(subject).to receive(:render).with(nothing: true, status: 500, layout: "LAYOUT", formats: [:html])
       subject.handle_error(RuntimeError.new("ERROR"), "LAYOUT")
     end
