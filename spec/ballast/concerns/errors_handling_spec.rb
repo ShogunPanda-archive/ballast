@@ -53,7 +53,7 @@ describe Ballast::Concerns::ErrorsHandling do
       allow(subject).to receive(:request).and_return(OpenStruct.new(format: :json))
       expect(subject).to receive(:is_ajax?).exactly(2).and_return(true, false)
       
-      expect(subject).to receive(:send_ajax).with({status: 500, error: "ERROR", data: {type: "Error - RuntimeError", backtrace: "A\nB"}}.with_indifferent_access, {format: :json})
+      expect(subject).to receive(:send_ajax).with({status: 500, error: "ERROR", data: {type: "Error - RuntimeError", backtrace: ["A", "B"]}}.with_indifferent_access, {format: :json})
       expect(subject).to receive(:send_ajax).with({status: :forbidden, error: "ERROR", data: {type: "TITLE"}}.with_indifferent_access, {format: :json})
 
       subject.handle_error(RuntimeError.new("ERROR"), "LAYOUT")

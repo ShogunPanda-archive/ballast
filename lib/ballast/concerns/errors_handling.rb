@@ -43,7 +43,7 @@ module Ballast
 
           if is_ajax? || format.to_s =~ /^json/ then
             details = {type: @error_title}
-            details[:backtrace] = @error.backtrace.join("\n") if @error.respond_to?(:backtrace)
+            details[:backtrace] = @error.backtrace if @error.respond_to?(:backtrace)
             data = prepare_ajax(@error_code, details, @error_message || @error.message)
             send_ajax(data, format: format)
           else

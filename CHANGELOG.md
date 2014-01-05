@@ -1,3 +1,7 @@
+### 1.5.3 / 2014-01-04
+
+* Do not join backtrace in errors.
+
 ### 1.5.2 / 2014-01-04
 
 * Improved pretty JSON handling.
