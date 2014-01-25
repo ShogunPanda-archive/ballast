@@ -26,7 +26,7 @@ Gem::Specification.new do |gem|
 
   gem.add_dependency("actionpack", ">= 4.0.0")
   gem.add_dependency("rack", "~> 1.5.2")
-  gem.add_dependency("oj", "~> 2.5.3")
+  gem.add_dependency("oj", "~> 2.5.4")
   gem.add_dependency("brauser", "~> 3.2.5")
   gem.add_dependency("interactor", "~> 2.1.0")
   gem.add_dependency("addressable", "~> 2.3.5")
