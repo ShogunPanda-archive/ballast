@@ -73,13 +73,21 @@ module Ballast
       end
 
       # Allows HTTP Cross-Origin Resource Sharing.
-      def allow_cors
+      #
+      # @param allow_origin [String] The value for the `Access-Control-Allow-Origin` header.
+      # @param allow_methods [Array] A list of methods for the `Access-Control-Allow-Methods` header.
+      # @param allow_headers [String] The value for the `Access-Control-Allow-Headers` header.
+      # @param max_age [Float|Fixnum] The value for the `Access-Control-Max-Age` header.
+      # @param allow_credentials [Boolean] The value for the `Access-Control-Allow-Credentials` header.
+      def allow_cors(allow_origin: "*", allow_methods: [:post, :get, :options], allow_headers: "*", max_age: 1.year, allow_credentials: false)
         headers.merge!({
-          "Access-Control-Allow-Origin" => "*",
-          "Access-Control-Allow-Methods" => "POST, GET, OPTIONS",
-          "Access-Control-Allow-Headers" => "*",
-          "Access-Control-Max-Age" => 1.year.to_i.to_s
+          "Access-Control-Allow-Origin" => allow_origin,
+          "Access-Control-Allow-Methods" => allow_methods.collect {|m| m.to_s.upcase }.join(", "),
+          "Access-Control-Allow-Headers" => allow_headers,
+          "Access-Control-Max-Age" => max_age.to_i.to_s
         })
+
+        headers["Access-Control-Allow-Credentials"] = "true" if allow_credentials
       end
 
       # Disallows web robots.

@@ -13,10 +13,10 @@ module Ballast
     MAJOR = 1
 
     # The minor version.
-    MINOR = 5
+    MINOR = 6
 
     # The patch version.
-    PATCH = 3
+    PATCH = 0
 
     # The current version of ballast.
     STRING = [MAJOR, MINOR, PATCH].compact.join(".")

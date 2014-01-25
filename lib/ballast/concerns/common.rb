@@ -26,9 +26,19 @@ module Ballast
       # @param klass [Class] The operation to perform.
       # @param owner [Object] The owner to use. By default it uses itself.
       # @param kwargs [Hash] The arguments for performing.
-      # @return [Operation] The performed operation
+      # @return [Operation] The performed operation.
       def perform_operation(klass, owner = nil, **kwargs)
         @operation = klass.perform(owner || self, **kwargs)
+      end
+
+      # Performs an operations chain, using itself as owner by default.
+      #
+      # @param klasses [Array] The operations to perform.
+      # @param owner [Object] The owner to use. By default it uses itself.
+      # @param kwargs [Hash] The arguments for performing.
+      # @return [OperationChain] The performed operation chain.
+      def perform_operations_chain(klasses, owner = nil, **kwargs)
+        @operation = Ballast::OperationsChain.perform(owner || self, klasses, **kwargs)
       end
 
       # Formats a relative date using abbreviation or short formats.

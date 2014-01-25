@@ -23,20 +23,7 @@ module Ballast
         self[section] = content[environment]
       end
 
-      enable_dotted_access(self)
+      self.enable_dotted_access
     end
-
-    private
-      # Enables dotted access on a root object and its nested hashes.
-      #
-      # @param root [Hash] The hash to manage.
-      def enable_dotted_access(root)
-        root.extend(Hashie::Extensions::MethodReader)
-        root.extend(Hashie::Extensions::MethodQuery)
-
-        root.each do |_, node|
-          enable_dotted_access(node) if node.is_a?(Hash)
-        end
-      end
   end
 end

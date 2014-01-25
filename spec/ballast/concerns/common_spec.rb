@@ -57,6 +57,18 @@ describe Ballast::Concerns::Common do
     end
   end
 
+  describe "#perform_operations_chain" do
+    it "should perform the requested operation chain and memoize it" do
+      expect(Ballast::OperationsChain).to receive(:perform).with("OWNER", [:a, :b], a: 1, b: 2).and_return("OPERATION 1")
+      expect(Ballast::OperationsChain).to receive(:perform).with(subject, [:c, :d], c: 3, d: 4).and_return("OPERATION 2")
+
+      subject.perform_operations_chain([:a, :b], "OWNER", a: 1, b: 2)
+      expect(subject.instance_variable_get(:@operation)).to eq("OPERATION 1")
+      subject.perform_operations_chain([:c, :d], c: 3, d: 4)
+      expect(subject.instance_variable_get(:@operation)).to eq("OPERATION 2")
+    end
+  end
+
   describe "#format_short_duration" do
     it "should format a date" do
       now = DateTime.civil(2013, 12, 9, 15, 6, 00)

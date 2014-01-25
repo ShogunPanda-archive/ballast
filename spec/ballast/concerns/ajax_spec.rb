@@ -113,6 +113,18 @@ describe Ballast::Concerns::Ajax do
         "Access-Control-Max-Age" => "31557600"
       })
     end
+
+    it "should append custom headers values" do
+      subject.allow_cors(allow_origin: "ORIGIN", allow_methods: [:first, :second], allow_headers: "_", max_age: 1.day, allow_credentials: true)
+
+      expect(subject.headers).to eq({
+        "Access-Control-Allow-Origin" => "ORIGIN",
+        "Access-Control-Allow-Methods" => "FIRST, SECOND",
+        "Access-Control-Allow-Headers" => "_",
+        "Access-Control-Max-Age" => "86400",
+        "Access-Control-Allow-Credentials" => "true"
+      })
+    end
   end
 
   describe "#disallow_robots" do

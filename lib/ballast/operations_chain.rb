@@ -32,7 +32,14 @@ module Ballast
     def initialize(operations, context)
       @context = context
       @operations = operations.ensure_array
-      setup
     end
+
+    private
+      # Returns the operations to perform.
+      #
+      # @return [Array] An array of operations to perform.
+      def interactors
+        @operations
+      end
   end
 end
