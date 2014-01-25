@@ -1,3 +1,9 @@
+### 1.7.0 / 2014-01-25
+
+* Added `Ballast::Concerns::View::set_layout_params`.
+* Added `Ballast::Concerns::View::layout_params`.
+* Added `Ballast::Concerns::View::layout_param`.
+
 ### 1.6.0 / 2014-01-25
 
 * `Ballast::Concerns::Ajax#allow_cors`'s parameters are now customizable.

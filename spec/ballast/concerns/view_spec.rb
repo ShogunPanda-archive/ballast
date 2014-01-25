@@ -55,6 +55,37 @@ describe Ballast::Concerns::View do
     end
   end
 
+  describe "#layout_params" do
+    it "should return a single parameter" do
+      subject.set_layout_params(a: 1)
+      expect(subject.layout_params(:a)).to eq(1)
+    end
+
+    it "should return a default value for a missing parameter" do
+      subject.set_layout_params(a: 1)
+      expect(subject.layout_params(:b, 2)).to eq(2)
+    end
+
+    it "should never raise an error" do
+      expect(subject.layout_params(:a)).to be_nil
+      expect(subject.layout_params(:a, 3)).to eq(3)
+    end
+
+    it "should return the entire hash if no arguments are passed" do
+      expect(subject.layout_params).to eq({})
+      subject.set_layout_params(a: 1)
+      expect(subject.layout_params).to eq({"a" => 1})
+    end
+  end
+
+  describe "#set_layout_params" do
+    it "should merge arguments into the existing parameters" do
+      expect(subject.layout_params).to eq({})
+      subject.set_layout_params(a: 1, b: 2)
+      expect(subject.layout_params).to eq({"a" => 1, "b" => 2})
+    end
+  end
+
   describe "#javascript_params" do
     before(:each) do
       subject.instance_variable_set(:@javascript_params, {a: "1", b: 2})
