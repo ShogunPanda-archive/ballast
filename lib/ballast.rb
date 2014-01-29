@@ -27,3 +27,18 @@ require "ballast/concerns/common"
 require "ballast/concerns/view"
 require "ballast/concerns/errors_handling"
 require "ballast/middlewares/default_host"
+
+module Ballast
+  # If running under eventmachine, run the block in a thread of its threadpool using EM::Synchrony, otherwise run the block normally.
+  #
+  # @param block [Proc] The block to run.
+  def self.in_em_thread(&block)
+    if EM.reactor_running? then
+      EM::Synchrony.defer do
+        Fiber.new { block.call }.resume
+      end
+    else
+      block.call
+    end
+  end
+end

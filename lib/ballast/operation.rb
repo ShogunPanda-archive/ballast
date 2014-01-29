@@ -117,7 +117,7 @@ module Ballast
     #
     # @param block [Proc] The block to run.
     def in_em_thread(&block)
-      EM.reactor_running? ? EM::Synchrony.defer(&block) : block.call
+      Ballast.in_em_thread(&block)
     end
 
     # Forwards any missing method to the owner.

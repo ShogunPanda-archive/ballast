@@ -32,7 +32,9 @@ describe Ballast::Operation do
   end
 
   describe "#in_em_thread" do
-    it "should yield the block in EM::Synchrony thread" do
+    it "should call Ballast.in_em_thread" do
+      expect(Ballast).to receive(:in_em_thread).and_call_original
+
       counter = 0
       allow(EM).to receive(:reactor_running?).and_return(true)
       expect(EM::Synchrony).to receive(:defer){|&block| block.call }

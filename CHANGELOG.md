@@ -1,3 +1,7 @@
+### 1.8.0 / 2014-01-29
+
+* Added `Ballast.in_em_thread`.
+
 ### 1.7.0 / 2014-01-25
 
 * Added `Ballast::Concerns::View::set_layout_params`.
