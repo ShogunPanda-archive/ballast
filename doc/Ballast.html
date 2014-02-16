@@ -127,7 +127,7 @@ Licensed under the MIT license, which can be found at http://www.opensource.org/
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#in_em_thread-class_method" title="in_em_thread (class method)">+ (Object) <strong>in_em_thread</strong>(&amp;block) </a>
+      <a href="#in_em_thread-class_method" title="in_em_thread (class method)">+ (Object) <strong>in_em_thread</strong>(start_reactor = false, &amp;block) </a>
     
 
     
@@ -159,7 +159,7 @@ Licensed under the MIT license, which can be found at http://www.opensource.org/
       <div class="method_details first">
   <h3 class="signature first" id="in_em_thread-class_method">
   
-    + (<tt>Object</tt>) <strong>in_em_thread</strong>(&amp;block) 
+    + (<tt>Object</tt>) <strong>in_em_thread</strong>(start_reactor = false, &amp;block) 
   
 
   
@@ -175,6 +175,23 @@ Licensed under the MIT license, which can be found at http://www.opensource.org/
 <div class="tags">
   <p class="tag_title">Parameters:</p>
 <ul class="param">
+  
+    <li>
+      
+        <span class='name'>start_reactor</span>
+      
+      
+        <span class='type'>(<tt>Boolean</tt>)</span>
+      
+      
+        <em class="default">(defaults to: <tt>false</tt>)</em>
+      
+      
+        &mdash;
+        <div class='inline'><p>If start a EM::Synchrony reactor if none is running.</p>
+</div>
+      
+    </li>
   
     <li>
       
@@ -200,7 +217,6 @@ Licensed under the MIT license, which can be found at http://www.opensource.org/
       <pre class="lines">
 
 
-35
 36
 37
 38
@@ -208,15 +224,26 @@ Licensed under the MIT license, which can be found at http://www.opensource.org/
 40
 41
 42
-43</pre>
+43
+44
+45
+46
+47
+48
+49</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast.rb', line 35</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast.rb', line 36</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_in_em_thread'>in_em_thread</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_in_em_thread'>in_em_thread</span><span class='lparen'>(</span><span class='id identifier rubyid_start_reactor'>start_reactor</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>EM</span><span class='period'>.</span><span class='id identifier rubyid_reactor_running?'>reactor_running?</span> <span class='kw'>then</span>
     <span class='const'>EM</span><span class='op'>::</span><span class='const'>Synchrony</span><span class='period'>.</span><span class='id identifier rubyid_defer'>defer</span> <span class='kw'>do</span>
       <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_resume'>resume</span>
+    <span class='kw'>end</span>
+  <span class='kw'>elsif</span> <span class='id identifier rubyid_start_reactor'>start_reactor</span> <span class='kw'>then</span>
+    <span class='const'>EM</span><span class='period'>.</span><span class='id identifier rubyid_synchrony'>synchrony</span> <span class='kw'>do</span>
+      <span class='const'>Ballast</span><span class='period'>.</span><span class='id identifier rubyid_in_em_thread'>in_em_thread</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
+      <span class='const'>EM</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span>
     <span class='kw'>end</span>
   <span class='kw'>else</span>
     <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
@@ -232,7 +259,7 @@ Licensed under the MIT license, which can be found at http://www.opensource.org/
 </div>
 
     <div id="footer">
-  Generated on Wed Jan 29 14:58:29 2014 by
+  Generated on Sun Feb 16 14:30:46 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.1.0).
 </div>
