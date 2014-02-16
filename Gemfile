@@ -17,5 +17,5 @@ gem "simplecov", ">= 0.8.2"
 gem "coveralls", ">= 0.7.0", require: false
 gem "pry", ">= 0"
 gem "yard", ">= 0.8.7.3"
-gem "kramdown", ">= 1.3.1"
-gem "github-markup", ">= 1.0.0"
+gem "kramdown", ">= 1.3.2"
+gem "github-markup", ">= 1.0.2"

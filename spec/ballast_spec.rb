@@ -24,5 +24,17 @@ describe Ballast do
       Ballast.in_em_thread { counter = 1 }
       expect(counter).to eq(1)
     end
+
+    it "should start a EM:Synchrony on the fly if requested to" do
+      counter = 0
+      expect(EM).to receive(:reactor_running?).and_return(false)
+      expect(EM).to receive(:reactor_running?).and_return(true)
+      expect(EM::Synchrony).to receive(:defer){|&block| block.call }
+      expect(EM).to receive(:synchrony).and_yield
+      expect(EM).to receive(:stop)
+
+      Ballast.in_em_thread(true) { counter = 1 }
+      expect(counter).to eq(1)
+    end
   end
 end

@@ -31,11 +31,17 @@ require "ballast/middlewares/default_host"
 module Ballast
   # If running under eventmachine, run the block in a thread of its threadpool using EM::Synchrony, otherwise run the block normally.
   #
+  # @param start_reactor [Boolean] If start a EM::Synchrony reactor if none is running.
   # @param block [Proc] The block to run.
-  def self.in_em_thread(&block)
+  def self.in_em_thread(start_reactor = false, &block)
     if EM.reactor_running? then
       EM::Synchrony.defer do
         Fiber.new { block.call }.resume
+      end
+    elsif start_reactor then
+      EM.synchrony do
+        Ballast.in_em_thread(&block)
+        EM.stop
       end
     else
       block.call
