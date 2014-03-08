@@ -1,3 +1,7 @@
+### 1.9.0 / 2014-03-08
+
+* `Ballast::Configuration` now makes sure file with dashes are accessible in the dotted notation.
+
 ### 1.9.0 / 2014-02-16
 
 * Added `start_reactor` to `Ballast.in_em_thread`.

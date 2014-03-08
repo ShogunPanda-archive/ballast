@@ -21,6 +21,7 @@ module Ballast
       sections.each do |section|
         content = (YAML.load_file("#{root}/config/#{section}.yml") rescue {}).with_indifferent_access
         self[section] = content[environment]
+        self[section.underscore] = self[section] if section.index("-")
       end
 
       self.enable_dotted_access
