@@ -1,7 +1,6 @@
 ### 1.9.2 / 2014-03-09
 
 * Fixed type for HTML in `Ballast::Concerns::ErrorsHandling::handle_error`.
-* Added Rubinius in Travis build.
 
 ### 1.9.1 / 2014-03-08
 
