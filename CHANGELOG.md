@@ -1,4 +1,9 @@
-### 1.9.0 / 2014-03-08
+### 1.9.2 / 2014-03-09
+
+* Fixed type for HTML in `Ballast::Concerns::ErrorsHandling::handle_error`.
+* Added Rubinius in Travis build.
+
+### 1.9.1 / 2014-03-08
 
 * `Ballast::Configuration` now makes sure file with dashes are accessible in the dotted notation.
 

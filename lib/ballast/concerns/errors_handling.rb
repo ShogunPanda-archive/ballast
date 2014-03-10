@@ -47,7 +47,7 @@ module Ballast
             data = prepare_ajax(@error_code, details, @error_message || @error.message)
             send_ajax(data, format: format)
           else
-            render(nothing: true, status: @error_code, layout: layout, formats: [:html])
+            render(html: "", status: @error_code, layout: layout, formats: [:html])
           end
         end
     end

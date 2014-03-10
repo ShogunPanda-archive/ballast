@@ -63,7 +63,7 @@ describe Ballast::Concerns::ErrorsHandling do
 
     it "should render a HTML error" do
       allow(subject).to receive(:request).and_return(OpenStruct.new(format: :html))
-      expect(subject).to receive(:render).with(nothing: true, status: 500, layout: "LAYOUT", formats: [:html])
+      expect(subject).to receive(:render).with(html: "", status: 500, layout: "LAYOUT", formats: [:html])
       subject.handle_error(RuntimeError.new("ERROR"), "LAYOUT")
     end
   end
