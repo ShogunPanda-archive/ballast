@@ -228,18 +228,14 @@ Licensed under the MIT license, which can be found at http://www.opensource.org/
 44
 45
 46
-47
-48
-49</pre>
+47</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/ballast.rb', line 36</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_in_em_thread'>in_em_thread</span><span class='lparen'>(</span><span class='id identifier rubyid_start_reactor'>start_reactor</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>if</span> <span class='const'>EM</span><span class='period'>.</span><span class='id identifier rubyid_reactor_running?'>reactor_running?</span> <span class='kw'>then</span>
-    <span class='const'>EM</span><span class='op'>::</span><span class='const'>Synchrony</span><span class='period'>.</span><span class='id identifier rubyid_defer'>defer</span> <span class='kw'>do</span>
-      <span class='const'>Fiber</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span> <span class='rbrace'>}</span><span class='period'>.</span><span class='id identifier rubyid_resume'>resume</span>
-    <span class='kw'>end</span>
+    <span class='id identifier rubyid_run_in_thread'>run_in_thread</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='kw'>elsif</span> <span class='id identifier rubyid_start_reactor'>start_reactor</span> <span class='kw'>then</span>
     <span class='const'>EM</span><span class='period'>.</span><span class='id identifier rubyid_synchrony'>synchrony</span> <span class='kw'>do</span>
       <span class='const'>Ballast</span><span class='period'>.</span><span class='id identifier rubyid_in_em_thread'>in_em_thread</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
@@ -259,7 +255,7 @@ Licensed under the MIT license, which can be found at http://www.opensource.org/
 </div>
 
     <div id="footer">
-  Generated on Sun Mar  9 20:39:20 2014 by
+  Generated on Sat Mar 15 14:04:12 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.3 (ruby-2.1.0).
 </div>
