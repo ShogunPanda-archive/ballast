@@ -1,3 +1,7 @@
+### 1.9.3 / 2014-03-15
+
+* Added `Ballast::Concerns::Ajax::generate_robots_txt`.
+
 ### 1.9.2 / 2014-03-09
 
 * Fixed type for HTML in `Ballast::Concerns::ErrorsHandling::handle_error`.

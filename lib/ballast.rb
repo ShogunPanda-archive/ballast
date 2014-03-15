@@ -35,9 +35,7 @@ module Ballast
   # @param block [Proc] The block to run.
   def self.in_em_thread(start_reactor = false, &block)
     if EM.reactor_running? then
-      EM::Synchrony.defer do
-        Fiber.new { block.call }.resume
-      end
+      run_in_thread(&block)
     elsif start_reactor then
       EM.synchrony do
         Ballast.in_em_thread(&block)
@@ -47,4 +45,14 @@ module Ballast
       block.call
     end
   end
+
+  private
+    # Runs a block inside a EM thread.
+    #
+    # @param block [Proc] The block to run.
+    def self.run_in_thread(&block)
+      EM::Synchrony.defer do
+        Fiber.new { block.call }.resume
+      end
+    end
 end

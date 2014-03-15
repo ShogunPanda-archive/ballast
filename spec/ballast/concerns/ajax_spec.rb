@@ -127,10 +127,15 @@ describe Ballast::Concerns::Ajax do
     end
   end
 
-  describe "#disallow_robots" do
-    it "should disallow robots outputting a text view" do
+  describe "#generate_robots_txt" do
+    it "should generate a robots.txt file which prevents everything by default" do
       expect(subject).to receive(:render).with(text: "User-agent: *\nDisallow: /", content_type: "text/plain")
       subject.disallow_robots
+    end
+
+    it "should generate a robots.txt file which prevents everything by default" do
+      expect(subject).to receive(:render).with(text: "User-agent: A\nDisallow: B\nDisallow: C\nDisallow: D\n\nUser-agent: E\nDisallow: F\nDisallow: \nDisallow: G", content_type: "text/plain")
+      subject.generate_robots_txt([["A", "B", "C", "D"], ["E", "F", "", "G"]])
     end
   end
 end

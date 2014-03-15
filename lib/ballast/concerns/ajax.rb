@@ -90,10 +90,20 @@ module Ballast
         headers["Access-Control-Allow-Credentials"] = "true" if allow_credentials
       end
 
-      # Disallows web robots.
-      def disallow_robots
-        render(text: "User-agent: *\nDisallow: /", content_type: "text/plain")
+      # Generates a robots.txt file.
+      #
+      # @param configuration [Array] An array of list of agent and paths to include.
+      def generate_robots_txt(configuration = nil)
+        rv = configuration.ensure_array([["*", "/"]], true, true, false) { |entry|
+          agent = entry.shift
+          paths = entry.map {|e| "Disallow: #{e}" }
+
+          "User-agent: #{agent}\n#{paths.join("\n")}"
+        }.join("\n\n")
+
+        render(text: rv, content_type: "text/plain")
       end
+      alias_method :disallow_robots, :generate_robots_txt
 
       private
         # Prepares data for sending back to the client.
