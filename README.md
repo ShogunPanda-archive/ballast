@@ -6,6 +6,7 @@
 [![Code Climate](https://codeclimate.com/github/ShogunPanda/ballast.png)](https://codeclimate.com/github/ShogunPanda/ballast)
 [![Coverage Status](https://coveralls.io/repos/ShogunPanda/ballast/badge.png)](https://coveralls.io/r/ShogunPanda/ballast)
 [![Bitdeli Trend](https://d2weczhvl823v0.cloudfront.net/ShogunPanda/ballast/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
+<iframe src="http://ghbtns.com/github-btn.html?user=ShogunPanda&repo=ballast&type=fork&count=true" allowtransparency="true" frameborder="0" scrolling="0" width="135" height="20"></iframe>
 
 A collection of base utilities for Ruby on Rails.
 
