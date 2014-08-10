@@ -9,7 +9,7 @@
 
 A collection of base utilities for Ruby on Rails.
 
-http://sw.cow.tc/ballast
+http://sw.cowtech.it/ballast
 
 http://rdoc.info/gems/ballast
 
