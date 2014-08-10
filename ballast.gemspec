@@ -8,7 +8,7 @@ require File.expand_path("../lib/ballast/version", __FILE__)
 Gem::Specification.new do |gem|
   gem.name = "ballast"
   gem.version = Ballast::Version::STRING
-  gem.homepage = "http://github.com/ShogunPanda/ballast"
+  gem.homepage = "http://sw.cowtech.it/ballast"
   gem.summary = "A collection of base utilities for Ruby on Rails."
   gem.description = "A collection of base utilities for Ruby on Rails."
   gem.rubyforge_project = "ballast"
