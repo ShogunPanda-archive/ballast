@@ -138,7 +138,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>The data returned by the service.</p>
+    <span class="summary_desc"><div class='inline'><p>The data returned by the operation.</p>
 </div></span>
   
 </li>
@@ -147,7 +147,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#errors-instance_method" title="#errors (instance method)">- (Boolean) <strong>errors</strong> </a>
+      <a href="#errors-instance_method" title="#errors (instance method)">- (Array) <strong>errors</strong> </a>
     
 
     
@@ -166,7 +166,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>The errors returned by the service.</p>
+    <span class="summary_desc"><div class='inline'><p>The errors returned by the operation.</p>
 </div></span>
   
 </li>
@@ -253,7 +253,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Returns the first error returned by the service.</p>
+    <span class="summary_desc"><div class='inline'><p>Returns the first error returned by the operation.</p>
 </div></span>
   
 </li>
@@ -382,12 +382,12 @@
         <span class='name'>data</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object|NilClass</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The data returned by the service.</p>
+        <div class='inline'><p>The data returned by the operation.</p>
 </div>
       
     </li>
@@ -397,12 +397,12 @@
         <span class='name'>errors</span>
       
       
-        <span class='type'>(<tt>Array</tt>)</span>
+        <span class='type'>(<tt>Array|NilClass</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The errors returned by the service.</p>
+        <div class='inline'><p>The errors returned by the operation.</p>
 </div>
       
     </li>
@@ -412,7 +412,7 @@
         <span class='name'>error</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object|NilClass</tt>)</span>
       
       
       
@@ -472,7 +472,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns The data returned by the service.</p>
+    <p>Returns The data returned by the operation.</p>
 
 
   </div>
@@ -490,7 +490,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The data returned by the service.</p>
+        <div class='inline'><p>The data returned by the operation.</p>
 </div>
       
     </li>
@@ -571,9 +571,9 @@
   <span class='comment'># Creates a new service response.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @param success [Boolean] Whether the invocation was successful or not.
-</span>  <span class='comment'># @param data [Object] The data returned by the service.
-</span>  <span class='comment'># @param errors [Array] The errors returned by the service.
-</span>  <span class='comment'># @param error [Object] Alias for errors. *Ignored if `errors` is present.*
+</span>  <span class='comment'># @param data [Object|NilClass] The data returned by the operation.
+</span>  <span class='comment'># @param errors [Array|NilClass] The errors returned by the operation.
+</span>  <span class='comment'># @param error [Object|NilClass] Alias for errors. *Ignored if `errors` is present.*
 </span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>errors:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_errors'>errors</span> <span class='op'>||=</span> <span class='id identifier rubyid_error'>error</span><span class='period'>.</span><span class='id identifier rubyid_ensure_array'>ensure_array</span>
 
@@ -600,7 +600,7 @@
   <span class='kw'>end</span>
   <span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbol'>:failed?</span><span class='comma'>,</span> <span class='symbol'>:fail?</span>
 
-  <span class='comment'># Returns the first error returned by the service.
+  <span class='comment'># Returns the first error returned by the operation.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @return [Object] The first error returned by the service.
 </span>  <span class='kw'>def</span> <span class='id identifier rubyid_error'>error</span>
@@ -633,7 +633,7 @@
       <div class="method_details ">
   <h3 class="signature " id="errors-instance_method">
   
-    - (<tt>Boolean</tt>) <strong>errors</strong>  <span class="extras">(readonly)</span>
+    - (<tt>Array</tt>) <strong>errors</strong>  <span class="extras">(readonly)</span>
   
 
   
@@ -641,7 +641,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns The errors returned by the service.</p>
+    <p>Returns The errors returned by the operation.</p>
 
 
   </div>
@@ -654,12 +654,12 @@
     <li>
       
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
+        <span class='type'>(<tt>Array</tt>)</span>
       
       
       
         &mdash;
-        <div class='inline'><p>The errors returned by the service.</p>
+        <div class='inline'><p>The errors returned by the operation.</p>
 </div>
       
     </li>
@@ -740,9 +740,9 @@
   <span class='comment'># Creates a new service response.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @param success [Boolean] Whether the invocation was successful or not.
-</span>  <span class='comment'># @param data [Object] The data returned by the service.
-</span>  <span class='comment'># @param errors [Array] The errors returned by the service.
-</span>  <span class='comment'># @param error [Object] Alias for errors. *Ignored if `errors` is present.*
+</span>  <span class='comment'># @param data [Object|NilClass] The data returned by the operation.
+</span>  <span class='comment'># @param errors [Array|NilClass] The errors returned by the operation.
+</span>  <span class='comment'># @param error [Object|NilClass] Alias for errors. *Ignored if `errors` is present.*
 </span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>errors:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_errors'>errors</span> <span class='op'>||=</span> <span class='id identifier rubyid_error'>error</span><span class='period'>.</span><span class='id identifier rubyid_ensure_array'>ensure_array</span>
 
@@ -769,7 +769,7 @@
   <span class='kw'>end</span>
   <span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbol'>:failed?</span><span class='comma'>,</span> <span class='symbol'>:fail?</span>
 
-  <span class='comment'># Returns the first error returned by the service.
+  <span class='comment'># Returns the first error returned by the operation.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @return [Object] The first error returned by the service.
 </span>  <span class='kw'>def</span> <span class='id identifier rubyid_error'>error</span>
@@ -909,9 +909,9 @@
   <span class='comment'># Creates a new service response.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @param success [Boolean] Whether the invocation was successful or not.
-</span>  <span class='comment'># @param data [Object] The data returned by the service.
-</span>  <span class='comment'># @param errors [Array] The errors returned by the service.
-</span>  <span class='comment'># @param error [Object] Alias for errors. *Ignored if `errors` is present.*
+</span>  <span class='comment'># @param data [Object|NilClass] The data returned by the operation.
+</span>  <span class='comment'># @param errors [Array|NilClass] The errors returned by the operation.
+</span>  <span class='comment'># @param error [Object|NilClass] Alias for errors. *Ignored if `errors` is present.*
 </span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>errors:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_errors'>errors</span> <span class='op'>||=</span> <span class='id identifier rubyid_error'>error</span><span class='period'>.</span><span class='id identifier rubyid_ensure_array'>ensure_array</span>
 
@@ -938,7 +938,7 @@
   <span class='kw'>end</span>
   <span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbol'>:failed?</span><span class='comma'>,</span> <span class='symbol'>:fail?</span>
 
-  <span class='comment'># Returns the first error returned by the service.
+  <span class='comment'># Returns the first error returned by the operation.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @return [Object] The first error returned by the service.
 </span>  <span class='kw'>def</span> <span class='id identifier rubyid_error'>error</span>
@@ -1059,7 +1059,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Returns the first error returned by the service.</p>
+    <p>Returns the first error returned by the operation.</p>
 
 
   </div>
@@ -1234,7 +1234,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sun Nov  2 09:08:32 2014 by
+  Generated on Sun Nov  2 09:40:01 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.1.3).
 </div>

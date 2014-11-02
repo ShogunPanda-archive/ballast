@@ -119,7 +119,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#data-instance_method" title="#data (instance method)">- (Object) <strong>data</strong> </a>
+      <a href="#data-instance_method" title="#data (instance method)">- (Object|Hash|NilClass) <strong>data</strong> </a>
     
 
     
@@ -145,7 +145,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#error-instance_method" title="#error (instance method)">- (Object) <strong>error</strong> </a>
+      <a href="#error-instance_method" title="#error (instance method)">- (Object|NilClass) <strong>error</strong> </a>
     
 
     
@@ -197,7 +197,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#transport-instance_method" title="#transport (instance method)">- (Object) <strong>transport</strong> </a>
+      <a href="#transport-instance_method" title="#transport (instance method)">- (Object|NilClass) <strong>transport</strong> </a>
     
 
     
@@ -259,7 +259,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#initialize-instance_method" title="#initialize (instance method)">- (AjaxResponse) <strong>initialize</strong>(status: :ok, data: {}, error: nil, transport: transport) </a>
+      <a href="#initialize-instance_method" title="#initialize (instance method)">- (AjaxResponse) <strong>initialize</strong>(status: :ok, data: {}, error: nil, transport: nil) </a>
     
 
     
@@ -336,7 +336,7 @@
     <div class="method_details first">
   <h3 class="signature first" id="initialize-instance_method">
   
-    - (<tt><span class='object_link'><a href="" title="Ballast::AjaxResponse (class)">AjaxResponse</a></span></tt>) <strong>initialize</strong>(status: :ok, data: {}, error: nil, transport: transport) 
+    - (<tt><span class='object_link'><a href="" title="Ballast::AjaxResponse (class)">AjaxResponse</a></span></tt>) <strong>initialize</strong>(status: :ok, data: {}, error: nil, transport: nil) 
   
 
   
@@ -373,7 +373,7 @@
         <span class='name'>data</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object|Hash|NilClass</tt>)</span>
       
       
       
@@ -388,7 +388,7 @@
         <span class='name'>error</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object|NilClass</tt>)</span>
       
       
       
@@ -403,7 +403,7 @@
         <span class='name'>transport</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object|NilClass</tt>)</span>
       
       
       
@@ -432,7 +432,7 @@
     <td>
       <pre class="code"><span class="info file"># File 'lib/ballast/ajax_response.rb', line 26</span>
 
-<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>transport:</span> <span class='id identifier rubyid_transport'>transport</span><span class='rparen'>)</span>
+<span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>transport:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
   <span class='ivar'>@status</span> <span class='op'>=</span> <span class='id identifier rubyid_status'>status</span>
   <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
   <span class='ivar'>@error</span> <span class='op'>=</span> <span class='id identifier rubyid_error'>error</span>
@@ -453,7 +453,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="data-instance_method">
   
-    - (<tt>Object</tt>) <strong>data</strong> 
+    - (<tt>Object|Hash|NilClass</tt>) <strong>data</strong> 
   
 
   
@@ -474,7 +474,7 @@
     <li>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object|Hash|NilClass</tt>)</span>
       
       
       
@@ -561,10 +561,10 @@
   <span class='comment'># Creates an AJAX response.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @param status [Symbol|Fixnum] The HTTP status of the response.
-</span>  <span class='comment'># @param data [Object] Additional data to append to the response.
-</span>  <span class='comment'># @param error [Object] A error to append to the response.
-</span>  <span class='comment'># @param transport [Object] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
-</span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>transport:</span> <span class='id identifier rubyid_transport'>transport</span><span class='rparen'>)</span>
+</span>  <span class='comment'># @param data [Object|Hash|NilClass] Additional data to append to the response.
+</span>  <span class='comment'># @param error [Object|NilClass] A error to append to the response.
+</span>  <span class='comment'># @param transport [Object|NilClass] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>transport:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='ivar'>@status</span> <span class='op'>=</span> <span class='id identifier rubyid_status'>status</span>
     <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
     <span class='ivar'>@error</span> <span class='op'>=</span> <span class='id identifier rubyid_error'>error</span>
@@ -624,7 +624,7 @@
       <div class="method_details ">
   <h3 class="signature " id="error-instance_method">
   
-    - (<tt>Object</tt>) <strong>error</strong> 
+    - (<tt>Object|NilClass</tt>) <strong>error</strong> 
   
 
   
@@ -645,7 +645,7 @@
     <li>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object|NilClass</tt>)</span>
       
       
       
@@ -732,10 +732,10 @@
   <span class='comment'># Creates an AJAX response.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @param status [Symbol|Fixnum] The HTTP status of the response.
-</span>  <span class='comment'># @param data [Object] Additional data to append to the response.
-</span>  <span class='comment'># @param error [Object] A error to append to the response.
-</span>  <span class='comment'># @param transport [Object] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
-</span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>transport:</span> <span class='id identifier rubyid_transport'>transport</span><span class='rparen'>)</span>
+</span>  <span class='comment'># @param data [Object|Hash|NilClass] Additional data to append to the response.
+</span>  <span class='comment'># @param error [Object|NilClass] A error to append to the response.
+</span>  <span class='comment'># @param transport [Object|NilClass] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>transport:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='ivar'>@status</span> <span class='op'>=</span> <span class='id identifier rubyid_status'>status</span>
     <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
     <span class='ivar'>@error</span> <span class='op'>=</span> <span class='id identifier rubyid_error'>error</span>
@@ -903,10 +903,10 @@
   <span class='comment'># Creates an AJAX response.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @param status [Symbol|Fixnum] The HTTP status of the response.
-</span>  <span class='comment'># @param data [Object] Additional data to append to the response.
-</span>  <span class='comment'># @param error [Object] A error to append to the response.
-</span>  <span class='comment'># @param transport [Object] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
-</span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>transport:</span> <span class='id identifier rubyid_transport'>transport</span><span class='rparen'>)</span>
+</span>  <span class='comment'># @param data [Object|Hash|NilClass] Additional data to append to the response.
+</span>  <span class='comment'># @param error [Object|NilClass] A error to append to the response.
+</span>  <span class='comment'># @param transport [Object|NilClass] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>transport:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='ivar'>@status</span> <span class='op'>=</span> <span class='id identifier rubyid_status'>status</span>
     <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
     <span class='ivar'>@error</span> <span class='op'>=</span> <span class='id identifier rubyid_error'>error</span>
@@ -966,7 +966,7 @@
       <div class="method_details ">
   <h3 class="signature " id="transport-instance_method">
   
-    - (<tt>Object</tt>) <strong>transport</strong> 
+    - (<tt>Object|NilClass</tt>) <strong>transport</strong> 
   
 
   
@@ -987,7 +987,7 @@
     <li>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object|NilClass</tt>)</span>
       
       
       
@@ -1074,10 +1074,10 @@
   <span class='comment'># Creates an AJAX response.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @param status [Symbol|Fixnum] The HTTP status of the response.
-</span>  <span class='comment'># @param data [Object] Additional data to append to the response.
-</span>  <span class='comment'># @param error [Object] A error to append to the response.
-</span>  <span class='comment'># @param transport [Object] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
-</span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>transport:</span> <span class='id identifier rubyid_transport'>transport</span><span class='rparen'>)</span>
+</span>  <span class='comment'># @param data [Object|Hash|NilClass] Additional data to append to the response.
+</span>  <span class='comment'># @param error [Object|NilClass] A error to append to the response.
+</span>  <span class='comment'># @param transport [Object|NilClass] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
+</span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='label'>status:</span> <span class='symbol'>:ok</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>transport:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='ivar'>@status</span> <span class='op'>=</span> <span class='id identifier rubyid_status'>status</span>
     <span class='ivar'>@data</span> <span class='op'>=</span> <span class='id identifier rubyid_data'>data</span>
     <span class='ivar'>@error</span> <span class='op'>=</span> <span class='id identifier rubyid_error'>error</span>
@@ -1371,7 +1371,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sun Nov  2 09:08:32 2014 by
+  Generated on Sun Nov  2 09:40:01 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.1.3).
 </div>

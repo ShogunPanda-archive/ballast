@@ -129,7 +129,7 @@
       <li class="public ">
   <span class="summary_signature">
     
-      <a href="#owner-instance_method" title="#owner (instance method)">- (Object) <strong>owner</strong> </a>
+      <a href="#owner-instance_method" title="#owner (instance method)">- (Object|NilClass) <strong>owner</strong> </a>
     
 
     
@@ -310,7 +310,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Creates a service object and invokes one of the operation exposed.</p>
+    <span class="summary_desc"><div class='inline'><p>Creates a service object.</p>
 </div></span>
   
 </li>
@@ -333,7 +333,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Creates a service object and invokes one of the operation exposed.</p>
+    <p>Creates a service object.</p>
 
 
   </div>
@@ -347,7 +347,7 @@
         <span class='name'>owner</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object|NilClass</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
@@ -393,7 +393,7 @@
       <div class="method_details first">
   <h3 class="signature first" id="owner-instance_method">
   
-    - (<tt>Object</tt>) <strong>owner</strong>  <span class="extras">(readonly)</span>
+    - (<tt>Object|NilClass</tt>) <strong>owner</strong>  <span class="extras">(readonly)</span>
   
 
   
@@ -414,7 +414,7 @@
     <li>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object|NilClass</tt>)</span>
       
       
       
@@ -566,7 +566,8 @@
 142
 143
 144
-145</pre>
+145
+146</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 11</span>
@@ -577,18 +578,18 @@
 </span>  <span class='comment'># @attribute [r] success
 </span>  <span class='comment'>#   @return [Boolean] Whether the invocation was successful or not.
 </span>  <span class='comment'># @attribute [r] data
-</span>  <span class='comment'>#   @return [Object] The data returned by the service.
+</span>  <span class='comment'>#   @return [Object] The data returned by the operation.
 </span>  <span class='comment'># @attribute [r] errors
-</span>  <span class='comment'>#   @return [Boolean] The errors returned by the service.
+</span>  <span class='comment'>#   @return [Array] The errors returned by the operation.
 </span>  <span class='kw'>class</span> <span class='const'>Response</span>
     <span class='id identifier rubyid_attr_reader'>attr_reader</span> <span class='symbol'>:success</span><span class='comma'>,</span> <span class='symbol'>:data</span><span class='comma'>,</span> <span class='symbol'>:errors</span>
 
     <span class='comment'># Creates a new service response.
 </span>    <span class='comment'>#
 </span>    <span class='comment'># @param success [Boolean] Whether the invocation was successful or not.
-</span>    <span class='comment'># @param data [Object] The data returned by the service.
-</span>    <span class='comment'># @param errors [Array] The errors returned by the service.
-</span>    <span class='comment'># @param error [Object] Alias for errors. *Ignored if `errors` is present.*
+</span>    <span class='comment'># @param data [Object|NilClass] The data returned by the operation.
+</span>    <span class='comment'># @param errors [Array|NilClass] The errors returned by the operation.
+</span>    <span class='comment'># @param error [Object|NilClass] Alias for errors. *Ignored if `errors` is present.*
 </span>    <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_success'>success</span> <span class='op'>=</span> <span class='kw'>true</span><span class='comma'>,</span> <span class='label'>data:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>errors:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='kw'>nil</span><span class='rparen'>)</span>
       <span class='id identifier rubyid_errors'>errors</span> <span class='op'>||=</span> <span class='id identifier rubyid_error'>error</span><span class='period'>.</span><span class='id identifier rubyid_ensure_array'>ensure_array</span>
 
@@ -615,7 +616,7 @@
     <span class='kw'>end</span>
     <span class='id identifier rubyid_alias_method'>alias_method</span> <span class='symbol'>:failed?</span><span class='comma'>,</span> <span class='symbol'>:fail?</span>
 
-    <span class='comment'># Returns the first error returned by the service.
+    <span class='comment'># Returns the first error returned by the operation.
 </span>    <span class='comment'>#
 </span>    <span class='comment'># @return [Object] The first error returned by the service.
 </span>    <span class='kw'>def</span> <span class='id identifier rubyid_error'>error</span>
@@ -643,9 +644,9 @@
 
   <span class='comment'># Invokes one of the operations exposed by the service.
 </span>  <span class='comment'>#
-</span>  <span class='comment'># @param operation [String] The service to invoke.
-</span>  <span class='comment'># @param owner [Object] The owner of the service.
-</span>  <span class='comment'># @param raise_errors [Boolean] Whether to raise errors instead of marking a failure.
+</span>  <span class='comment'># @param operation [String] The operation to invoke.
+</span>  <span class='comment'># @param owner [Object|NilClass] The owner of the service.
+</span>  <span class='comment'># @param raise_errors [Boolean] Whether to raise errors instead of returning a failure.
 </span>  <span class='comment'># @param params [Hash] The parameters to pass to the service.
 </span>  <span class='comment'># @param kwargs [Hash] Other modifiers to pass to the service.
 </span>  <span class='comment'># @param block [Proc] A lambda to pass to the service.
@@ -660,22 +661,23 @@
   <span class='comment'># Marks the failure of the operation.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @param details [Object] The error(s) occurred.
-</span>  <span class='comment'># @param on_validation [Boolean] Whether the error was a validation error.
+</span>  <span class='comment'># @param on_validation [Boolean] Whether the error(s) was/were validation error(s).
 </span>  <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_fail!'>fail!</span><span class='lparen'>(</span><span class='id identifier rubyid_details'>details</span><span class='comma'>,</span> <span class='label'>on_validation:</span> <span class='kw'>false</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_raise'>raise</span><span class='lparen'>(</span><span class='id identifier rubyid_on_validation'>on_validation</span> <span class='op'>?</span> <span class='const'>Errors</span><span class='op'>::</span><span class='const'>ValidationFailure</span> <span class='op'>:</span> <span class='const'>Errors</span><span class='op'>::</span><span class='const'>Failure</span><span class='comma'>,</span> <span class='id identifier rubyid_details'>details</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
 
-  <span class='comment'># Creates a service object and invokes one of the operation exposed.
+  <span class='comment'># Creates a service object.
 </span>  <span class='comment'>#
-</span>  <span class='comment'># @param owner [Object] The owner of the service.
+</span>  <span class='comment'># @param owner [Object|NilClass] The owner of the service.
 </span>  <span class='kw'>def</span> <span class='id identifier rubyid_initialize'>initialize</span><span class='lparen'>(</span><span class='id identifier rubyid_owner'>owner</span> <span class='op'>=</span> <span class='kw'>nil</span><span class='rparen'>)</span>
     <span class='ivar'>@owner</span> <span class='op'>=</span> <span class='id identifier rubyid_owner'>owner</span>
   <span class='kw'>end</span>
 
   <span class='comment'># Invokes one of the operations exposed by the service.
 </span>  <span class='comment'>#
-</span>  <span class='comment'># @param operation [String] The service to invoke.
-</span>  <span class='comment'># @param raise_errors [Boolean] Whether to raise errors instead of marking a failure.
+</span>  <span class='comment'># @param operation [String] The operation to invoke.
+</span>  <span class='comment'># @param owner [Object|NilClass] The owner of the service.
+</span>  <span class='comment'># @param raise_errors [Boolean] Whether to raise errors instead of returning a failure.
 </span>  <span class='comment'># @param params [Hash] The parameters to pass to the service.
 </span>  <span class='comment'># @param kwargs [Hash] Other modifiers to pass to the service.
 </span>  <span class='comment'># @param block [Proc] A lambda to pass to the service.
@@ -692,7 +694,7 @@
   <span class='comment'># Marks the failure of the operation.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @param details [Object] The error(s) occurred.
-</span>  <span class='comment'># @param on_validation [Boolean] Whether the error was a validation error.
+</span>  <span class='comment'># @param on_validation [Boolean] Whether the error(s) was/were validation error(s).
 </span>  <span class='kw'>def</span> <span class='id identifier rubyid_fail!'>fail!</span><span class='lparen'>(</span><span class='id identifier rubyid_details'>details</span><span class='comma'>,</span> <span class='label'>on_validation:</span> <span class='kw'>false</span><span class='rparen'>)</span>
     <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_fail!'>fail!</span><span class='lparen'>(</span><span class='id identifier rubyid_details'>details</span><span class='comma'>,</span> <span class='label'>on_validation:</span> <span class='id identifier rubyid_on_validation'>on_validation</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
@@ -750,7 +752,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The service to invoke.</p>
+        <div class='inline'><p>The operation to invoke.</p>
 </div>
       
     </li>
@@ -760,7 +762,7 @@
         <span class='name'>owner</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object|NilClass</tt>)</span>
       
       
       
@@ -780,7 +782,7 @@
       
       
         &mdash;
-        <div class='inline'><p>Whether to raise errors instead of marking a failure.</p>
+        <div class='inline'><p>Whether to raise errors instead of returning a failure.</p>
 </div>
       
     </li>
@@ -922,7 +924,7 @@
       
       
         &mdash;
-        <div class='inline'><p>Whether the error was a validation error.</p>
+        <div class='inline'><p>Whether the error(s) was/were validation error(s).</p>
 </div>
       
     </li>
@@ -1040,12 +1042,12 @@
       <pre class="lines">
 
 
-142
 143
-144</pre>
+144
+145</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 142</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 143</span>
 
 <span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_handle_failure'>handle_failure</span><span class='lparen'>(</span><span class='id identifier rubyid_failure'>failure</span><span class='comma'>,</span> <span class='id identifier rubyid_raise_errors'>raise_errors</span><span class='rparen'>)</span>
   <span class='id identifier rubyid_raise_errors'>raise_errors</span> <span class='op'>?</span> <span class='id identifier rubyid_raise'>raise</span><span class='lparen'>(</span><span class='id identifier rubyid_failure'>failure</span><span class='rparen'>)</span> <span class='op'>:</span> <span class='const'>Response</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>false</span><span class='comma'>,</span> <span class='label'>error:</span> <span class='id identifier rubyid_failure'>failure</span><span class='period'>.</span><span class='id identifier rubyid_details'>details</span><span class='rparen'>)</span>
@@ -1093,7 +1095,22 @@
       
       
         &mdash;
-        <div class='inline'><p>The service to invoke.</p>
+        <div class='inline'><p>The operation to invoke.</p>
+</div>
+      
+    </li>
+  
+    <li>
+      
+        <span class='name'>owner</span>
+      
+      
+        <span class='type'>(<tt>Object|NilClass</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The owner of the service.</p>
 </div>
       
     </li>
@@ -1108,7 +1125,7 @@
       
       
         &mdash;
-        <div class='inline'><p>Whether to raise errors instead of marking a failure.</p>
+        <div class='inline'><p>Whether to raise errors instead of returning a failure.</p>
 </div>
       
     </li>
@@ -1184,17 +1201,17 @@
       <pre class="lines">
 
 
-120
 121
 122
 123
 124
 125
 126
-127</pre>
+127
+128</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 120</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 121</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_operation'>operation</span> <span class='op'>=</span> <span class='symbol'>:perform</span><span class='comma'>,</span> <span class='label'>owner:</span> <span class='kw'>nil</span><span class='comma'>,</span> <span class='label'>raise_errors:</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='label'>params:</span> <span class='lbrace'>{</span><span class='rbrace'>}</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_kwargs'>kwargs</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
   <span class='comment'># PI: Ignore Roodi on this method
@@ -1254,7 +1271,7 @@
       
       
         &mdash;
-        <div class='inline'><p>Whether the error was a validation error.</p>
+        <div class='inline'><p>Whether the error(s) was/were validation error(s).</p>
 </div>
       
     </li>
@@ -1268,12 +1285,12 @@
       <pre class="lines">
 
 
-133
 134
-135</pre>
+135
+136</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 133</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 134</span>
 
 <span class='kw'>def</span> <span class='id identifier rubyid_fail!'>fail!</span><span class='lparen'>(</span><span class='id identifier rubyid_details'>details</span><span class='comma'>,</span> <span class='label'>on_validation:</span> <span class='kw'>false</span><span class='rparen'>)</span>
   <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_class'>class</span><span class='period'>.</span><span class='id identifier rubyid_fail!'>fail!</span><span class='lparen'>(</span><span class='id identifier rubyid_details'>details</span><span class='comma'>,</span> <span class='label'>on_validation:</span> <span class='id identifier rubyid_on_validation'>on_validation</span><span class='rparen'>)</span>
@@ -1288,7 +1305,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sun Nov  2 09:08:32 2014 by
+  Generated on Sun Nov  2 09:40:00 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.1.3).
 </div>

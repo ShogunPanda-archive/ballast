@@ -157,7 +157,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Lists all the emoji known in hash structure.</p>
+    <span class="summary_desc"><div class='inline'><p>Lists all the emoji known in a hash.</p>
 </div></span>
   
 </li>
@@ -362,13 +362,13 @@
 </span>  <span class='comment'># @param text [String] The text to manipulate.
 </span>  <span class='comment'># @param mode [Symbol] The method to use when replacing icons.
 </span>  <span class='comment'># @param options [Hash] The options to pass to the replacing method.
-</span>  <span class='comment'># @return [String] A text with all emojis replaced.
+</span>  <span class='comment'># @return [String] The text with all emojis replaced.
 </span>  <span class='kw'>def</span> <span class='id identifier rubyid_replace'>replace</span><span class='lparen'>(</span><span class='id identifier rubyid_text'>text</span><span class='comma'>,</span> <span class='label'>mode:</span> <span class='symbol'>:html</span><span class='comma'>,</span> <span class='op'>**</span><span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_mode'>mode</span> <span class='op'>=</span> <span class='symbol'>:markup</span> <span class='kw'>unless</span> <span class='id identifier rubyid_mode'>mode</span> <span class='op'>&amp;&amp;</span> <span class='op'>::</span><span class='const'>Emoji</span><span class='op'>::</span><span class='const'>Character</span><span class='period'>.</span><span class='id identifier rubyid_new'>new</span><span class='lparen'>(</span><span class='kw'>nil</span><span class='rparen'>)</span><span class='period'>.</span><span class='id identifier rubyid_respond_to?'>respond_to?</span><span class='lparen'>(</span><span class='id identifier rubyid_mode'>mode</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_text'>text</span><span class='period'>.</span><span class='id identifier rubyid_ensure_string'>ensure_string</span><span class='period'>.</span><span class='id identifier rubyid_gsub'>gsub</span><span class='lparen'>(</span><span class='id identifier rubyid_replace_regex'>replace_regex</span><span class='rparen'>)</span> <span class='lbrace'>{</span> <span class='id identifier rubyid_invoke'>invoke</span><span class='lparen'>(</span><span class='op'>::</span><span class='const'>Emoji</span><span class='period'>.</span><span class='id identifier rubyid_find_by_unicode'>find_by_unicode</span><span class='lparen'>(</span><span class='const'>Regexp</span><span class='period'>.</span><span class='id identifier rubyid_last_match'>last_match</span><span class='lbracket'>[</span><span class='int'>1</span><span class='rbracket'>]</span><span class='rparen'>)</span><span class='comma'>,</span> <span class='id identifier rubyid_mode'>mode</span><span class='comma'>,</span> <span class='id identifier rubyid_options'>options</span><span class='rparen'>)</span> <span class='rbrace'>}</span>
   <span class='kw'>end</span>
 
-  <span class='comment'># Lists all the emoji known in hash structure.
+  <span class='comment'># Lists all the emoji known in a hash.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @param keys_method [Symbol] The method to use for keys.
 </span>  <span class='comment'># @param values_method [Symbol] The method to use for values.
@@ -395,7 +395,7 @@
   <span class='comment'># Returns a absolute URL for a emoji image.
 </span>  <span class='comment'>#
 </span>  <span class='comment'># @param image [String] The relative URL of the emoji filename.
-</span>  <span class='comment'># @return [String] The absolute path of the emoji filename.
+</span>  <span class='comment'># @return [String] The absolute URL of the emoji filename.
 </span>  <span class='kw'>def</span> <span class='id identifier rubyid_url_for'>url_for</span><span class='lparen'>(</span><span class='id identifier rubyid_image'>image</span><span class='rparen'>)</span>
     <span class='id identifier rubyid_url_mapper'>url_mapper</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span><span class='lparen'>(</span><span class='id identifier rubyid_image'>image</span><span class='rparen'>)</span>
   <span class='kw'>end</span>
@@ -430,7 +430,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Lists all the emoji known in hash structure.</p>
+    <p>Lists all the emoji known in a hash.</p>
 
 
   </div>
@@ -617,7 +617,7 @@
       
       
         &mdash;
-        <div class='inline'><p>A text with all emojis replaced.</p>
+        <div class='inline'><p>The text with all emojis replaced.</p>
 </div>
       
     </li>
@@ -752,7 +752,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The absolute path of the emoji filename.</p>
+        <div class='inline'><p>The absolute URL of the emoji filename.</p>
 </div>
       
     </li>
@@ -785,7 +785,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sun Nov  2 09:08:31 2014 by
+  Generated on Sun Nov  2 09:40:00 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.1.3).
 </div>

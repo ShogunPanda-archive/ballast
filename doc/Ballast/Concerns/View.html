@@ -181,7 +181,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#layout_params-instance_method" title="#layout_params (instance method)">- (Object|Hash) <strong>layout_params</strong>(key = nil, default_value = nil) </a>
+      <a href="#layout_params-instance_method" title="#layout_params (instance method)">- (Object|Hash|NilClass) <strong>layout_params</strong>(key = nil, default_value = nil) </a>
     
 
     
@@ -243,7 +243,7 @@
   
 
   
-    <span class="summary_desc"><div class='inline'><p>Appends new Javascript parameters.</p>
+    <span class="summary_desc"><div class='inline'><p>Adds/Replaces Javascript parameters.</p>
 </div></span>
   
 </li>
@@ -380,7 +380,7 @@
         <span class='name'>root</span>
       
       
-        <span class='type'>(<tt>String</tt>)</span>
+        <span class='type'>(<tt>String|NilClass</tt>)</span>
       
       
       
@@ -511,7 +511,7 @@
       
       
         &mdash;
-        <div class='inline'><p>Javascript parameters as HTML or the hash.</p>
+        <div class='inline'><p>Javascript parameters as HTML or as an hash.</p>
 </div>
       
     </li>
@@ -544,7 +544,7 @@
       <div class="method_details ">
   <h3 class="signature " id="layout_params-instance_method">
   
-    - (<tt>Object|Hash</tt>) <strong>layout_params</strong>(key = nil, default_value = nil) 
+    - (<tt>Object|Hash|NilClass</tt>) <strong>layout_params</strong>(key = nil, default_value = nil) 
   
 
   
@@ -587,7 +587,7 @@
         <span class='name'>default_value</span>
       
       
-        <span class='type'>(<tt>Object</tt>)</span>
+        <span class='type'>(<tt>Object|NilClass</tt>)</span>
       
       
         <em class="default">(defaults to: <tt>nil</tt>)</em>
@@ -607,7 +607,7 @@
     <li>
       
       
-        <span class='type'>(<tt>Object|Hash</tt>)</span>
+        <span class='type'>(<tt>Object|Hash|NilClass</tt>)</span>
       
       
       
@@ -710,7 +710,7 @@
   
 </h3><div class="docstring">
   <div class="discussion">
-    <p>Appends new Javascript parameters.</p>
+    <p>Adds/Replaces Javascript parameters.</p>
 
 
   </div>
@@ -744,7 +744,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The data to add.</p>
+        <div class='inline'><p>The data to add or replace.</p>
 </div>
       
     </li>
@@ -838,7 +838,7 @@
       
       
         &mdash;
-        <div class='inline'><p>The new parameters to add.</p>
+        <div class='inline'><p>The parameters to add or replace.</p>
 </div>
       
     </li>
@@ -874,7 +874,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sun Nov  2 09:08:31 2014 by
+  Generated on Sun Nov  2 09:40:00 2014 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.1.3).
 </div>
