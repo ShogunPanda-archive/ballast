@@ -32,7 +32,11 @@ describe Ballast::Configuration do
     end
 
     it "should fallback to production" do
+      old_env = ENV["RACK_ENV"]
+      ENV["RACK_ENV"] = nil
+
       expect(Ballast::Configuration.default_environment).to eq("production")
+      ENV["RACK_ENV"] = old_env
     end
   end
 
@@ -54,7 +58,16 @@ describe Ballast::Configuration do
       end
     end
 
-    describe "it should autodetect root and environment" do
+    describe "when root and environment are NOT defined, it should autodetect root and environment" do
+      around(:example) do |example|
+        old_env = ENV["RACK_ENV"]
+        ENV["RACK_ENV"] = nil
+
+        example.call
+
+        ENV["RACK_ENV"] = old_env
+      end
+
       it "should enable dotted access" do
         expect(YAML).to receive(:load_file).with("#{Dir.pwd}/config/section_a.yml").and_return({"production" => {a: {b: 1}}, "OTHER" => {aa: 3}})
         expect(YAML).to receive(:load_file).with("#{Dir.pwd}/config/section-b.yml").and_return({"production" => {c: {d: 2}}, "OTHER" => {cc: 4}})
