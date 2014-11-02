@@ -5,13 +5,13 @@
 
 require "spec_helper"
 
-describe Ballast::Errors::BaseError do
-  subject { Ballast::Errors::BaseError.new("ERROR") }
+describe Ballast::Errors::Base do
+  subject { Ballast::Errors::Base.new("ERROR") }
 
   describe ".initialize" do
-    it "should propagate the message also as a response" do
-      expect(subject.message).to eq("ERROR")
-      expect(subject.response).to eq("ERROR")
+    it "should save the details" do
+      expect(subject.message).to eq("")
+      expect(subject.details).to eq("ERROR")
     end
   end
 end

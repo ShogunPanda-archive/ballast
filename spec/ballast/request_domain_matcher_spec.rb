@@ -21,11 +21,11 @@ describe Ballast::RequestDomainMatcher do
     subject { Ballast::RequestDomainMatcher.new(["A", "ABB", "AC"], "B", "C") { |a| a * 2 } }
 
     it "should correctly match a request" do
-      expect(subject.matches?(OpenStruct.new(host: "A"))).to be_true
-      expect(subject.matches?(OpenStruct.new(host: "AB"))).to be_true
+      expect(subject.matches?(OpenStruct.new(host: "A"))).to be_truthy
+      expect(subject.matches?(OpenStruct.new(host: "AB"))).to be_truthy
       subject.replace_block = nil
-      expect(subject.matches?(OpenStruct.new(host: "AB"))).to be_true
-      expect(subject.matches?(OpenStruct.new(host: "DD"))).to be_false
+      expect(subject.matches?(OpenStruct.new(host: "AB"))).to be_truthy
+      expect(subject.matches?(OpenStruct.new(host: "DD"))).to be_falsey
     end
   end
 end

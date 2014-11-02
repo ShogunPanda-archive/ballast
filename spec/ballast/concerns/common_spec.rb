@@ -10,86 +10,51 @@ describe Ballast::Concerns::Common do
     include Ballast::Concerns::Common
   end
 
-  class OperationMockClass
-
-  end
-
-  module Actions
-    module CommonMockClass
-      class Sub
-      end
-    end
-  end
-
   subject{ CommonMockClass.new(request: OpenStruct.new(headers: {}), headers: {}, params: {}, performed?: false) }
 
-  describe "#is_json?" do
+  describe "#json?" do
     it "should return false by default" do
-      expect(CommonMockClass.new(request: OpenStruct.new({format: ""}), params: {}).is_json?).to be(false)
+      expect(CommonMockClass.new(request: OpenStruct.new({format: ""}), params: {}).json?).to be_falsey
     end
 
     it "should return true when the request is JSON" do
-      expect(CommonMockClass.new(request: OpenStruct.new(format: "json")).is_json?).to be(true)
+      expect(CommonMockClass.new(request: OpenStruct.new(format: "json")).json?).to be_truthy
     end
 
     it "should return true when the parameter is overriden" do
-      expect(CommonMockClass.new(request: OpenStruct.new({format: ""}), params: {json: true}).is_json?).to be(true)
+      expect(CommonMockClass.new(request: OpenStruct.new({format: ""}), params: {json: true}).json?).to be_truthy
     end
   end
 
-  describe "#sending_data?" do
+  describe "#request_data?" do
     it "should return the current status" do
-      expect(CommonMockClass.new(request: OpenStruct.new(post?: false, put?: false)).sending_data?).to be(false)
-      expect(CommonMockClass.new(request: OpenStruct.new(post?: true, put?: false)).sending_data?).to be(true)
-      expect(CommonMockClass.new(request: OpenStruct.new(post?: false, put?: true)).sending_data?).to be(true)
-    end
-  end
-
-  describe "#perform_operation" do
-    it "should perform the requested operation and memoize it" do
-      expect(OperationMockClass).to receive(:perform).with("OWNER", a: 1, b: 2).and_return("OPERATION 1")
-      expect(OperationMockClass).to receive(:perform).with(subject, c: 3, d: 4).and_return("OPERATION 2")
-
-      subject.perform_operation(OperationMockClass, "OWNER", a: 1, b: 2)
-      expect(subject.instance_variable_get(:@operation)).to eq("OPERATION 1")
-      subject.perform_operation(OperationMockClass, c: 3, d: 4)
-      expect(subject.instance_variable_get(:@operation)).to eq("OPERATION 2")
-    end
-  end
-
-  describe "#perform_operations_chain" do
-    it "should perform the requested operation chain and memoize it" do
-      expect(Ballast::OperationsChain).to receive(:perform).with("OWNER", [:a, :b], a: 1, b: 2).and_return("OPERATION 1")
-      expect(Ballast::OperationsChain).to receive(:perform).with(subject, [:c, :d], c: 3, d: 4).and_return("OPERATION 2")
-
-      subject.perform_operations_chain([:a, :b], "OWNER", a: 1, b: 2)
-      expect(subject.instance_variable_get(:@operation)).to eq("OPERATION 1")
-      subject.perform_operations_chain([:c, :d], c: 3, d: 4)
-      expect(subject.instance_variable_get(:@operation)).to eq("OPERATION 2")
+      expect(CommonMockClass.new(request: OpenStruct.new(post?: false, put?: false)).request_data?).to be_falsey
+      expect(CommonMockClass.new(request: OpenStruct.new(post?: true, put?: false)).request_data?).to be_truthy
+      expect(CommonMockClass.new(request: OpenStruct.new(post?: false, put?: true)).request_data?).to be_truthy
     end
   end
 
   describe "#format_short_duration" do
     it "should format a date" do
       now = DateTime.civil(2013, 12, 9, 15, 6, 00)
-      expect(subject.format_short_duration(DateTime.civil(2013, 12, 9, 16, 6, 0), now, "ago")).to eq("now")
-      expect(subject.format_short_duration(DateTime.civil(2013, 12, 9, 15, 5, 58), now, "")).to eq("2s")
-      expect(subject.format_short_duration(DateTime.civil(2013, 12, 9, 15, 3, 0), now, " in the past")).to eq("3m in the past")
-      expect(subject.format_short_duration(DateTime.civil(2013, 12, 9, 8, 6, 0), now, "")).to eq("7h")
-      expect(subject.format_short_duration(DateTime.civil(2013, 5, 3, 15, 6, 0), now, "")).to eq("May 03")
-      expect(subject.format_short_duration(DateTime.civil(2011, 6, 4, 15, 6, 0), now, "")).to eq("Jun 04 2011")
+      expect(subject.format_short_duration(DateTime.civil(2013, 12, 9, 16, 6, 0), reference: now, suffix: "ago")).to eq("now")
+      expect(subject.format_short_duration(DateTime.civil(2013, 12, 9, 15, 5, 58), reference: now, suffix: "")).to eq("2s")
+      expect(subject.format_short_duration(DateTime.civil(2013, 12, 9, 15, 3, 0), reference: now, suffix: " in the past")).to eq("3m in the past")
+      expect(subject.format_short_duration(DateTime.civil(2013, 12, 9, 8, 6, 0), reference: now, suffix: "")).to eq("7h")
+      expect(subject.format_short_duration(DateTime.civil(2013, 5, 3, 15, 6, 0), reference: now, suffix: "")).to eq("May 03")
+      expect(subject.format_short_duration(DateTime.civil(2011, 6, 4, 15, 6, 0), reference: now, suffix: "")).to eq("Jun 04 2011")
     end
   end
 
   describe "#format_long_date" do
-    before(:each) do
+    before(:example) do
       expect_any_instance_of(DateTime).to receive(:dst?).and_return(true)
       expect(Time).to receive(:zone).at_least(1).and_return(ActiveSupport::TimeZone["UTC"], ActiveSupport::TimeZone["Pacific Time (US & Canada)"])
     end
 
     it "should format a date" do
       expect(subject.format_long_date(DateTime.civil(2013, 7, 11, 10, 9, 8))).to eq("10:09AM • Jul 11th, 2013 (UTC)")
-      expect(subject.format_long_date(DateTime.civil(2013, 7, 11, 10, 9, 8), "SEP", "%F %T %o %- %:Z")).to eq("2013-07-11 10:09:08 11th SEP Pacific Time (US & Canada) (DST)")
+      expect(subject.format_long_date(DateTime.civil(2013, 7, 11, 10, 9, 8), separator: "SEP", format: "%F %T %o %- %:Z")).to eq("2013-07-11 10:09:08 11th SEP Pacific Time (US & Canada) (DST)")
     end
   end
 
@@ -114,7 +79,7 @@ describe Ballast::Concerns::Common do
       expect(subject).to receive(:authenticate_with_http_basic).and_return(false)
       expect(subject).to receive(:handle_error).with({status: 401, title: "TITLE", message: "MESSAGE"})
 
-      subject.authenticate_user("AREA", "TITLE", "MESSAGE")
+      subject.authenticate_user(area: "AREA", title: "TITLE", message: "MESSAGE")
       expect(subject.headers["WWW-Authenticate"]).to eq("Basic realm=\"AREA\"")
     end
   end

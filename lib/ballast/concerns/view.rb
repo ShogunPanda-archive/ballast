@@ -11,23 +11,23 @@ module Ballast
       #
       # @return [String] The scoped string.
       def scope_css
-        "%s %s" % [controller_path.gsub("/", "-"), action_name]
+        format("%s %s", controller_path.gsub("/", "-"), action_name)
       end
 
       # Returns an instance of the browser.
       #
       # @return [Browser] A browser object.
       def browser
-        @browser ||= Brauser::Browser.new(request.user_agent)
+        @browser ||= Brauser::Browser.new(request.user_agent, request.headers["Accept-Language"])
       end
 
       # Checks if the current browser is supported according to a definition YAML file.
       #
-      # @param conf_file [String] The configuration file which holds the definitions.
+      # @param file [String] The configuration file which holds the definitions.
+      # @param root [String] The directory that contains the configuration file.
       # @return [Boolean] `true` if the browser is supported, `false` otherwise.
-      def browser_supported?(conf_file = nil)
-        conf_file ||= (Rails.root + "config/supported-browsers.yml").to_s if defined?(Rails)
-        browser.supported?(conf_file)
+      def browser_supported?(file = "config/supported-browsers.yml", root: nil)
+        browser.supported?(((Ballast::Configuration.default_root || root) + "/" + file).to_s)
       end
 
       # Returns one or all layout parameters.
@@ -44,7 +44,7 @@ module Ballast
       # Adds/Replaces layout parameters.
       #
       # @param args [Hash] The new parameters to add.
-      def set_layout_params(**args)
+      def update_layout_params(**args)
         initialize_view_params
         @layout_params.merge!(args)
       end
@@ -53,10 +53,11 @@ module Ballast
       #
       # @param id [String|NilClass|FalseClass] The id for the tag. If `nil` or `false`, the parameters will be returned as an hash.
       # @param tag [Symbol] The tag to use for HTML.
+      # @param attribute [Symbol] The attribute to use for the HTML element id.
       # @return [String|Hash] Javascript parameters as HTML or the hash.
-      def javascript_params(id = nil, tag = :details)
+      def javascript_params(id = nil, tag: :details, attribute: "data-jid")
         initialize_view_params
-        id ? content_tag(tag, @javascript_params.to_json.html_safe, "data-jid" => id): @javascript_params
+        id ? content_tag(tag, @javascript_params.to_json.html_safe, attribute => id) : @javascript_params
       end
 
       # Appends new Javascript parameters.
@@ -64,7 +65,7 @@ module Ballast
       # @param key [String|Symbol] The key of the new parameters. If `nil`, the root will be merged/replaced.
       # @param data [Hash] The data to add.
       # @param replace [Boolean] Whether to replace existing data rather than merge.
-      def add_javascript_params(key, data, replace = false)
+      def update_javascript_params(key, data, replace: false)
         initialize_view_params
 
         if key
@@ -79,11 +80,12 @@ module Ballast
       end
 
       private
-        # Prepares parameters for views.
-        def initialize_view_params
-          @layout_params ||= HashWithIndifferentAccess.new
-          @javascript_params ||= HashWithIndifferentAccess.new
-        end
+
+      # :nodoc:
+      def initialize_view_params
+        @layout_params ||= HashWithIndifferentAccess.new
+        @javascript_params ||= HashWithIndifferentAccess.new
+      end
     end
   end
 end

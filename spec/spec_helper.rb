@@ -3,17 +3,5 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
-require "rubygems"
-require "spork"
-require "rspec"
 require "bundler/setup"
-require "ballast"
-
-Spork.prefork do
-end
-
-RSpec.configure do |config|
-  config.expect_with(:rspec) do |c|
-    c.syntax = :expect
-  end
-end
+require File.dirname(__FILE__) + "/../lib/ballast"

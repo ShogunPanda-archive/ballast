@@ -9,8 +9,8 @@ Gem::Specification.new do |gem|
   gem.name = "ballast"
   gem.version = Ballast::Version::STRING
   gem.homepage = "http://sw.cowtech.it/ballast"
-  gem.summary = "A collection of base utilities for Ruby on Rails."
-  gem.description = "A collection of base utilities for Ruby on Rails."
+  gem.summary = "A collection of base utilities for web frameworks."
+  gem.description = "A collection of base utilities for web frameworks."
   gem.rubyforge_project = "ballast"
 
   gem.authors = ["Shogun"]
@@ -22,14 +22,11 @@ Gem::Specification.new do |gem|
   gem.test_files = gem.files.grep(%r{^(test|spec|features)/})
   gem.require_paths = ["lib"]
 
-  gem.required_ruby_version = ">= 2.0"
+  gem.required_ruby_version = ">= 2.1.0"
 
-  gem.add_dependency("actionpack", ">= 4.0.3")
-  gem.add_dependency("rack", "~> 1.5.2")
-  gem.add_dependency("oj", "~> 2.5.4")
-  gem.add_dependency("brauser", "~> 3.2.6")
-  gem.add_dependency("interactor", "~> 2.1.0")
-  gem.add_dependency("addressable", "~> 2.3.5")
-  gem.add_dependency("rack-fiber_pool", ">= 0.9.3")
+  gem.add_dependency("actionpack", "~> 4.1")
+  gem.add_dependency("brauser", "~> 4.0")
+  gem.add_dependency("addressable", "~> 2.3")
   gem.add_dependency("em-synchrony", "~> 1.0.3")
+  gem.add_dependency("gemoji", "~> 2.1")
 end

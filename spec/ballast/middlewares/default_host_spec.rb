@@ -17,15 +17,14 @@ describe Ballast::Middlewares::DefaultHost do
   end
 
   describe "#call" do
-    before(:each) do
-      @app = Proc.new { |env| env }
+    before(:example) do
       expect(YAML).to receive(:load_file).with("PATH").and_return({"production" => "HOST"})
-      ENV["RACK_ENV"] = "production"
     end
 
-    subject { Ballast::Middlewares::DefaultHost.new(@app, "PATH") }
+    subject { Ballast::Middlewares::DefaultHost.new(Proc.new { |env| env }, "PATH") }
 
     it "should correctly replace the IP if the environment is found" do
+      ENV["RACK_ENV"] = "production"
       expect(subject.call({"SERVER_NAME" => "10.0.0.1", "HTTP_HOST" => "10.0.0.1"})).to eq({"SERVER_NAME" => "HOST", "HTTP_HOST" => "HOST", "ORIG_SERVER_NAME" => "10.0.0.1", "ORIG_HTTP_HOST" => "10.0.0.1"})
     end
 
@@ -36,7 +35,6 @@ describe Ballast::Middlewares::DefaultHost do
 
     it "should not replace a non IP host" do
       expect(subject.call({"SERVER_NAME" => "abc", "HTTP_HOST" => "cde"})).to eq({"SERVER_NAME" => "abc", "HTTP_HOST" => "cde"})
-
     end
   end
 end

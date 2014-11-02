@@ -8,27 +8,27 @@ module Ballast
   module Errors
     # The base error raised from an application.
     #
-    # @attribute [r] response
-    #   @return [String|Hash] The response which contains either a message or an hash with status code and a error message.
-    class BaseError < RuntimeError
-      attr_reader :response
+    # @attribute [r] details
+    #   @return [String|Hash] The details of the error. If a Hash, it should contain a status and a list of errors.
+    class Base < RuntimeError
+      attr_reader :details
 
-      def initialize(msg = nil)
-        super(msg)
-        @response = msg
+      def initialize(details = nil)
+        super("")
+        @details = details
       end
     end
 
     # This is raised when an invalid domain is requested.
-    class InvalidDomain < BaseError
+    class InvalidDomain < Base
     end
 
     # This is raised when something went wrong during the processing of a operation.
-    class PerformError < BaseError
+    class Failure < Base
     end
 
     # This is raised when some invalid parameters are passed to a operation.
-    class ValidationError < BaseError
+    class ValidationFailure < Failure
     end
   end
 end

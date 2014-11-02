@@ -3,40 +3,41 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
-require "lazier"
-require "brauser"
-require "interactor"
-require "addressable/uri"
-require "rack/utils"
-require "rack/fiber_pool"
-require "em-synchrony"
-require "oj"
+# PI: Ignore flog on this file.
 
-Lazier.load!
+require "brauser"
+require "addressable/uri"
+require "em-synchrony"
+require "rack/utils"
+require "emoji"
+require "action_view/helpers/capture_helper"
+require "action_view/helpers/tag_helper"
+
+Lazier.load!(:hash, :datetime)
 Oj.default_options = Oj.default_options.merge(mode: :compat, indent: 2, symbol_keys: true)
 
-require "ballast/version" if !defined?(Ballast::Version)
 require "ballast/errors"
-require "ballast/context"
-require "ballast/operation"
-require "ballast/operations_chain"
+require "ballast/emoji"
+require "ballast/ajax_response"
+require "ballast/service"
 require "ballast/request_domain_matcher"
 require "ballast/configuration"
-require "ballast/concerns/ajax"
+require "ballast/concerns/ajax_handling"
 require "ballast/concerns/common"
 require "ballast/concerns/view"
 require "ballast/concerns/errors_handling"
 require "ballast/middlewares/default_host"
 
+# A collection of base utilities for web frameworks.
 module Ballast
   # If running under eventmachine, run the block in a thread of its threadpool using EM::Synchrony, otherwise run the block normally.
   #
   # @param start_reactor [Boolean] If start a EM::Synchrony reactor if none is running.
   # @param block [Proc] The block to run.
   def self.in_em_thread(start_reactor = false, &block)
-    if EM.reactor_running? then
+    if EM.reactor_running?
       run_in_thread(&block)
-    elsif start_reactor then
+    elsif start_reactor
       EM.synchrony do
         Ballast.in_em_thread(&block)
         EM.stop
@@ -47,12 +48,11 @@ module Ballast
   end
 
   private
-    # Runs a block inside a EM thread.
-    #
-    # @param block [Proc] The block to run.
-    def self.run_in_thread(&block)
-      EM::Synchrony.defer do
-        Fiber.new { block.call }.resume
-      end
+
+  # :nodoc:
+  def self.run_in_thread(&block)
+    EM::Synchrony.defer do
+      Fiber.new { block.call }.resume
     end
+  end
 end

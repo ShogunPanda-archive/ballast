@@ -10,13 +10,13 @@ module Ballast
   # @see http://semver.org
   module Version
     # The major version.
-    MAJOR = 1
+    MAJOR = 2
 
     # The minor version.
-    MINOR = 9
+    MINOR = 0
 
     # The patch version.
-    PATCH = 3
+    PATCH = 0
 
     # The current version of ballast.
     STRING = [MAJOR, MINOR, PATCH].compact.join(".")

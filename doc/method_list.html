@@ -20,7 +20,11 @@
   </head>
   <body>
     <script type="text/javascript" charset="utf-8">
-      if (window.top.frames.main) {
+      var hasFrames = false;
+      try {
+        hasFrames = window.top.frames.main ? true : false;
+      } catch (e) { }
+      if (hasFrames) {
         document.getElementById('base_target').target = 'main';
         document.body.className = 'frames';
       }
@@ -48,14 +52,26 @@
         
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Concerns/View.html#add_javascript_params-instance_method" title="Ballast::Concerns::View#add_javascript_params (method)">#add_javascript_params</a></span>
-    <small>Ballast::Concerns::View</small>
+    <span class='object_link'><a href="Ballast/Concerns/AjaxHandling.html#ajax_request%3F-instance_method" title="Ballast::Concerns::AjaxHandling#ajax_request? (method)">#ajax_request?</a></span>
+    <small>Ballast::Concerns::AjaxHandling</small>
   </li>
   
 
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Concerns/Ajax.html#allow_cors-instance_method" title="Ballast::Concerns::Ajax#allow_cors (method)">#allow_cors</a></span>
-    <small>Ballast::Concerns::Ajax</small>
+    <span class='object_link'><a href="Ballast/Concerns/AjaxHandling.html#allow_cors-instance_method" title="Ballast::Concerns::AjaxHandling#allow_cors (method)">#allow_cors</a></span>
+    <small>Ballast::Concerns::AjaxHandling</small>
+  </li>
+  
+
+  <li class="r1 ">
+    <span class='object_link'><a href="Ballast/Service/Response.html#as_ajax_response-instance_method" title="Ballast::Service::Response#as_ajax_response (method)">#as_ajax_response</a></span>
+    <small>Ballast::Service::Response</small>
+  </li>
+  
+
+  <li class="r2 ">
+    <span class='object_link'><a href="Ballast/AjaxResponse.html#as_json-instance_method" title="Ballast::AjaxResponse#as_json (method)">#as_json</a></span>
+    <small>Ballast::AjaxResponse</small>
   </li>
   
 
@@ -78,14 +94,50 @@
   
 
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Context.html#build-class_method" title="Ballast::Context.build (method)">build</a></span>
-    <small>Ballast::Context</small>
+    <span class='object_link'><a href="Ballast/Middlewares/DefaultHost.html#call-instance_method" title="Ballast::Middlewares::DefaultHost#call (method)">#call</a></span>
+    <small>Ballast::Middlewares::DefaultHost</small>
   </li>
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Middlewares/DefaultHost.html#call-instance_method" title="Ballast::Middlewares::DefaultHost#call (method)">#call</a></span>
-    <small>Ballast::Middlewares::DefaultHost</small>
+    <span class='object_link'><a href="Ballast/Service.html#call-class_method" title="Ballast::Service.call (method)">call</a></span>
+    <small>Ballast::Service</small>
+  </li>
+  
+
+  <li class="r2 ">
+    <span class='object_link'><a href="Ballast/Service.html#call-instance_method" title="Ballast::Service#call (method)">#call</a></span>
+    <small>Ballast::Service</small>
+  </li>
+  
+
+  <li class="r1 ">
+    <span class='object_link'><a href="Ballast/AjaxResponse.html#data-instance_method" title="Ballast::AjaxResponse#data (method)">#data</a></span>
+    <small>Ballast::AjaxResponse</small>
+  </li>
+  
+
+  <li class="r2 ">
+    <span class='object_link'><a href="Ballast/Service/Response.html#data-instance_method" title="Ballast::Service::Response#data (method)">#data</a></span>
+    <small>Ballast::Service::Response</small>
+  </li>
+  
+
+  <li class="r1 ">
+    <span class='object_link'><a href="Ballast/Configuration.html#default_environment-class_method" title="Ballast::Configuration.default_environment (method)">default_environment</a></span>
+    <small>Ballast::Configuration</small>
+  </li>
+  
+
+  <li class="r2 ">
+    <span class='object_link'><a href="Ballast/Configuration.html#default_root-class_method" title="Ballast::Configuration.default_root (method)">default_root</a></span>
+    <small>Ballast::Configuration</small>
+  </li>
+  
+
+  <li class="r1 ">
+    <span class='object_link'><a href="Ballast/Errors/Base.html#details-instance_method" title="Ballast::Errors::Base#details (method)">#details</a></span>
+    <small>Ballast::Errors::Base</small>
   </li>
   
 
@@ -96,8 +148,44 @@
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Operation.html#fail%21-instance_method" title="Ballast::Operation#fail! (method)">#fail!</a></span>
-    <small>Ballast::Operation</small>
+    <span class='object_link'><a href="Ballast/Emoji/Utils.html#enumerate-instance_method" title="Ballast::Emoji::Utils#enumerate (method)">#enumerate</a></span>
+    <small>Ballast::Emoji::Utils</small>
+  </li>
+  
+
+  <li class="r2 ">
+    <span class='object_link'><a href="Ballast/AjaxResponse.html#error-instance_method" title="Ballast::AjaxResponse#error (method)">#error</a></span>
+    <small>Ballast::AjaxResponse</small>
+  </li>
+  
+
+  <li class="r1 ">
+    <span class='object_link'><a href="Ballast/Service/Response.html#error-instance_method" title="Ballast::Service::Response#error (method)">#error</a></span>
+    <small>Ballast::Service::Response</small>
+  </li>
+  
+
+  <li class="r2 ">
+    <span class='object_link'><a href="Ballast/Service/Response.html#errors-instance_method" title="Ballast::Service::Response#errors (method)">#errors</a></span>
+    <small>Ballast::Service::Response</small>
+  </li>
+  
+
+  <li class="r1 ">
+    <span class='object_link'><a href="Ballast/Service.html#fail%21-instance_method" title="Ballast::Service#fail! (method)">#fail!</a></span>
+    <small>Ballast::Service</small>
+  </li>
+  
+
+  <li class="r2 ">
+    <span class='object_link'><a href="Ballast/Service.html#fail%21-class_method" title="Ballast::Service.fail! (method)">fail!</a></span>
+    <small>Ballast::Service</small>
+  </li>
+  
+
+  <li class="r1 ">
+    <span class='object_link'><a href="Ballast/Service/Response.html#fail%3F-instance_method" title="Ballast::Service::Response#fail? (method)">#fail?</a></span>
+    <small>Ballast::Service::Response</small>
   </li>
   
 
@@ -120,8 +208,8 @@
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Concerns/Ajax.html#generate_robots_txt-instance_method" title="Ballast::Concerns::Ajax#generate_robots_txt (method)">#generate_robots_txt</a></span>
-    <small>Ballast::Concerns::Ajax</small>
+    <span class='object_link'><a href="Ballast/Concerns/AjaxHandling.html#generate_robots_txt-instance_method" title="Ballast::Concerns::AjaxHandling#generate_robots_txt (method)">#generate_robots_txt</a></span>
+    <small>Ballast::Concerns::AjaxHandling</small>
   </li>
   
 
@@ -132,50 +220,26 @@
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Operation.html#import_error-instance_method" title="Ballast::Operation#import_error (method)">#import_error</a></span>
-    <small>Ballast::Operation</small>
+    <span class='object_link'><a href="Ballast/Service.html#handle_failure-class_method" title="Ballast::Service.handle_failure (method)">handle_failure</a></span>
+    <small>Ballast::Service</small>
   </li>
   
 
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Operation.html#import_response-instance_method" title="Ballast::Operation#import_response (method)">#import_response</a></span>
-    <small>Ballast::Operation</small>
+    <span class='object_link'><a href="Ballast/Emoji/Character.html#image_tag-instance_method" title="Ballast::Emoji::Character#image_tag (method)">#image_tag</a></span>
+    <small>Ballast::Emoji::Character</small>
   </li>
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Operation.html#in_em_thread-instance_method" title="Ballast::Operation#in_em_thread (method)">#in_em_thread</a></span>
-    <small>Ballast::Operation</small>
-  </li>
-  
-
-  <li class="r2 ">
     <span class='object_link'><a href="Ballast.html#in_em_thread-class_method" title="Ballast.in_em_thread (method)">in_em_thread</a></span>
     <small>Ballast</small>
   </li>
   
 
-  <li class="r1 ">
-    <span class='object_link'><a href="Ballast/OperationsChain.html#initialize-instance_method" title="Ballast::OperationsChain#initialize (method)">#initialize</a></span>
-    <small>Ballast::OperationsChain</small>
-  </li>
-  
-
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Middlewares/DefaultHost.html#initialize-instance_method" title="Ballast::Middlewares::DefaultHost#initialize (method)">#initialize</a></span>
-    <small>Ballast::Middlewares::DefaultHost</small>
-  </li>
-  
-
-  <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Errors/BaseError.html#initialize-instance_method" title="Ballast::Errors::BaseError#initialize (method)">#initialize</a></span>
-    <small>Ballast::Errors::BaseError</small>
-  </li>
-  
-
-  <li class="r2 ">
-    <span class='object_link'><a href="Ballast/RequestDomainMatcher.html#initialize-instance_method" title="Ballast::RequestDomainMatcher#initialize (method)">#initialize</a></span>
-    <small>Ballast::RequestDomainMatcher</small>
+    <span class='object_link'><a href="Ballast/Service.html#initialize-instance_method" title="Ballast::Service#initialize (method)">#initialize</a></span>
+    <small>Ballast::Service</small>
   </li>
   
 
@@ -186,20 +250,32 @@
   
 
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Operation.html#initialize-instance_method" title="Ballast::Operation#initialize (method)">#initialize</a></span>
-    <small>Ballast::Operation</small>
+    <span class='object_link'><a href="Ballast/Middlewares/DefaultHost.html#initialize-instance_method" title="Ballast::Middlewares::DefaultHost#initialize (method)">#initialize</a></span>
+    <small>Ballast::Middlewares::DefaultHost</small>
   </li>
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Concerns/Ajax.html#is_ajax%3F-instance_method" title="Ballast::Concerns::Ajax#is_ajax? (method)">#is_ajax?</a></span>
-    <small>Ballast::Concerns::Ajax</small>
+    <span class='object_link'><a href="Ballast/AjaxResponse.html#initialize-instance_method" title="Ballast::AjaxResponse#initialize (method)">#initialize</a></span>
+    <small>Ballast::AjaxResponse</small>
   </li>
   
 
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Concerns/Common.html#is_json%3F-instance_method" title="Ballast::Concerns::Common#is_json? (method)">#is_json?</a></span>
-    <small>Ballast::Concerns::Common</small>
+    <span class='object_link'><a href="Ballast/Errors/Base.html#initialize-instance_method" title="Ballast::Errors::Base#initialize (method)">#initialize</a></span>
+    <small>Ballast::Errors::Base</small>
+  </li>
+  
+
+  <li class="r1 ">
+    <span class='object_link'><a href="Ballast/RequestDomainMatcher.html#initialize-instance_method" title="Ballast::RequestDomainMatcher#initialize (method)">#initialize</a></span>
+    <small>Ballast::RequestDomainMatcher</small>
+  </li>
+  
+
+  <li class="r2 ">
+    <span class='object_link'><a href="Ballast/Service/Response.html#initialize-instance_method" title="Ballast::Service::Response#initialize (method)">#initialize</a></span>
+    <small>Ballast::Service::Response</small>
   </li>
   
 
@@ -210,8 +286,20 @@
   
 
   <li class="r2 ">
+    <span class='object_link'><a href="Ballast/Concerns/Common.html#json%3F-instance_method" title="Ballast::Concerns::Common#json? (method)">#json?</a></span>
+    <small>Ballast::Concerns::Common</small>
+  </li>
+  
+
+  <li class="r1 ">
     <span class='object_link'><a href="Ballast/Concerns/View.html#layout_params-instance_method" title="Ballast::Concerns::View#layout_params (method)">#layout_params</a></span>
     <small>Ballast::Concerns::View</small>
+  </li>
+  
+
+  <li class="r2 ">
+    <span class='object_link'><a href="Ballast/Emoji/Character.html#markup-instance_method" title="Ballast::Emoji::Character#markup (method)">#markup</a></span>
+    <small>Ballast::Emoji::Character</small>
   </li>
   
 
@@ -222,74 +310,50 @@
   
 
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Operation.html#method_missing-instance_method" title="Ballast::Operation#method_missing (method)">#method_missing</a></span>
-    <small>Ballast::Operation</small>
+    <span class='object_link'><a href="Ballast/AjaxResponse.html#numeric_status-instance_method" title="Ballast::AjaxResponse#numeric_status (method)">#numeric_status</a></span>
+    <small>Ballast::AjaxResponse</small>
   </li>
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Context.html#method_missing-instance_method" title="Ballast::Context#method_missing (method)">#method_missing</a></span>
-    <small>Ballast::Context</small>
+    <span class='object_link'><a href="Ballast/Service.html#owner-instance_method" title="Ballast::Service#owner (method)">#owner</a></span>
+    <small>Ballast::Service</small>
   </li>
   
 
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/OperationsChain.html#operations-instance_method" title="Ballast::OperationsChain#operations (method)">#operations</a></span>
-    <small>Ballast::OperationsChain</small>
+    <span class='object_link'><a href="Ballast/Concerns/AjaxHandling.html#prepare_ajax_response-instance_method" title="Ballast::Concerns::AjaxHandling#prepare_ajax_response (method)">#prepare_ajax_response</a></span>
+    <small>Ballast::Concerns::AjaxHandling</small>
   </li>
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Operation.html#perform-class_method" title="Ballast::Operation.perform (method)">perform</a></span>
-    <small>Ballast::Operation</small>
+    <span class='object_link'><a href="Ballast/Concerns/AjaxHandling.html#prevent_caching-instance_method" title="Ballast::Concerns::AjaxHandling#prevent_caching (method)">#prevent_caching</a></span>
+    <small>Ballast::Concerns::AjaxHandling</small>
   </li>
   
 
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/OperationsChain.html#perform-class_method" title="Ballast::OperationsChain.perform (method)">perform</a></span>
-    <small>Ballast::OperationsChain</small>
+    <span class='object_link'><a href="Ballast/Emoji/Utils.html#replace-instance_method" title="Ballast::Emoji::Utils#replace (method)">#replace</a></span>
+    <small>Ballast::Emoji::Utils</small>
   </li>
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Concerns/Common.html#perform_operation-instance_method" title="Ballast::Concerns::Common#perform_operation (method)">#perform_operation</a></span>
-    <small>Ballast::Concerns::Common</small>
-  </li>
-  
-
-  <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Concerns/Common.html#perform_operations_chain-instance_method" title="Ballast::Concerns::Common#perform_operations_chain (method)">#perform_operations_chain</a></span>
-    <small>Ballast::Concerns::Common</small>
-  </li>
-  
-
-  <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Operation.html#perform_with_handling-instance_method" title="Ballast::Operation#perform_with_handling (method)">#perform_with_handling</a></span>
-    <small>Ballast::Operation</small>
-  </li>
-  
-
-  <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Concerns/Ajax.html#prepare_ajax-instance_method" title="Ballast::Concerns::Ajax#prepare_ajax (method)">#prepare_ajax</a></span>
-    <small>Ballast::Concerns::Ajax</small>
-  </li>
-  
-
-  <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Concerns/Ajax.html#prevent_caching-instance_method" title="Ballast::Concerns::Ajax#prevent_caching (method)">#prevent_caching</a></span>
-    <small>Ballast::Concerns::Ajax</small>
-  </li>
-  
-
-  <li class="r2 ">
     <span class='object_link'><a href="Ballast/RequestDomainMatcher.html#replace_block-instance_method" title="Ballast::RequestDomainMatcher#replace_block (method)">#replace_block</a></span>
     <small>Ballast::RequestDomainMatcher</small>
   </li>
   
 
-  <li class="r1 ">
+  <li class="r2 ">
     <span class='object_link'><a href="Ballast/RequestDomainMatcher.html#replace_pattern-instance_method" title="Ballast::RequestDomainMatcher#replace_pattern (method)">#replace_pattern</a></span>
     <small>Ballast::RequestDomainMatcher</small>
+  </li>
+  
+
+  <li class="r1 ">
+    <span class='object_link'><a href="Ballast/Emoji/Utils.html#replace_regex-instance_method" title="Ballast::Emoji::Utils#replace_regex (method)">#replace_regex</a></span>
+    <small>Ballast::Emoji::Utils</small>
   </li>
   
 
@@ -300,14 +364,14 @@
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Operation.html#resolve_error-instance_method" title="Ballast::Operation#resolve_error (method)">#resolve_error</a></span>
-    <small>Ballast::Operation</small>
+    <span class='object_link'><a href="Ballast/AjaxResponse.html#reply-instance_method" title="Ballast::AjaxResponse#reply (method)">#reply</a></span>
+    <small>Ballast::AjaxResponse</small>
   </li>
   
 
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Errors/BaseError.html#response-instance_method" title="Ballast::Errors::BaseError#response (method)">#response</a></span>
-    <small>Ballast::Errors::BaseError</small>
+    <span class='object_link'><a href="Ballast/Concerns/Common.html#request_data%3F-instance_method" title="Ballast::Concerns::Common#request_data? (method)">#request_data?</a></span>
+    <small>Ballast::Concerns::Common</small>
   </li>
   
 
@@ -318,32 +382,56 @@
   
 
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Concerns/Ajax.html#send_ajax-instance_method" title="Ballast::Concerns::Ajax#send_ajax (method)">#send_ajax</a></span>
-    <small>Ballast::Concerns::Ajax</small>
+    <span class='object_link'><a href="Ballast/AjaxResponse.html#status-instance_method" title="Ballast::AjaxResponse#status (method)">#status</a></span>
+    <small>Ballast::AjaxResponse</small>
   </li>
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Concerns/Common.html#sending_data%3F-instance_method" title="Ballast::Concerns::Common#sending_data? (method)">#sending_data?</a></span>
-    <small>Ballast::Concerns::Common</small>
+    <span class='object_link'><a href="Ballast/Service/Response.html#success-instance_method" title="Ballast::Service::Response#success (method)">#success</a></span>
+    <small>Ballast::Service::Response</small>
   </li>
   
 
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Concerns/View.html#set_layout_params-instance_method" title="Ballast::Concerns::View#set_layout_params (method)">#set_layout_params</a></span>
+    <span class='object_link'><a href="Ballast/Service/Response.html#success%3F-instance_method" title="Ballast::Service::Response#success? (method)">#success?</a></span>
+    <small>Ballast::Service::Response</small>
+  </li>
+  
+
+  <li class="r1 ">
+    <span class='object_link'><a href="Ballast/AjaxResponse.html#transport-instance_method" title="Ballast::AjaxResponse#transport (method)">#transport</a></span>
+    <small>Ballast::AjaxResponse</small>
+  </li>
+  
+
+  <li class="r2 ">
+    <span class='object_link'><a href="Ballast/Concerns/View.html#update_javascript_params-instance_method" title="Ballast::Concerns::View#update_javascript_params (method)">#update_javascript_params</a></span>
     <small>Ballast::Concerns::View</small>
   </li>
   
 
   <li class="r1 ">
-    <span class='object_link'><a href="Ballast/Operation.html#setup_response-instance_method" title="Ballast::Operation#setup_response (method)">#setup_response</a></span>
-    <small>Ballast::Operation</small>
+    <span class='object_link'><a href="Ballast/Concerns/View.html#update_layout_params-instance_method" title="Ballast::Concerns::View#update_layout_params (method)">#update_layout_params</a></span>
+    <small>Ballast::Concerns::View</small>
   </li>
   
 
   <li class="r2 ">
-    <span class='object_link'><a href="Ballast/Concerns/Ajax.html#update_ajax-instance_method" title="Ballast::Concerns::Ajax#update_ajax (method)">#update_ajax</a></span>
-    <small>Ballast::Concerns::Ajax</small>
+    <span class='object_link'><a href="Ballast/Emoji/Character.html#url-instance_method" title="Ballast::Emoji::Character#url (method)">#url</a></span>
+    <small>Ballast::Emoji::Character</small>
+  </li>
+  
+
+  <li class="r1 ">
+    <span class='object_link'><a href="Ballast/Emoji/Utils.html#url_for-instance_method" title="Ballast::Emoji::Utils#url_for (method)">#url_for</a></span>
+    <small>Ballast::Emoji::Utils</small>
+  </li>
+  
+
+  <li class="r2 ">
+    <span class='object_link'><a href="Ballast/Emoji/Utils.html#url_mapper-instance_method" title="Ballast::Emoji::Utils#url_mapper (method)">#url_mapper</a></span>
+    <small>Ballast::Emoji::Utils</small>
   </li>
   
 

@@ -10,35 +10,15 @@ module Ballast
       # Checks if the current request wants JSON or JSONP as response.
       #
       # @return [Boolean] `true` if the request is JSON, `false` otherwise.
-      def is_json?
-        ([:json, :jsonp].include?(request.format.to_sym) || params[:json].to_boolean) ? true : false
+      def json?
+        [:json, :jsonp].include?(request.format.to_sym) || params[:json].to_boolean
       end
 
       # Checks if the user is sending any data.
       #
       # @return [Boolean] `true` if the user is sending data, `false` otherwise.
-      def sending_data?
-        request.post? || request.put?
-      end
-
-      # Performs an operation, using itself as owner by default.
-      #
-      # @param klass [Class] The operation to perform.
-      # @param owner [Object] The owner to use. By default it uses itself.
-      # @param kwargs [Hash] The arguments for performing.
-      # @return [Operation] The performed operation.
-      def perform_operation(klass, owner = nil, **kwargs)
-        @operation = klass.perform(owner || self, **kwargs)
-      end
-
-      # Performs an operations chain, using itself as owner by default.
-      #
-      # @param klasses [Array] The operations to perform.
-      # @param owner [Object] The owner to use. By default it uses itself.
-      # @param kwargs [Hash] The arguments for performing.
-      # @return [OperationChain] The performed operation chain.
-      def perform_operations_chain(klasses, owner = nil, **kwargs)
-        @operation = Ballast::OperationsChain.perform(owner || self, klasses, **kwargs)
+      def request_data?
+        request.post? || request.put? || request.patch?
       end
 
       # Formats a relative date using abbreviation or short formats.
@@ -47,15 +27,14 @@ module Ballast
       # @param reference [DateTime] The reference date.
       # @param suffix [String] The suffix to add to the formatted date.
       # @return [String] The formatted date.
-      def format_short_duration(date, reference = nil, suffix = "")
-        reference ||= Time.now
-        amount = (reference.to_i - date.to_i).to_i
+      def format_short_duration(date, reference: nil, suffix: "")
+        amount = (reference || Time.now).to_i - date.to_i
 
-        if amount <= 0 then
+        if amount <= 0
           "now"
-        elsif amount < 1.day then
+        elsif amount < 1.day
           format_short_amount(amount, suffix)
-        elsif amount < 1.year then
+        elsif amount < 1.year
           date.strftime("%b %d")
         else
           date.strftime("%b %d %Y")
@@ -68,9 +47,9 @@ module Ballast
       # @param suffix [String] The suffix to add to the formatted amount.
       # @return [String] The formatted amount.
       def format_short_amount(amount, suffix = "")
-        if amount < 1.minute then
+        if amount < 1.minute
           "#{amount.floor}s#{suffix}"
-        elsif amount < 1.hour then
+        elsif amount < 1.hour
           "#{(amount / 60).floor}m#{suffix}"
         else
           "#{(amount / 3600).floor}h#{suffix}"
@@ -83,10 +62,10 @@ module Ballast
       # @param separator [String] The separator between date and time.
       # @param format [String] The format of the date, like in strftime. Use `%-` for the separator, `%o` for the ordinalized version of the day of the month
       #   and `%:Z` for the zone name considering also DST.
-      def format_long_date(date, separator = "•", format = "%I:%M%p %- %b %o, %Y (%:Z)")
+      def format_long_date(date, separator: "•", format: "%I:%M%p %- %b %o, %Y (%:Z)")
         tz = Time.zone
-        replacements = {"%-" => separator, "%o" => date.day.ordinalize, "%:Z" => tz.send(tz.uses_dst? && date.dst? ? :dst_name : :name)}
-        date.strftime(format).gsub(/%(-|o|(:Z))/) {|r| replacements.fetch(r, r) }
+        replacements = {"%-" => separator, "%o" => date.day.ordinalize, "%:Z" => tz.current_name(tz.uses_dst? && date.dst?)}
+        date.strftime(format).gsub(/%(-|o|(:Z))/) { |r| replacements.fetch(r, r) }
       end
 
       # Authenticates a user via HTTP, handling the error if the authentication failed.
@@ -95,16 +74,15 @@ module Ballast
       # @param title [String] A title for authentication errors.
       # @param message [String] A message for authentication errors.
       # @param authenticator [Proc] A block to verify if authentication is valid.
-      def authenticate_user(area = nil, title = nil, message = nil, &authenticator)
+      def authenticate_user(area: nil, title: nil, message: nil, &authenticator)
+        return if authenticate_with_http_basic { |username, password| authenticator.call(username, password) }
+
         area ||= "Private Area"
         title ||= "Authentication required."
         message ||= "To view this resource you have to authenticate."
-        authenticated = authenticate_with_http_basic { |username, password| authenticator.call(username, password) }
 
-        if !authenticated then
-          headers["WWW-Authenticate"] = "Basic realm=\"#{area}\""
-          handle_error({status: 401, title: title, message: message})
-        end
+        headers["WWW-Authenticate"] = "Basic realm=\"#{area}\""
+        handle_error({status: 401, title: title, message: message})
       end
     end
   end

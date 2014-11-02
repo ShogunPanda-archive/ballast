@@ -7,24 +7,44 @@ module Ballast
   # A class which loads a list of YAML files in a folder and expose them in a dotted notation.
   #   For each file, only the subsection for the current environment is loaded, so each YAML document should be an hash.
   class Configuration < HashWithIndifferentAccess
+    # Returns the default root directory to lookup a configuration. It can be the Rails root or the current folder.
+    #
+    # @return [String] The default root directory to lookup a configuration.
+    def self.default_root
+      defined?(Rails) ? Rails.root.to_s : Dir.pwd
+    end
+
+    # Returns the default environment. It can be the Rails environment, the Rack environment or "production".
+    #
+    # @return [String] The default environment.
+    def self.default_environment
+      defined?(Rails) ? Rails.env : ENV.fetch("RACK_ENV", "production")
+    end
+
     # Creates a new configuration.
     #
     # @param sections [Array] A list of sections to load. Each section name should be the basename (without extension) of a file in the root folder.
     #   Subfolders are not supported.
-    # @param root [String] The root folder where look for file. Default is the Rails root.
-    # @param environment [String] The environment to load. Default is the Rails environment.
-    def initialize(sections: [], root: nil, environment: nil)
+    # @param root [String] The root folder where look for file.
+    # @param environment [String] The environment to load.
+    def initialize(*sections, root: nil, environment: nil)
       super()
-      root ||= Rails.root.to_s
-      environment ||= Rails.env
+      root ||= ::Ballast::Configuration.default_root
+      environment ||= ::Ballast::Configuration.default_environment
 
       sections.each do |section|
-        content = (YAML.load_file("#{root}/config/#{section}.yml") rescue {}).with_indifferent_access
-        self[section] = content[environment]
-        self[section.underscore] = self[section] if section.index("-")
+        content = load_section(root, section)
+        self[section.underscore] = content.fetch(environment, {})
       end
 
-      self.enable_dotted_access
+      enable_dotted_access
+    end
+
+    private
+
+    # :nodoc:
+    def load_section(root, section)
+      YAML.load_file("#{root}/config/#{section}.yml") rescue {}
     end
   end
 end

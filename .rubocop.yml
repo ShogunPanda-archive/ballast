@@ -1,0 +1,35 @@
+AsciiComments:
+  Enabled: false
+
+Blocks:
+  Enabled: false
+
+BracesAroundHashParameters:
+  Enabled: false
+
+CyclomaticComplexity:
+  Max: 15
+
+EachWithObject:
+  Enabled: false
+
+IndentationConsistency:
+  Enabled: false
+
+IndentHash:
+  Enabled: false
+
+LineLength:
+  Max: 160
+
+ParameterLists:
+  Max: 6
+
+SignalException:
+  Enabled: false
+
+SpaceInsideHashLiteralBraces:
+  Enabled: false
+
+StringLiterals:
+  Enabled: false

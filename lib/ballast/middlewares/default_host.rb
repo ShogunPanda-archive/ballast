@@ -22,9 +22,9 @@ module Ballast
       # @param env [Hash] A Rack environment.
       def call(env)
         old_host = env["SERVER_NAME"].ensure_string
-        new_host = @hosts[ENV["RACK_ENV"]]
+        new_host = @hosts[ENV.fetch("RACK_ENV", "production")]
 
-        if old_host =~ /^\d/ && new_host then
+        if old_host =~ /^\d/ && new_host
           env["ORIG_SERVER_NAME"] = old_host
           env["ORIG_HTTP_HOST"] = env["HTTP_HOST"].dup
           env["SERVER_NAME"] = new_host
