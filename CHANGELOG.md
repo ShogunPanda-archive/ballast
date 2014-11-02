@@ -6,7 +6,7 @@
 * Added `Ballast::AjaxResponse`.
 * Added `Ballast::Emoji`.
 * Added `Ballast::Service`.
-* Added `Ballast::ServiceResponse`.
+* Added `Ballast::Service::Response`.
 * Removed `Ballast::Context`.
 * Removed `Ballast::Operation`.
 * Removed `Ballast::OperationsChain`.
