@@ -9,20 +9,20 @@ module Ballast
   # @attribute domains
   #   @return [Array] The list of domains which mark a positive match.
   # @attribute replace_pattern
-  #   @return [String|Regexp] A optional pattern to replace in the request host before trying the match. See `String#gsub`.
+  #   @return [String|Regexp] A optional pattern to manipulate the request host before trying the match. See `String#gsub`.
   # @attribute replace_string
-  #   @return [String] A string to use for replacement in the request host before trying the match. See `String#gsub`.
+  #   @return [String] A string to manipulate the request host before trying the match. See `String#gsub`.
   # @attribute replace_block
-  #   @return [Proc] A block to use for replacement in the request host before trying the match. See `String#gsub`.
+  #   @return [Proc] A block to use to manipulate the request host before trying the match. See `String#gsub`.
   class RequestDomainMatcher
     attr_accessor :domains, :replace_pattern, :replace_string, :replace_block
 
     # Creates a new matcher.
     #
     # @param domains [String|Array] The list of domains which mark a positive match.
-    # @param replace_pattern [String|Regexp] A optional pattern to replace in the request host before trying the match. See `String#gsub`.
-    # @param replace_string [String] A string to use for replacement in the request host before trying the match. See `String#gsub`.
-    # @param replace_block [Proc] A block to use for replacement in the request host before trying the match. See `String#gsub`.
+    # @param replace_pattern [String|Regexp] A optional pattern to manipulate the request host before trying the match. See `String#gsub`.
+    # @param replace_string [String] A string to manipulate the request host before trying the match. See `String#gsub`.
+    # @param replace_block [Proc] A block to use to manipulate the request host before trying the match. See `String#gsub`.
     def initialize(domains, replace_pattern = /\.dev$/, replace_string = "", &replace_block)
       @domains = domains.ensure_array
       @replace_pattern = replace_pattern

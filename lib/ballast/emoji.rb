@@ -25,13 +25,13 @@ module Ballast
       # @param text [String] The text to manipulate.
       # @param mode [Symbol] The method to use when replacing icons.
       # @param options [Hash] The options to pass to the replacing method.
-      # @return [String] A text with all emojis replaced.
+      # @return [String] The text with all emojis replaced.
       def replace(text, mode: :html, **options)
         mode = :markup unless mode && ::Emoji::Character.new(nil).respond_to?(mode)
         text.ensure_string.gsub(replace_regex) { invoke(::Emoji.find_by_unicode(Regexp.last_match[1]), mode, options) }
       end
 
-      # Lists all the emoji known in hash structure.
+      # Lists all the emoji known in a hash.
       #
       # @param keys_method [Symbol] The method to use for keys.
       # @param values_method [Symbol] The method to use for values.
@@ -58,7 +58,7 @@ module Ballast
       # Returns a absolute URL for a emoji image.
       #
       # @param image [String] The relative URL of the emoji filename.
-      # @return [String] The absolute path of the emoji filename.
+      # @return [String] The absolute URL of the emoji filename.
       def url_for(image)
         url_mapper.call(image)
       end

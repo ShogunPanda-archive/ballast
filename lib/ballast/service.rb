@@ -7,25 +7,25 @@ module Ballast
   # A class which implements a common abstraction for services.
   #
   # @attribute [r] owner
-  #   @return [Object] The owner of this service.
+  #   @return [Object|NilClass] The owner of this service.
   class Service
     # A response to a service invocation.
     #
     # @attribute [r] success
     #   @return [Boolean] Whether the invocation was successful or not.
     # @attribute [r] data
-    #   @return [Object] The data returned by the service.
+    #   @return [Object] The data returned by the operation.
     # @attribute [r] errors
-    #   @return [Boolean] The errors returned by the service.
+    #   @return [Array] The errors returned by the operation.
     class Response
       attr_reader :success, :data, :errors
 
       # Creates a new service response.
       #
       # @param success [Boolean] Whether the invocation was successful or not.
-      # @param data [Object] The data returned by the service.
-      # @param errors [Array] The errors returned by the service.
-      # @param error [Object] Alias for errors. *Ignored if `errors` is present.*
+      # @param data [Object|NilClass] The data returned by the operation.
+      # @param errors [Array|NilClass] The errors returned by the operation.
+      # @param error [Object|NilClass] Alias for errors. *Ignored if `errors` is present.*
       def initialize(success = true, data: nil, errors: nil, error: nil)
         errors ||= error.ensure_array
 
@@ -52,7 +52,7 @@ module Ballast
       end
       alias_method :failed?, :fail?
 
-      # Returns the first error returned by the service.
+      # Returns the first error returned by the operation.
       #
       # @return [Object] The first error returned by the service.
       def error
@@ -80,9 +80,9 @@ module Ballast
 
     # Invokes one of the operations exposed by the service.
     #
-    # @param operation [String] The service to invoke.
-    # @param owner [Object] The owner of the service.
-    # @param raise_errors [Boolean] Whether to raise errors instead of marking a failure.
+    # @param operation [String] The operation to invoke.
+    # @param owner [Object|NilClass] The owner of the service.
+    # @param raise_errors [Boolean] Whether to raise errors instead of returning a failure.
     # @param params [Hash] The parameters to pass to the service.
     # @param kwargs [Hash] Other modifiers to pass to the service.
     # @param block [Proc] A lambda to pass to the service.
@@ -97,22 +97,23 @@ module Ballast
     # Marks the failure of the operation.
     #
     # @param details [Object] The error(s) occurred.
-    # @param on_validation [Boolean] Whether the error was a validation error.
+    # @param on_validation [Boolean] Whether the error(s) was/were validation error(s).
     def self.fail!(details, on_validation: false)
       raise(on_validation ? Errors::ValidationFailure : Errors::Failure, details)
     end
 
-    # Creates a service object and invokes one of the operation exposed.
+    # Creates a service object.
     #
-    # @param owner [Object] The owner of the service.
+    # @param owner [Object|NilClass] The owner of the service.
     def initialize(owner = nil)
       @owner = owner
     end
 
     # Invokes one of the operations exposed by the service.
     #
-    # @param operation [String] The service to invoke.
-    # @param raise_errors [Boolean] Whether to raise errors instead of marking a failure.
+    # @param operation [String] The operation to invoke.
+    # @param owner [Object|NilClass] The owner of the service.
+    # @param raise_errors [Boolean] Whether to raise errors instead of returning a failure.
     # @param params [Hash] The parameters to pass to the service.
     # @param kwargs [Hash] Other modifiers to pass to the service.
     # @param block [Proc] A lambda to pass to the service.
@@ -129,7 +130,7 @@ module Ballast
     # Marks the failure of the operation.
     #
     # @param details [Object] The error(s) occurred.
-    # @param on_validation [Boolean] Whether the error was a validation error.
+    # @param on_validation [Boolean] Whether the error(s) was/were validation error(s).
     def fail!(details, on_validation: false)
       self.class.fail!(details, on_validation: on_validation)
     end

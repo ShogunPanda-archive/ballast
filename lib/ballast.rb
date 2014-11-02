@@ -30,7 +30,7 @@ require "ballast/middlewares/default_host"
 
 # A collection of base utilities for web frameworks.
 module Ballast
-  # If running under eventmachine, run the block in a thread of its threadpool using EM::Synchrony, otherwise run the block normally.
+  # If running under eventmachine, runs the block in a thread of its threadpool using EM::Synchrony, otherwise runs the block directly.
   #
   # @param start_reactor [Boolean] If start a EM::Synchrony reactor if none is running.
   # @param block [Proc] The block to run.

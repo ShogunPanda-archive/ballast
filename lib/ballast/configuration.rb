@@ -7,14 +7,14 @@ module Ballast
   # A class which loads a list of YAML files in a folder and expose them in a dotted notation.
   #   For each file, only the subsection for the current environment is loaded, so each YAML document should be an hash.
   class Configuration < HashWithIndifferentAccess
-    # Returns the default root directory to lookup a configuration. It can be the Rails root or the current folder.
+    # Returns the default root directory to lookup a configuration. It will be the Rails root if set or the current folder.
     #
     # @return [String] The default root directory to lookup a configuration.
     def self.default_root
       defined?(Rails) ? Rails.root.to_s : Dir.pwd
     end
 
-    # Returns the default environment. It can be the Rails environment, the Rack environment or "production".
+    # Returns the default environment. It will be the first non-nil of the following: Rails environment, the Rack environment or "production".
     #
     # @return [String] The default environment.
     def self.default_environment
@@ -25,8 +25,8 @@ module Ballast
     #
     # @param sections [Array] A list of sections to load. Each section name should be the basename (without extension) of a file in the root folder.
     #   Subfolders are not supported.
-    # @param root [String] The root folder where look for file.
-    # @param environment [String] The environment to load.
+    # @param root [String|NilClass] The root folder where look for file.
+    # @param environment [String|NilClass] The environment to load.
     def initialize(*sections, root: nil, environment: nil)
       super()
       root ||= ::Ballast::Configuration.default_root

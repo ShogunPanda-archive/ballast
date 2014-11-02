@@ -20,8 +20,8 @@ module Ballast
       # Prepares an AJAX response.
       #
       # @param status [Symbol|Fixnum] The HTTP status of the response.
-      # @param data [Object] Additional data to append to the response.
-      # @param error [Object] A error to append to the response.
+      # @param data [Object] The data of the response.
+      # @param error [Object|NilClass] The error of the response.
       def prepare_ajax_response(status: :ok, data: {}, error: nil)
         Ballast::AjaxResponse.new(status: status, data: data, error: error, transport: self)
       end
@@ -53,9 +53,9 @@ module Ballast
         headers["Access-Control-Allow-Credentials"] = "true" if allow_credentials
       end
 
-      # Generates a robots.txt file.
+      # Generates a `robots.txt file.
       #
-      # @param configuration [Hash] An hash of agent and list of paths to include.
+      # @param configuration [Hash|NilClass] An hash of agent and list of paths to include.
       def generate_robots_txt(configuration = nil)
         configuration ||= {"*" => "/"}
         rv = configuration.reduce([]) { |accu, (agent, paths)|

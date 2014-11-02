@@ -9,10 +9,13 @@ module Ballast
     # The base error raised from an application.
     #
     # @attribute [r] details
-    #   @return [String|Hash] The details of the error. If a Hash, it should contain a status and a list of errors.
+    #   @return [String|Hash|NilClass] The details of the error. If a Hash, it should contain the keys `status` and `error`.
     class Base < RuntimeError
       attr_reader :details
 
+      # Creates a new error.
+      #
+      # @param details [String|Hash|NilClass] The details of this error.
       def initialize(details = nil)
         super("")
         @details = details
@@ -23,11 +26,11 @@ module Ballast
     class InvalidDomain < Base
     end
 
-    # This is raised when something went wrong during the processing of a operation.
+    # This is raised when something went wrong during the processing of a operation or a service.
     class Failure < Base
     end
 
-    # This is raised when some invalid parameters are passed to a operation.
+    # This is raised when some invalid parameters are passed to a operation or a service.
     class ValidationFailure < Failure
     end
   end

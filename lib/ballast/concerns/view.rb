@@ -24,7 +24,7 @@ module Ballast
       # Checks if the current browser is supported according to a definition YAML file.
       #
       # @param file [String] The configuration file which holds the definitions.
-      # @param root [String] The directory that contains the configuration file.
+      # @param root [String|NilClass] The directory that contains the configuration file.
       # @return [Boolean] `true` if the browser is supported, `false` otherwise.
       def browser_supported?(file = "config/supported-browsers.yml", root: nil)
         browser.supported?(((Ballast::Configuration.default_root || root) + "/" + file).to_s)
@@ -33,8 +33,8 @@ module Ballast
       # Returns one or all layout parameters.
       #
       # @param key [String|Symbol|NilClass] The parameter to return. If set to `nil`, all the parameters will be returned as an hash.
-      # @param default_value [Object] The default value if the parameter is not present.
-      # @return [Object|Hash] The parameter or the entire layout parameters hash.
+      # @param default_value [Object|NilClass] The default value if the parameter is not present.
+      # @return [Object|Hash|NilClass] The parameter or the entire layout parameters hash.
       def layout_params(key = nil, default_value = nil)
         initialize_view_params
         key ? @layout_params.fetch(key, default_value) : @layout_params
@@ -43,7 +43,7 @@ module Ballast
 
       # Adds/Replaces layout parameters.
       #
-      # @param args [Hash] The new parameters to add.
+      # @param args [Hash] The parameters to add or replace.
       def update_layout_params(**args)
         initialize_view_params
         @layout_params.merge!(args)
@@ -54,16 +54,16 @@ module Ballast
       # @param id [String|NilClass|FalseClass] The id for the tag. If `nil` or `false`, the parameters will be returned as an hash.
       # @param tag [Symbol] The tag to use for HTML.
       # @param attribute [Symbol] The attribute to use for the HTML element id.
-      # @return [String|Hash] Javascript parameters as HTML or the hash.
+      # @return [String|Hash] Javascript parameters as HTML or as an hash.
       def javascript_params(id = nil, tag: :details, attribute: "data-jid")
         initialize_view_params
         id ? content_tag(tag, @javascript_params.to_json.html_safe, attribute => id) : @javascript_params
       end
 
-      # Appends new Javascript parameters.
+      # Adds/Replaces Javascript parameters.
       #
       # @param key [String|Symbol] The key of the new parameters. If `nil`, the root will be merged/replaced.
-      # @param data [Hash] The data to add.
+      # @param data [Hash] The data to add or replace.
       # @param replace [Boolean] Whether to replace existing data rather than merge.
       def update_javascript_params(key, data, replace: false)
         initialize_view_params

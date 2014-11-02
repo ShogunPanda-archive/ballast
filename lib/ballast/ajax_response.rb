@@ -9,21 +9,21 @@ module Ballast
   # @attribute status
   #   @return [Symbol|Fixnum] The HTTP status of the response.
   # @attribute data
-  #   @return [Object] The data to send to the client.
+  #   @return [Object|Hash|NilClass] The data to send to the client.
   # @attribute error
-  #   @return [Object] A error message.
+  #   @return [Object|NilClass] A error message.
   # @attribute transport
-  #   @return [Object] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
+  #   @return [Object|NilClass] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
   class AjaxResponse
     attr_accessor :status, :data, :error, :transport
 
     # Creates an AJAX response.
     #
     # @param status [Symbol|Fixnum] The HTTP status of the response.
-    # @param data [Object] Additional data to append to the response.
-    # @param error [Object] A error to append to the response.
-    # @param transport [Object] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
-    def initialize(status: :ok, data: {}, error: nil, transport: transport)
+    # @param data [Object|Hash|NilClass] Additional data to append to the response.
+    # @param error [Object|NilClass] A error to append to the response.
+    # @param transport [Object|NilClass] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
+    def initialize(status: :ok, data: {}, error: nil, transport: nil)
       @status = status
       @data = data
       @error = error

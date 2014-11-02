@@ -12,9 +12,9 @@ module Ballast
       # Handles an error in the application.
       #
       # @param exception [Hash|Exception] The exception to handle.
-      # @param layout [String] The layout to use to render the error.
+      # @param layout [String] The layout to use to render the error. The `@error` variable will be exposed.
       # @param title [String] The title to set in case of custom errors.
-      # @param format [String|Symbol] The format of the response.
+      # @param format [String|Symbol|NilClass] The format of the response.
       def handle_error(exception, layout: "error", title: "Error - Application", format: nil)
         @error =
           if exception.is_a?(Lazier::Exceptions::Debug)

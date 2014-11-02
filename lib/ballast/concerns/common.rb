@@ -9,7 +9,7 @@ module Ballast
     module Common
       # Checks if the current request wants JSON or JSONP as response.
       #
-      # @return [Boolean] `true` if the request is JSON, `false` otherwise.
+      # @return [Boolean] `true` if the request is JSON(P), `false` otherwise.
       def json?
         [:json, :jsonp].include?(request.format.to_sym) || params[:json].to_boolean
       end
@@ -24,7 +24,7 @@ module Ballast
       # Formats a relative date using abbreviation or short formats.
       #
       # @param date [DateTime] The date to format.
-      # @param reference [DateTime] The reference date.
+      # @param reference [DateTime|NilClass] The reference date.
       # @param suffix [String] The suffix to add to the formatted date.
       # @return [String] The formatted date.
       def format_short_duration(date, reference: nil, suffix: "")
@@ -70,9 +70,9 @@ module Ballast
 
       # Authenticates a user via HTTP, handling the error if the authentication failed.
       #
-      # @param area [String] The name of the area.
-      # @param title [String] A title for authentication errors.
-      # @param message [String] A message for authentication errors.
+      # @param area [String|NilClass] The name of the area.
+      # @param title [String|NilClass] A title for authentication errors.
+      # @param message [String|NilClass] A message for authentication errors.
       # @param authenticator [Proc] A block to verify if authentication is valid.
       def authenticate_user(area: nil, title: nil, message: nil, &authenticator)
         return if authenticate_with_http_basic { |username, password| authenticator.call(username, password) }
