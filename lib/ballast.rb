@@ -11,6 +11,7 @@ require "em-synchrony"
 require "rack/utils"
 require "emoji"
 require "action_view/helpers/capture_helper"
+require "action_view/helpers/output_safety_helper"
 require "action_view/helpers/tag_helper"
 
 Lazier.load!(:hash, :datetime)

@@ -24,9 +24,9 @@ describe Ballast::Emoji do
     it "should return unicode replaced using the requested method" do
       expect(::Emoji.replace("Phone: \u{1F4F1}, Cat: \u{1F431}, #1: \u{0031}\u{20e3}, Invalid: \u{0000}.", mode: :markup)).to eq("Phone: :iphone:, Cat: :cat:, #1: 1⃣, Invalid: \u0000.")
       expect(Emoji.replace("Phone: \u{1F4F1}, Cat: \u{1F431}, #1: \u{0031}\u{20e3}, Invalid: \u{0000}.", mode: :url)).to eq("Phone: URL/unicode/1f4f1.png, Cat: URL/unicode/1f431.png, #1: 1⃣, Invalid: \u0000.")
-      expect(Emoji.replace("Phone: \u{1F4F1}, Cat: \u{1F431}, #1: \u{0031}\u{20e3}, Invalid: \u{0000}.", mode: :image_tag, rel: :tooltip)).to eq("Phone: <img alt=\":iphone:\" class=\"emoji\" rel=\"tooltip\" src=\"URL/unicode/1f4f1.png\" title=\":iphone:\" />, Cat: <img alt=\":cat:\" class=\"emoji\" rel=\"tooltip\" src=\"URL/unicode/1f431.png\" title=\":cat:\" />, #1: 1⃣, Invalid: \u0000.")
+      expect(Emoji.replace("Phone: \u{1F4F1}, Cat: \u{1F431}, #1: \u{0031}\u{20e3}, Invalid: \u{0000}.", mode: :image_tag, rel: :tooltip)).to eq("Phone: <img alt=\":iphone:\" title=\":iphone:\" rel=\"tooltip\" src=\"URL/unicode/1f4f1.png\" class=\"emoji\" />, Cat: <img alt=\":cat:\" title=\":cat:\" rel=\"tooltip\" src=\"URL/unicode/1f431.png\" class=\"emoji\" />, #1: 1⃣, Invalid: \u0000.")
     end
-  
+
     it "should fallback to markup when the method is not valid" do
       expect(Emoji.replace("Phone: \u{1F4F1}, Cat: \u{1F431}, #1: \u{0031}\u{20e3}, Invalid: \u{0000}.", mode: :invalid)).to eq("Phone: :iphone:, Cat: :cat:, #1: 1⃣, Invalid: \u0000.")
     end
@@ -37,7 +37,7 @@ describe Ballast::Emoji do
 
     it "should enumerate all the available icons" do
       expect(Emoji.enumerate(keys_method: :raw, values_method: :url)["\u{1f604}"]).to eq("URL/unicode/1f604.png")
-      expect(Emoji.enumerate(values_method: :image_tag, rel: :tooltip)[":smile:"]).to eq("<img alt=\":smile:\" class=\"emoji\" rel=\"tooltip\" src=\"URL/unicode/1f604.png\" title=\":smile:\" />")
+      expect(Emoji.enumerate(values_method: :image_tag, rel: :tooltip)[":smile:"]).to eq("<img alt=\":smile:\" title=\":smile:\" rel=\"tooltip\" src=\"URL/unicode/1f604.png\" class=\"emoji\" />")
     end
   end
 
@@ -95,9 +95,9 @@ describe Ballast::Emoji do
     include_examples :dummy_url
 
     it "should return an image" do
-      expect(Emoji.find_by_alias("cat").image_tag).to eq("<img alt=\":cat:\" class=\"emoji\" rel=\"tooltip\" src=\"URL/unicode/1f431.png\" title=\":cat:\" />")
-      expect(Emoji.find_by_alias("cat").image_tag(class: "foo")).to eq("<img alt=\":cat:\" class=\"foo emoji\" rel=\"tooltip\" src=\"URL/unicode/1f431.png\" title=\":cat:\" />")
-      expect(Emoji.find_by_alias("cat").image_tag(rel: "tooltip1", class: "abc emoji")).to eq("<img alt=\":cat:\" class=\"abc emoji\" rel=\"tooltip1\" src=\"URL/unicode/1f431.png\" title=\":cat:\" />")
+      expect(Emoji.find_by_alias("cat").image_tag).to eq("<img alt=\":cat:\" title=\":cat:\" rel=\"tooltip\" src=\"URL/unicode/1f431.png\" class=\"emoji\" />")
+      expect(Emoji.find_by_alias("cat").image_tag(class: "foo")).to eq("<img alt=\":cat:\" title=\":cat:\" rel=\"tooltip\" class=\"foo emoji\" src=\"URL/unicode/1f431.png\" />")
+      expect(Emoji.find_by_alias("cat").image_tag(rel: "tooltip1", class: "abc emoji")).to eq("<img alt=\":cat:\" title=\":cat:\" rel=\"tooltip1\" class=\"abc emoji\" src=\"URL/unicode/1f431.png\" />")
     end
   end
 end
