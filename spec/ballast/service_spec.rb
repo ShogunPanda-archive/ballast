@@ -33,14 +33,17 @@ describe Ballast::Service::Response do
 
   describe "as_ajax_response" do
     it "should create the right response" do
-      expect(Ballast::AjaxResponse).to receive(:new).with(status: :ok, data: "DATA", error: nil)
+      expect(Ballast::AjaxResponse).to receive(:new).with(status: :ok, data: "DATA", error: nil, transport: nil)
       Ballast::Service::Response.new(true, data: "DATA", errors: "ERRORS").as_ajax_response
 
-      expect(Ballast::AjaxResponse).to receive(:new).with(status: 403, data: "DATA", error: "ERROR")
+      expect(Ballast::AjaxResponse).to receive(:new).with(status: 403, data: "DATA", error: "ERROR", transport: nil)
       Ballast::Service::Response.new(false, data: "DATA", errors: {status: 403, error: "ERROR"}).as_ajax_response
 
-      expect(Ballast::AjaxResponse).to receive(:new).with(status: :unknown, data: "DATA", error: "ERROR")
+      expect(Ballast::AjaxResponse).to receive(:new).with(status: :unknown, data: "DATA", error: "ERROR", transport: nil)
       Ballast::Service::Response.new(false, data: "DATA", errors: "ERROR").as_ajax_response
+
+      expect(Ballast::AjaxResponse).to receive(:new).with(status: :unknown, data: "DATA", error: "ERROR", transport: "TRANSPORT")
+      Ballast::Service::Response.new(false, data: "DATA", errors: "ERROR").as_ajax_response("TRANSPORT")
     end
   end
 end

@@ -1,3 +1,7 @@
+### 2.0.1 / 2014-12-26
+
+* Added `transport` parameter to `Ballast::Service#as_ajax_response`.
+
 ### 2.0.0 / 2014-11-02
 
 #### General
@@ -129,4 +133,3 @@
 ### 1.0.0 / 2013-12-25
 
 * Initial version.
-

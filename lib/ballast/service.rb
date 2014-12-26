@@ -61,8 +61,9 @@ module Ballast
 
       # Converts this response to a AJAX response.
       #
+      # @param transport [Object|NilClass] The transport to use for sending. Must respond to `render`, `params`, `request.format` and `performed?`.
       # @return [AjaxResponse] The AJAX response, which will include only the first error.
-      def as_ajax_response
+      def as_ajax_response(transport = nil)
         status, error_message =
             if successful?
               [:ok, nil]
@@ -72,7 +73,7 @@ module Ballast
               [:unknown, error]
             end
 
-        AjaxResponse.new(status: status, data: data, error: error_message)
+        AjaxResponse.new(status: status, data: data, error: error_message, transport: transport)
       end
     end
 
