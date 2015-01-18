@@ -6,4 +6,4 @@ pkg/
 .bundle/
 /metrics
 /.metrics
-/tmp/metric_fu
+/tmp
