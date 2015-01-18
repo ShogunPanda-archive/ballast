@@ -66,11 +66,16 @@ module Ballast
 
     # :nodoc:
     def format_reply(format)
-      format = (format || transport.params[:format] || transport.request.format || "json").to_sym
+      format = choose_format(format)
       callback = [:jsonp, :pretty_jsonp].include?(format) ? (transport.params[:callback] || "jsonp#{Time.now.to_i}") : nil
       content_type = (format == :text) ? "text/plain" : nil
 
       [format, callback, content_type]
+    end
+
+    # :nodoc:
+    def choose_format(format)
+      (format || transport.params[:format] || transport.request.format || "json").to_sym
     end
   end
 end

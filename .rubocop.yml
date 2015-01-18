@@ -33,3 +33,6 @@ SpaceInsideHashLiteralBraces:
 
 StringLiterals:
   Enabled: false
+
+TrivialAccessors:
+  Enabled: false
