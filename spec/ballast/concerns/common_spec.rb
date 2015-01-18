@@ -10,7 +10,33 @@ describe Ballast::Concerns::Common do
     include Ballast::Concerns::Common
   end
 
+  class CommonMockService < Ballast::Service
+    def perform(params: params)
+      "OK"
+    end
+
+    def alternative(**kwargs)
+      kwargs
+    end
+  end
+
   subject{ CommonMockClass.new(request: OpenStruct.new(headers: {}), headers: {}, params: {}, performed?: false) }
+
+  describe "#perform_service" do
+    it "should call a service and return it's result" do
+      expect(CommonMockClass.new.perform_service(CommonMockService).data).to eq("OK")
+    end
+
+    it "should forward parameters to the service" do
+      expect(CommonMockClass.new.perform_service(CommonMockService, :alternative, a: 1, b: 2).data).to eq({params: nil, a: 1, b: 2})
+    end
+
+    it "should assign the result as instance variable" do
+      object = CommonMockClass.new
+      object.perform_service(CommonMockService)
+      expect(object.instance_variable_get(:@result)).to be_a(Ballast::Service::Response)
+    end
+  end
 
   describe "#json?" do
     it "should return false by default" do

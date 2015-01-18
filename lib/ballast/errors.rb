@@ -4,7 +4,7 @@
 #
 
 module Ballast
-  # Common errors raised by a Rails application.
+  # Common errors raised by a web application.
   module Errors
     # The base error raised from an application.
     #

@@ -3,7 +3,7 @@
 # Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
 #
 
-# A collection of base utilities for Ruby on Rails.
+# A collection of base utilities for web frameworks.
 module Ballast
   # The current version of ballast, according to semantic versioning.
   #
@@ -13,10 +13,10 @@ module Ballast
     MAJOR = 2
 
     # The minor version.
-    MINOR = 0
+    MINOR = 1
 
     # The patch version.
-    PATCH = 1
+    PATCH = 0
 
     # The current version of ballast.
     STRING = [MAJOR, MINOR, PATCH].compact.join(".")

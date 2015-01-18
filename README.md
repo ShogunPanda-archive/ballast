@@ -7,7 +7,7 @@
 [![Coverage Status](https://coveralls.io/repos/ShogunPanda/ballast/badge.png)](https://coveralls.io/r/ShogunPanda/ballast)
 [![Bitdeli Trend](https://d2weczhvl823v0.cloudfront.net/ShogunPanda/ballast/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
-A collection of base utilities for Ruby on Rails.
+A collection of base utilities for web frameworks.
 
 http://sw.cowtech.it/ballast
 
@@ -15,7 +15,7 @@ http://rdoc.info/gems/ballast
 
 # Description
 
-Ballast is a gem which tries to solve common issues which we all (or, at least, me) usually encounter when we develop with Ruby On Rails.
+Ballast is a gem which tries to solve common issues which we all (or, at least, me) usually encounter when we develop with Ruby On Rails or other web frameworks.
 
 The first big issue is having fat controllers. To solve this, ballast enbraces the idea of the [interactor](https://github.com/collectiveidea/interactor) gem and it implements a service interface.
 

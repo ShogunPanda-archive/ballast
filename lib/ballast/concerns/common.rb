@@ -7,6 +7,16 @@ module Ballast
   module Concerns
     # A concern to handle common tasks in an application.
     module Common
+      # Executes a service.
+      #
+      # @param klass [Service] The service to execute.
+      # @param operation [String] The operation to invoke.
+      # @param kwargs [Hash] Parameters passed to the service.
+      # @return [Service::Response] The result of the invocation.
+      def perform_service(klass, operation = :perform, **kwargs)
+        @result = klass.new(self).call(operation, params: params, **kwargs)
+      end
+
       # Checks if the current request wants JSON or JSONP as response.
       #
       # @return [Boolean] `true` if the request is JSON(P), `false` otherwise.

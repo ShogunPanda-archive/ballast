@@ -1,3 +1,7 @@
+### 2.1.0 / 2014-12-26
+
+* Added `#perform_service` to `Ballast::Concerns::Common`.
+
 ### 2.0.1 / 2014-12-26
 
 * Added `transport` parameter to `Ballast::Service#as_ajax_response`.
