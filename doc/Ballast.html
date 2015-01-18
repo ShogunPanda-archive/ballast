@@ -233,18 +233,19 @@ Licensed under the MIT license, which can be found at http://www.opensource.org/
     <td>
       <pre class="code"><span class="info file"># File 'lib/ballast.rb', line 38</span>
 
-<span class='kw'>def</span> <span class='kw'>self</span><span class='period'>.</span><span class='id identifier rubyid_in_em_thread'>in_em_thread</span><span class='lparen'>(</span><span class='id identifier rubyid_start_reactor'>start_reactor</span> <span class='op'>=</span> <span class='kw'>false</span><span class='comma'>,</span> <span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='kw'>if</span> <span class='const'>EM</span><span class='period'>.</span><span class='id identifier rubyid_reactor_running?'>reactor_running?</span>
-    <span class='id identifier rubyid_run_in_thread'>run_in_thread</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-  <span class='kw'>elsif</span> <span class='id identifier rubyid_start_reactor'>start_reactor</span>
-    <span class='const'>EM</span><span class='period'>.</span><span class='id identifier rubyid_synchrony'>synchrony</span> <span class='kw'>do</span>
-      <span class='const'>Ballast</span><span class='period'>.</span><span class='id identifier rubyid_in_em_thread'>in_em_thread</span><span class='lparen'>(</span><span class='op'>&amp;</span><span class='id identifier rubyid_block'>block</span><span class='rparen'>)</span>
-      <span class='const'>EM</span><span class='period'>.</span><span class='id identifier rubyid_stop'>stop</span>
-    <span class='kw'>end</span>
-  <span class='kw'>else</span>
-    <span class='id identifier rubyid_block'>block</span><span class='period'>.</span><span class='id identifier rubyid_call'>call</span>
-  <span class='kw'>end</span>
-<span class='kw'>end</span></pre>
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_in_em_thread identifier id'>in_em_thread</span><span class='lparen token'>(</span><span class='rubyid_start_reactor identifier id'>start_reactor</span> <span class='assign token'>=</span> <span class='rubyid_false false kw'>false</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='rubyid_if if kw'>if</span> <span class='rubyid_EM constant id'>EM</span><span class='dot token'>.</span><span class='rubyid_reactor_running? fid id'>reactor_running?</span>
+    <span class='rubyid_run_in_thread identifier id'>run_in_thread</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+  <span class='rubyid_elsif elsif kw'>elsif</span> <span class='rubyid_start_reactor identifier id'>start_reactor</span>
+    <span class='rubyid_EM constant id'>EM</span><span class='dot token'>.</span><span class='rubyid_synchrony identifier id'>synchrony</span> <span class='rubyid_do do kw'>do</span>
+      <span class='rubyid_Ballast constant id'>Ballast</span><span class='dot token'>.</span><span class='rubyid_in_em_thread identifier id'>in_em_thread</span><span class='lparen token'>(</span><span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
+      <span class='rubyid_EM constant id'>EM</span><span class='dot token'>.</span><span class='rubyid_stop identifier id'>stop</span>
+    <span class='rubyid_end end kw'>end</span>
+  <span class='rubyid_else else kw'>else</span>
+    <span class='rubyid_block identifier id'>block</span><span class='dot token'>.</span><span class='rubyid_call identifier id'>call</span>
+  <span class='rubyid_end end kw'>end</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
     </td>
   </tr>
 </table>
@@ -255,9 +256,9 @@ Licensed under the MIT license, which can be found at http://www.opensource.org/
 </div>
 
     <div id="footer">
-  Generated on Fri Dec 26 11:54:46 2014 by
+  Generated on Sun Jan 18 13:27:09 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
-  0.8.7.6 (ruby-2.1.3).
+  0.8.7.6 (ruby-2.2.0).
 </div>
 
   </body>
