@@ -1,3 +1,7 @@
+### 2.1.2 / 2014-01-15
+
+* Minor bugfix in `Ballast::Concerns::ErrorsHandling`.
+
 ### 2.1.1 / 2014-01-15
 
 * Do not send the transport with a AJAX response.

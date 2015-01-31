@@ -34,7 +34,7 @@ module Ballast
       def send_or_render_error(layout, format = nil)
         format ||= request.format.to_sym
 
-        if ajax_request? || format.match(/^json/)
+        if ajax_request? || (format && format.match(/^json/))
           details = {description: @error[:title], backtrace: @error[:exception].safe_send(:backtrace)}
           prepare_ajax_response(status: @error[:status], data: details, error: @error[:error]).reply(format: format)
         else
