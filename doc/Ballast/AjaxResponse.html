@@ -556,7 +556,12 @@
 77
 78
 79
-80</pre>
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/ballast/ajax_response.rb', line 17</span>
@@ -604,7 +609,7 @@
     <span class='rubyid_return return kw'>return</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_performed? fid id'>performed?</span>
 
     <span class='rubyid_format identifier id'>format</span><span class='comma token'>,</span> <span class='rubyid_callback identifier id'>callback</span><span class='comma token'>,</span> <span class='rubyid_content_type identifier id'>content_type</span> <span class='assign token'>=</span> <span class='rubyid_format_reply identifier id'>format_reply</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
-    <span class='rubyid_data identifier id'>data</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='rubyid_pretty_json identifier id'>pretty_json</span> <span class='integer val'>? </span><span class='rubyid_Oj constant id'>Oj</span><span class='dot token'>.</span><span class='rubyid_dump identifier id'>dump</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='rubyid_JSON constant id'>JSON</span><span class='dot token'>.</span><span class='rubyid_encode identifier id'>encode</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='lbrack token'>[</span><span class='symbol val'>:json</span><span class='comma token'>,</span> <span class='symbol val'>:jsonp</span><span class='comma token'>,</span> <span class='symbol val'>:text</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
+    <span class='rubyid_data identifier id'>data</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='rubyid_pretty_json identifier id'>pretty_json</span> <span class='integer val'>? </span><span class='rubyid_Oj constant id'>Oj</span><span class='dot token'>.</span><span class='rubyid_dump identifier id'>dump</span><span class='lparen token'>(</span><span class='rubyid_payload identifier id'>payload</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='rubyid_JSON constant id'>JSON</span><span class='dot token'>.</span><span class='rubyid_encode identifier id'>encode</span><span class='lparen token'>(</span><span class='rubyid_payload identifier id'>payload</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='lbrack token'>[</span><span class='symbol val'>:json</span><span class='comma token'>,</span> <span class='symbol val'>:jsonp</span><span class='comma token'>,</span> <span class='symbol val'>:text</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
 
     <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_render identifier id'>render</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_data identifier id'>data</span><span class='comma token'>,</span> <span class='label val'>status:</span> <span class='rubyid_numeric_status identifier id'>numeric_status</span><span class='comma token'>,</span> <span class='label val'>callback:</span> <span class='rubyid_callback identifier id'>callback</span><span class='comma token'>,</span> <span class='label val'>content_type:</span> <span class='rubyid_content_type identifier id'>content_type</span><span class='rparen token'>)</span>
   <span class='rubyid_end end kw'>end</span>
@@ -623,6 +628,11 @@
   <span class='comment val'># :nodoc:</span>
   <span class='rubyid_def def kw'>def</span> <span class='rubyid_choose_format identifier id'>choose_format</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
     <span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span> <span class='orop op'>||</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:format</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_request identifier id'>request</span><span class='dot token'>.</span><span class='rubyid_format identifier id'>format</span> <span class='orop op'>||</span> <span class='string val'>&quot;json&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_to_sym identifier id'>to_sym</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># :nodoc:</span>
+  <span class='rubyid_def def kw'>def</span> <span class='rubyid_payload identifier id'>payload</span>
+    <span class='lbrace token'>{</span><span class='label val'>status:</span> <span class='rubyid_status identifier id'>status</span><span class='comma token'>,</span> <span class='label val'>data:</span> <span class='rubyid_data identifier id'>data</span><span class='comma token'>,</span> <span class='label val'>error:</span> <span class='rubyid_error identifier id'>error</span><span class='rbrace token'>}</span>
   <span class='rubyid_end end kw'>end</span>
 <span class='rubyid_end end kw'>end</span>
 </pre>
@@ -738,7 +748,12 @@
 77
 78
 79
-80</pre>
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/ballast/ajax_response.rb', line 17</span>
@@ -786,7 +801,7 @@
     <span class='rubyid_return return kw'>return</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_performed? fid id'>performed?</span>
 
     <span class='rubyid_format identifier id'>format</span><span class='comma token'>,</span> <span class='rubyid_callback identifier id'>callback</span><span class='comma token'>,</span> <span class='rubyid_content_type identifier id'>content_type</span> <span class='assign token'>=</span> <span class='rubyid_format_reply identifier id'>format_reply</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
-    <span class='rubyid_data identifier id'>data</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='rubyid_pretty_json identifier id'>pretty_json</span> <span class='integer val'>? </span><span class='rubyid_Oj constant id'>Oj</span><span class='dot token'>.</span><span class='rubyid_dump identifier id'>dump</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='rubyid_JSON constant id'>JSON</span><span class='dot token'>.</span><span class='rubyid_encode identifier id'>encode</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='lbrack token'>[</span><span class='symbol val'>:json</span><span class='comma token'>,</span> <span class='symbol val'>:jsonp</span><span class='comma token'>,</span> <span class='symbol val'>:text</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
+    <span class='rubyid_data identifier id'>data</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='rubyid_pretty_json identifier id'>pretty_json</span> <span class='integer val'>? </span><span class='rubyid_Oj constant id'>Oj</span><span class='dot token'>.</span><span class='rubyid_dump identifier id'>dump</span><span class='lparen token'>(</span><span class='rubyid_payload identifier id'>payload</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='rubyid_JSON constant id'>JSON</span><span class='dot token'>.</span><span class='rubyid_encode identifier id'>encode</span><span class='lparen token'>(</span><span class='rubyid_payload identifier id'>payload</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='lbrack token'>[</span><span class='symbol val'>:json</span><span class='comma token'>,</span> <span class='symbol val'>:jsonp</span><span class='comma token'>,</span> <span class='symbol val'>:text</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
 
     <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_render identifier id'>render</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_data identifier id'>data</span><span class='comma token'>,</span> <span class='label val'>status:</span> <span class='rubyid_numeric_status identifier id'>numeric_status</span><span class='comma token'>,</span> <span class='label val'>callback:</span> <span class='rubyid_callback identifier id'>callback</span><span class='comma token'>,</span> <span class='label val'>content_type:</span> <span class='rubyid_content_type identifier id'>content_type</span><span class='rparen token'>)</span>
   <span class='rubyid_end end kw'>end</span>
@@ -805,6 +820,11 @@
   <span class='comment val'># :nodoc:</span>
   <span class='rubyid_def def kw'>def</span> <span class='rubyid_choose_format identifier id'>choose_format</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
     <span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span> <span class='orop op'>||</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:format</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_request identifier id'>request</span><span class='dot token'>.</span><span class='rubyid_format identifier id'>format</span> <span class='orop op'>||</span> <span class='string val'>&quot;json&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_to_sym identifier id'>to_sym</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># :nodoc:</span>
+  <span class='rubyid_def def kw'>def</span> <span class='rubyid_payload identifier id'>payload</span>
+    <span class='lbrace token'>{</span><span class='label val'>status:</span> <span class='rubyid_status identifier id'>status</span><span class='comma token'>,</span> <span class='label val'>data:</span> <span class='rubyid_data identifier id'>data</span><span class='comma token'>,</span> <span class='label val'>error:</span> <span class='rubyid_error identifier id'>error</span><span class='rbrace token'>}</span>
   <span class='rubyid_end end kw'>end</span>
 <span class='rubyid_end end kw'>end</span>
 </pre>
@@ -920,7 +940,12 @@
 77
 78
 79
-80</pre>
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/ballast/ajax_response.rb', line 17</span>
@@ -968,7 +993,7 @@
     <span class='rubyid_return return kw'>return</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_performed? fid id'>performed?</span>
 
     <span class='rubyid_format identifier id'>format</span><span class='comma token'>,</span> <span class='rubyid_callback identifier id'>callback</span><span class='comma token'>,</span> <span class='rubyid_content_type identifier id'>content_type</span> <span class='assign token'>=</span> <span class='rubyid_format_reply identifier id'>format_reply</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
-    <span class='rubyid_data identifier id'>data</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='rubyid_pretty_json identifier id'>pretty_json</span> <span class='integer val'>? </span><span class='rubyid_Oj constant id'>Oj</span><span class='dot token'>.</span><span class='rubyid_dump identifier id'>dump</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='rubyid_JSON constant id'>JSON</span><span class='dot token'>.</span><span class='rubyid_encode identifier id'>encode</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='lbrack token'>[</span><span class='symbol val'>:json</span><span class='comma token'>,</span> <span class='symbol val'>:jsonp</span><span class='comma token'>,</span> <span class='symbol val'>:text</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
+    <span class='rubyid_data identifier id'>data</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='rubyid_pretty_json identifier id'>pretty_json</span> <span class='integer val'>? </span><span class='rubyid_Oj constant id'>Oj</span><span class='dot token'>.</span><span class='rubyid_dump identifier id'>dump</span><span class='lparen token'>(</span><span class='rubyid_payload identifier id'>payload</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='rubyid_JSON constant id'>JSON</span><span class='dot token'>.</span><span class='rubyid_encode identifier id'>encode</span><span class='lparen token'>(</span><span class='rubyid_payload identifier id'>payload</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='lbrack token'>[</span><span class='symbol val'>:json</span><span class='comma token'>,</span> <span class='symbol val'>:jsonp</span><span class='comma token'>,</span> <span class='symbol val'>:text</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
 
     <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_render identifier id'>render</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_data identifier id'>data</span><span class='comma token'>,</span> <span class='label val'>status:</span> <span class='rubyid_numeric_status identifier id'>numeric_status</span><span class='comma token'>,</span> <span class='label val'>callback:</span> <span class='rubyid_callback identifier id'>callback</span><span class='comma token'>,</span> <span class='label val'>content_type:</span> <span class='rubyid_content_type identifier id'>content_type</span><span class='rparen token'>)</span>
   <span class='rubyid_end end kw'>end</span>
@@ -987,6 +1012,11 @@
   <span class='comment val'># :nodoc:</span>
   <span class='rubyid_def def kw'>def</span> <span class='rubyid_choose_format identifier id'>choose_format</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
     <span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span> <span class='orop op'>||</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:format</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_request identifier id'>request</span><span class='dot token'>.</span><span class='rubyid_format identifier id'>format</span> <span class='orop op'>||</span> <span class='string val'>&quot;json&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_to_sym identifier id'>to_sym</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># :nodoc:</span>
+  <span class='rubyid_def def kw'>def</span> <span class='rubyid_payload identifier id'>payload</span>
+    <span class='lbrace token'>{</span><span class='label val'>status:</span> <span class='rubyid_status identifier id'>status</span><span class='comma token'>,</span> <span class='label val'>data:</span> <span class='rubyid_data identifier id'>data</span><span class='comma token'>,</span> <span class='label val'>error:</span> <span class='rubyid_error identifier id'>error</span><span class='rbrace token'>}</span>
   <span class='rubyid_end end kw'>end</span>
 <span class='rubyid_end end kw'>end</span>
 </pre>
@@ -1102,7 +1132,12 @@
 77
 78
 79
-80</pre>
+80
+81
+82
+83
+84
+85</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/ballast/ajax_response.rb', line 17</span>
@@ -1150,7 +1185,7 @@
     <span class='rubyid_return return kw'>return</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_performed? fid id'>performed?</span>
 
     <span class='rubyid_format identifier id'>format</span><span class='comma token'>,</span> <span class='rubyid_callback identifier id'>callback</span><span class='comma token'>,</span> <span class='rubyid_content_type identifier id'>content_type</span> <span class='assign token'>=</span> <span class='rubyid_format_reply identifier id'>format_reply</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
-    <span class='rubyid_data identifier id'>data</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='rubyid_pretty_json identifier id'>pretty_json</span> <span class='integer val'>? </span><span class='rubyid_Oj constant id'>Oj</span><span class='dot token'>.</span><span class='rubyid_dump identifier id'>dump</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='rubyid_JSON constant id'>JSON</span><span class='dot token'>.</span><span class='rubyid_encode identifier id'>encode</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='lbrack token'>[</span><span class='symbol val'>:json</span><span class='comma token'>,</span> <span class='symbol val'>:jsonp</span><span class='comma token'>,</span> <span class='symbol val'>:text</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
+    <span class='rubyid_data identifier id'>data</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='rubyid_pretty_json identifier id'>pretty_json</span> <span class='integer val'>? </span><span class='rubyid_Oj constant id'>Oj</span><span class='dot token'>.</span><span class='rubyid_dump identifier id'>dump</span><span class='lparen token'>(</span><span class='rubyid_payload identifier id'>payload</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='rubyid_JSON constant id'>JSON</span><span class='dot token'>.</span><span class='rubyid_encode identifier id'>encode</span><span class='lparen token'>(</span><span class='rubyid_payload identifier id'>payload</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='lbrack token'>[</span><span class='symbol val'>:json</span><span class='comma token'>,</span> <span class='symbol val'>:jsonp</span><span class='comma token'>,</span> <span class='symbol val'>:text</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
 
     <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_render identifier id'>render</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_data identifier id'>data</span><span class='comma token'>,</span> <span class='label val'>status:</span> <span class='rubyid_numeric_status identifier id'>numeric_status</span><span class='comma token'>,</span> <span class='label val'>callback:</span> <span class='rubyid_callback identifier id'>callback</span><span class='comma token'>,</span> <span class='label val'>content_type:</span> <span class='rubyid_content_type identifier id'>content_type</span><span class='rparen token'>)</span>
   <span class='rubyid_end end kw'>end</span>
@@ -1169,6 +1204,11 @@
   <span class='comment val'># :nodoc:</span>
   <span class='rubyid_def def kw'>def</span> <span class='rubyid_choose_format identifier id'>choose_format</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
     <span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span> <span class='orop op'>||</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_params identifier id'>params</span><span class='lbrack token'>[</span><span class='symbol val'>:format</span><span class='rbrack token'>]</span> <span class='orop op'>||</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_request identifier id'>request</span><span class='dot token'>.</span><span class='rubyid_format identifier id'>format</span> <span class='orop op'>||</span> <span class='string val'>&quot;json&quot;</span><span class='rparen token'>)</span><span class='dot token'>.</span><span class='rubyid_to_sym identifier id'>to_sym</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># :nodoc:</span>
+  <span class='rubyid_def def kw'>def</span> <span class='rubyid_payload identifier id'>payload</span>
+    <span class='lbrace token'>{</span><span class='label val'>status:</span> <span class='rubyid_status identifier id'>status</span><span class='comma token'>,</span> <span class='label val'>data:</span> <span class='rubyid_data identifier id'>data</span><span class='comma token'>,</span> <span class='label val'>error:</span> <span class='rubyid_error identifier id'>error</span><span class='rbrace token'>}</span>
   <span class='rubyid_end end kw'>end</span>
 <span class='rubyid_end end kw'>end</span>
 </pre>
@@ -1404,7 +1444,7 @@
   <span class='rubyid_return return kw'>return</span> <span class='rubyid_if if_mod kw'>if</span> <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_performed? fid id'>performed?</span>
 
   <span class='rubyid_format identifier id'>format</span><span class='comma token'>,</span> <span class='rubyid_callback identifier id'>callback</span><span class='comma token'>,</span> <span class='rubyid_content_type identifier id'>content_type</span> <span class='assign token'>=</span> <span class='rubyid_format_reply identifier id'>format_reply</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
-  <span class='rubyid_data identifier id'>data</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='rubyid_pretty_json identifier id'>pretty_json</span> <span class='integer val'>? </span><span class='rubyid_Oj constant id'>Oj</span><span class='dot token'>.</span><span class='rubyid_dump identifier id'>dump</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='rubyid_JSON constant id'>JSON</span><span class='dot token'>.</span><span class='rubyid_encode identifier id'>encode</span><span class='lparen token'>(</span><span class='rubyid_self self kw'>self</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='lbrack token'>[</span><span class='symbol val'>:json</span><span class='comma token'>,</span> <span class='symbol val'>:jsonp</span><span class='comma token'>,</span> <span class='symbol val'>:text</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
+  <span class='rubyid_data identifier id'>data</span> <span class='assign token'>=</span> <span class='lparen token'>(</span><span class='rubyid_pretty_json identifier id'>pretty_json</span> <span class='integer val'>? </span><span class='rubyid_Oj constant id'>Oj</span><span class='dot token'>.</span><span class='rubyid_dump identifier id'>dump</span><span class='lparen token'>(</span><span class='rubyid_payload identifier id'>payload</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_ActiveSupport constant id'>ActiveSupport</span><span class='colon2 op'>::</span><span class='rubyid_JSON constant id'>JSON</span><span class='dot token'>.</span><span class='rubyid_encode identifier id'>encode</span><span class='lparen token'>(</span><span class='rubyid_payload identifier id'>payload</span><span class='rparen token'>)</span><span class='rparen token'>)</span> <span class='rubyid_if if_mod kw'>if</span> <span class='lbrack token'>[</span><span class='symbol val'>:json</span><span class='comma token'>,</span> <span class='symbol val'>:jsonp</span><span class='comma token'>,</span> <span class='symbol val'>:text</span><span class='rbrack token'>]</span><span class='dot token'>.</span><span class='rubyid_include? fid id'>include?</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span><span class='rparen token'>)</span>
 
   <span class='rubyid_transport identifier id'>transport</span><span class='dot token'>.</span><span class='rubyid_render identifier id'>render</span><span class='lparen token'>(</span><span class='rubyid_format identifier id'>format</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='rubyid_data identifier id'>data</span><span class='comma token'>,</span> <span class='label val'>status:</span> <span class='rubyid_numeric_status identifier id'>numeric_status</span><span class='comma token'>,</span> <span class='label val'>callback:</span> <span class='rubyid_callback identifier id'>callback</span><span class='comma token'>,</span> <span class='label val'>content_type:</span> <span class='rubyid_content_type identifier id'>content_type</span><span class='rparen token'>)</span>
 <span class='rubyid_end end kw'>end</span>
@@ -1419,7 +1459,7 @@
 </div>
 
     <div id="footer">
-  Generated on Sun Jan 18 13:27:09 2015 by
+  Generated on Fri Jan 30 16:37:17 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.0).
 </div>
