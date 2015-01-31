@@ -1,3 +1,7 @@
+### 2.1.1 / 2014-01-15
+
+* Do not send the transport with a AJAX response.
+
 ### 2.1.0 / 2014-12-26
 
 * Added `#perform_service` to `Ballast::Concerns::Common`.

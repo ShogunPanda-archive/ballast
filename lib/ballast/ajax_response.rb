@@ -57,7 +57,7 @@ module Ballast
       return if transport.performed?
 
       format, callback, content_type = format_reply(format)
-      data = (pretty_json ? Oj.dump(self) : ActiveSupport::JSON.encode(self)) if [:json, :jsonp, :text].include?(format)
+      data = (pretty_json ? Oj.dump(payload) : ActiveSupport::JSON.encode(payload)) if [:json, :jsonp, :text].include?(format)
 
       transport.render(format => data, status: numeric_status, callback: callback, content_type: content_type)
     end
@@ -76,6 +76,11 @@ module Ballast
     # :nodoc:
     def choose_format(format)
       (format || transport.params[:format] || transport.request.format || "json").to_sym
+    end
+
+    # :nodoc:
+    def payload
+      {status: status, data: data, error: error}
     end
   end
 end

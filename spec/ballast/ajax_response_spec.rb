@@ -51,6 +51,13 @@ describe Ballast::AjaxResponse do
       subject.reply(format: :jsonp)
     end
 
+    it "should not include the transport for pretty JSON" do
+      subject.status = 403
+
+      expect(@transport).to receive(:render).with(json: "{\n  \"status\":403,\n  \"data\":\"DATA\",\n  \"error\":\"ERROR\"\n}\n", status: 403, callback: nil, content_type: nil)
+      subject.reply(format: nil, pretty_json: true)
+    end
+
     it "should fallback to transport request format" do
       subject.status = 403
 
