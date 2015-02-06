@@ -38,7 +38,7 @@ describe Ballast::AjaxResponse do
       @transport = OpenStruct.new(request: OpenStruct.new(format: :json), params: {}, performed?: false)
     end
 
-    subject { Ballast::AjaxResponse.new(status: 200, data: "DATA", error: "ERROR", transport: @transport) }
+    subject { Ballast::AjaxResponse.new(status: :ok, data: "DATA", error: "ERROR", transport: @transport) }
 
     it "should setup the right content type for text" do
       expect(@transport).to receive(:render).with(text: "{\"status\":200,\"data\":\"DATA\",\"error\":\"ERROR\"}", status: 200, callback: nil, content_type: "text/plain")

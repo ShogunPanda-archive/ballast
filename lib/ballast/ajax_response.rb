@@ -80,7 +80,7 @@ module Ballast
 
     # :nodoc:
     def payload
-      {status: status, data: data, error: error}
+      {status: Rack::Utils.status_code(status), data: data, error: error}
     end
   end
 end

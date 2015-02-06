@@ -1,3 +1,7 @@
+### 2.1.3 / 2014-02-06
+
+* Return the status as a number in `Ballast::Service::Response.reply`.
+
 ### 2.1.2 / 2014-01-15
 
 * Minor bugfix in `Ballast::Concerns::ErrorsHandling`.
