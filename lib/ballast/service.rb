@@ -98,9 +98,15 @@ module Ballast
     # Marks the failure of the operation.
     #
     # @param details [Object] The error(s) occurred.
-    # @param on_validation [Boolean] Whether the error(s) was/were validation error(s).
     def self.fail!(details, on_validation: false)
-      raise(on_validation ? Errors::ValidationFailure : Errors::Failure, details)
+      raise(Errors::Failure, details)
+    end
+
+    # Marks the failure of the validation of the operation.
+    #
+    # @param details [Object] The error(s) occurred.
+    def self.fail_validation!(details)
+      raise(Errors::ValidationFailure, details)
     end
 
     # Creates a service object.
@@ -131,9 +137,15 @@ module Ballast
     # Marks the failure of the operation.
     #
     # @param details [Object] The error(s) occurred.
-    # @param on_validation [Boolean] Whether the error(s) was/were validation error(s).
-    def fail!(details, on_validation: false)
-      self.class.fail!(details, on_validation: on_validation)
+    def fail!(details)
+      raise(Errors::Failure, details)
+    end
+
+    # Marks the failure of the validation of the operation.
+    #
+    # @param details [Object] The error(s) occurred.
+    def fail_validation!(details)
+      raise(Errors::ValidationFailure, details)
     end
 
     # Handles a failure.

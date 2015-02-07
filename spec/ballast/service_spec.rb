@@ -93,9 +93,11 @@ describe Ballast::Service do
     it "should raise a failure" do
       expect { DummyService.fail!("DETAILS") }.to raise_error(Ballast::Errors::Failure)
     end
+  end
 
+  describe ".fail_validation!" do
     it "should raise a validation failure" do
-      expect { DummyService.fail!("DETAILS", on_validation: true) }.to raise_error(Ballast::Errors::ValidationFailure)
+      expect { DummyService.fail_validation!("DETAILS") }.to raise_error(Ballast::Errors::ValidationFailure)
     end
   end
 
@@ -129,12 +131,14 @@ describe Ballast::Service do
   end
 
   describe "#fail!" do
-    it "should forward to the class level implementation" do
-      allow_any_instance_of(DummyService).to receive(:perform)
+    it "should raise a failure" do
+      expect { DummyService.new.fail!("DETAILS") }.to raise_error(Ballast::Errors::Failure)
+    end
+  end
 
-      expect(DummyService).to receive(:fail!).with("ERRORS", on_validation: "ON VALIDATION")
-
-      DummyService.new.fail!("ERRORS", on_validation: "ON VALIDATION")
+  describe "#fail_validation!" do
+    it "should raise a validation failure" do
+      expect { DummyService.new.fail_validation!("DETAILS") }.to raise_error(Ballast::Errors::ValidationFailure)
     end
   end
 end

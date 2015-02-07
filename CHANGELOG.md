@@ -1,3 +1,7 @@
+### 2.2.0 / 2014-02-06
+
+* Removed `fail!(..., on_validation: true)` in favor of `fail_validation!(...)` inside `Ballast::Service`.
+
 ### 2.1.3 / 2014-02-06
 
 * Return the status as a number in `Ballast::Service::Response.reply`.
