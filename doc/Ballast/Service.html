@@ -216,6 +216,29 @@
         <li class="public ">
   <span class="summary_signature">
     
+      <a href="#fail_validation%21-class_method" title="fail_validation! (class method)">+ (Object) <strong>fail_validation!</strong>(details) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Marks the failure of the validation of the operation.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
       <a href="#handle_failure-class_method" title="handle_failure (class method)">+ (Response) <strong>handle_failure</strong>(failure, raise_errors) </a>
     
 
@@ -271,7 +294,7 @@
         <li class="public ">
   <span class="summary_signature">
     
-      <a href="#fail%21-instance_method" title="#fail! (instance method)">- (Object) <strong>fail!</strong>(details, on_validation: false) </a>
+      <a href="#fail%21-instance_method" title="#fail! (instance method)">- (Object) <strong>fail!</strong>(details) </a>
     
 
     
@@ -286,6 +309,29 @@
 
   
     <span class="summary_desc"><div class='inline'><p>Marks the failure of the operation.</p>
+</div></span>
+  
+</li>
+
+      
+        <li class="public ">
+  <span class="summary_signature">
+    
+      <a href="#fail_validation%21-instance_method" title="#fail_validation! (instance method)">- (Object) <strong>fail_validation!</strong>(details) </a>
+    
+
+    
+  </span>
+  
+  
+  
+  
+  
+  
+  
+
+  
+    <span class="summary_desc"><div class='inline'><p>Marks the failure of the validation of the operation.</p>
 </div></span>
   
 </li>
@@ -368,12 +414,12 @@
       <pre class="lines">
 
 
-109
-110
-111</pre>
+115
+116
+117</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 109</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 115</span>
 
 <span class='rubyid_def def kw'>def</span> <span class='rubyid_initialize identifier id'>initialize</span><span class='lparen token'>(</span><span class='rubyid_owner identifier id'>owner</span> <span class='assign token'>=</span> <span class='rubyid_nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='rubyid_@owner ivar id'>@owner</span> <span class='assign token'>=</span> <span class='rubyid_owner identifier id'>owner</span>
@@ -569,7 +615,19 @@
 144
 145
 146
-147</pre>
+147
+148
+149
+150
+151
+152
+153
+154
+155
+156
+157
+158
+159</pre>
     </td>
     <td>
       <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 11</span>
@@ -664,9 +722,15 @@
   <span class='comment val'># Marks the failure of the operation.</span>
   <span class='comment val'>#</span>
   <span class='comment val'># @param details [Object] The error(s) occurred.</span>
-  <span class='comment val'># @param on_validation [Boolean] Whether the error(s) was/were validation error(s).</span>
   <span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_fail! fid id'>fail!</span><span class='lparen token'>(</span><span class='rubyid_details identifier id'>details</span><span class='comma token'>,</span> <span class='label val'>on_validation:</span> <span class='rubyid_false false kw'>false</span><span class='rparen token'>)</span>
-    <span class='rubyid_raise identifier id'>raise</span><span class='lparen token'>(</span><span class='rubyid_on_validation identifier id'>on_validation</span> <span class='integer val'>? </span><span class='rubyid_Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='rubyid_ValidationFailure constant id'>ValidationFailure</span> <span class='colon op'>:</span> <span class='rubyid_Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='rubyid_Failure constant id'>Failure</span><span class='comma token'>,</span> <span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
+    <span class='rubyid_raise identifier id'>raise</span><span class='lparen token'>(</span><span class='rubyid_Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='rubyid_Failure constant id'>Failure</span><span class='comma token'>,</span> <span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># Marks the failure of the validation of the operation.</span>
+  <span class='comment val'>#</span>
+  <span class='comment val'># @param details [Object] The error(s) occurred.</span>
+  <span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_fail_validation! fid id'>fail_validation!</span><span class='lparen token'>(</span><span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
+    <span class='rubyid_raise identifier id'>raise</span><span class='lparen token'>(</span><span class='rubyid_Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='rubyid_ValidationFailure constant id'>ValidationFailure</span><span class='comma token'>,</span> <span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
   <span class='rubyid_end end kw'>end</span>
 
   <span class='comment val'># Creates a service object.</span>
@@ -697,9 +761,15 @@
   <span class='comment val'># Marks the failure of the operation.</span>
   <span class='comment val'>#</span>
   <span class='comment val'># @param details [Object] The error(s) occurred.</span>
-  <span class='comment val'># @param on_validation [Boolean] Whether the error(s) was/were validation error(s).</span>
-  <span class='rubyid_def def kw'>def</span> <span class='rubyid_fail! fid id'>fail!</span><span class='lparen token'>(</span><span class='rubyid_details identifier id'>details</span><span class='comma token'>,</span> <span class='label val'>on_validation:</span> <span class='rubyid_false false kw'>false</span><span class='rparen token'>)</span>
-    <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_class identifier id'>class</span><span class='dot token'>.</span><span class='rubyid_fail! fid id'>fail!</span><span class='lparen token'>(</span><span class='rubyid_details identifier id'>details</span><span class='comma token'>,</span> <span class='label val'>on_validation:</span> <span class='rubyid_on_validation identifier id'>on_validation</span><span class='rparen token'>)</span>
+  <span class='rubyid_def def kw'>def</span> <span class='rubyid_fail! fid id'>fail!</span><span class='lparen token'>(</span><span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
+    <span class='rubyid_raise identifier id'>raise</span><span class='lparen token'>(</span><span class='rubyid_Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='rubyid_Failure constant id'>Failure</span><span class='comma token'>,</span> <span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
+
+  <span class='comment val'># Marks the failure of the validation of the operation.</span>
+  <span class='comment val'>#</span>
+  <span class='comment val'># @param details [Object] The error(s) occurred.</span>
+  <span class='rubyid_def def kw'>def</span> <span class='rubyid_fail_validation! fid id'>fail_validation!</span><span class='lparen token'>(</span><span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
+    <span class='rubyid_raise identifier id'>raise</span><span class='lparen token'>(</span><span class='rubyid_Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='rubyid_ValidationFailure constant id'>ValidationFailure</span><span class='comma token'>,</span> <span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
   <span class='rubyid_end end kw'>end</span>
 
   <span class='comment val'># Handles a failure.</span>
@@ -919,23 +989,21 @@
       
     </li>
   
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
     <li>
       
-        <span class='name'>on_validation</span>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/Failure.html" title="Ballast::Errors::Failure (class)">Errors::Failure</a></span></tt>)</span>
       
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>Whether the error(s) was/were validation error(s).</p>
-</div>
       
     </li>
   
 </ul>
-
 
 </div><table class="source_code">
   <tr>
@@ -943,15 +1011,88 @@
       <pre class="lines">
 
 
+101
 102
-103
-104</pre>
+103</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 102</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 101</span>
 
 <span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_fail! fid id'>fail!</span><span class='lparen token'>(</span><span class='rubyid_details identifier id'>details</span><span class='comma token'>,</span> <span class='label val'>on_validation:</span> <span class='rubyid_false false kw'>false</span><span class='rparen token'>)</span>
-  <span class='rubyid_raise identifier id'>raise</span><span class='lparen token'>(</span><span class='rubyid_on_validation identifier id'>on_validation</span> <span class='integer val'>? </span><span class='rubyid_Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='rubyid_ValidationFailure constant id'>ValidationFailure</span> <span class='colon op'>:</span> <span class='rubyid_Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='rubyid_Failure constant id'>Failure</span><span class='comma token'>,</span> <span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
+  <span class='rubyid_raise identifier id'>raise</span><span class='lparen token'>(</span><span class='rubyid_Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='rubyid_Failure constant id'>Failure</span><span class='comma token'>,</span> <span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fail_validation!-class_method">
+  
+    + (<tt>Object</tt>) <strong>fail_validation!</strong>(details) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Marks the failure of the validation of the operation.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>details</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The error(s) occurred.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/ValidationFailure.html" title="Ballast::Errors::ValidationFailure (class)">Errors::ValidationFailure</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+108
+109
+110</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 108</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_fail_validation! fid id'>fail_validation!</span><span class='lparen token'>(</span><span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
+  <span class='rubyid_raise identifier id'>raise</span><span class='lparen token'>(</span><span class='rubyid_Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='rubyid_ValidationFailure constant id'>ValidationFailure</span><span class='comma token'>,</span> <span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
 <span class='rubyid_end end kw'>end</span>
 </pre>
     </td>
@@ -1035,12 +1176,12 @@
       <pre class="lines">
 
 
-144
-145
-146</pre>
+156
+157
+158</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 144</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 156</span>
 
 <span class='rubyid_def def kw'>def</span> <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_handle_failure identifier id'>handle_failure</span><span class='lparen token'>(</span><span class='rubyid_failure identifier id'>failure</span><span class='comma token'>,</span> <span class='rubyid_raise_errors identifier id'>raise_errors</span><span class='rparen token'>)</span>
   <span class='rubyid_raise_errors identifier id'>raise_errors</span> <span class='integer val'>? </span><span class='rubyid_raise identifier id'>raise</span><span class='lparen token'>(</span><span class='rubyid_failure identifier id'>failure</span><span class='rparen token'>)</span> <span class='colon op'>:</span> <span class='rubyid_Response constant id'>Response</span><span class='dot token'>.</span><span class='rubyid_new identifier id'>new</span><span class='lparen token'>(</span><span class='rubyid_false false kw'>false</span><span class='comma token'>,</span> <span class='label val'>error:</span> <span class='rubyid_failure identifier id'>failure</span><span class='dot token'>.</span><span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
@@ -1195,17 +1336,17 @@
       <pre class="lines">
 
 
-122
-123
-124
-125
-126
-127
 128
-129</pre>
+129
+130
+131
+132
+133
+134
+135</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 122</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 128</span>
 
 <span class='rubyid_def def kw'>def</span> <span class='rubyid_call identifier id'>call</span><span class='lparen token'>(</span><span class='rubyid_operation identifier id'>operation</span> <span class='assign token'>=</span> <span class='symbol val'>:perform</span><span class='comma token'>,</span> <span class='label val'>owner:</span> <span class='rubyid_nil nil kw'>nil</span><span class='comma token'>,</span> <span class='label val'>raise_errors:</span> <span class='rubyid_false false kw'>false</span><span class='comma token'>,</span> <span class='label val'>params:</span> <span class='lbrace token'>{</span><span class='rbrace token'>}</span><span class='comma token'>,</span> <span class='pow op'>**</span><span class='rubyid_kwargs identifier id'>kwargs</span><span class='comma token'>,</span> <span class='bitand op'>&amp;</span><span class='rubyid_block identifier id'>block</span><span class='rparen token'>)</span>
   <span class='comment val'># PI: Ignore Roodi on this method</span>
@@ -1224,7 +1365,7 @@
       <div class="method_details ">
   <h3 class="signature " id="fail!-instance_method">
   
-    - (<tt>Object</tt>) <strong>fail!</strong>(details, on_validation: false) 
+    - (<tt>Object</tt>) <strong>fail!</strong>(details) 
   
 
   
@@ -1256,23 +1397,21 @@
       
     </li>
   
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
     <li>
       
-        <span class='name'>on_validation</span>
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/Failure.html" title="Ballast::Errors::Failure (class)">Errors::Failure</a></span></tt>)</span>
       
       
-        <span class='type'>(<tt>Boolean</tt>)</span>
-      
-      
-      
-        &mdash;
-        <div class='inline'><p>Whether the error(s) was/were validation error(s).</p>
-</div>
       
     </li>
   
 </ul>
-
 
 </div><table class="source_code">
   <tr>
@@ -1280,15 +1419,88 @@
       <pre class="lines">
 
 
-135
-136
-137</pre>
+140
+141
+142</pre>
     </td>
     <td>
-      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 135</span>
+      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 140</span>
 
-<span class='rubyid_def def kw'>def</span> <span class='rubyid_fail! fid id'>fail!</span><span class='lparen token'>(</span><span class='rubyid_details identifier id'>details</span><span class='comma token'>,</span> <span class='label val'>on_validation:</span> <span class='rubyid_false false kw'>false</span><span class='rparen token'>)</span>
-  <span class='rubyid_self self kw'>self</span><span class='dot token'>.</span><span class='rubyid_class identifier id'>class</span><span class='dot token'>.</span><span class='rubyid_fail! fid id'>fail!</span><span class='lparen token'>(</span><span class='rubyid_details identifier id'>details</span><span class='comma token'>,</span> <span class='label val'>on_validation:</span> <span class='rubyid_on_validation identifier id'>on_validation</span><span class='rparen token'>)</span>
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_fail! fid id'>fail!</span><span class='lparen token'>(</span><span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
+  <span class='rubyid_raise identifier id'>raise</span><span class='lparen token'>(</span><span class='rubyid_Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='rubyid_Failure constant id'>Failure</span><span class='comma token'>,</span> <span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
+<span class='rubyid_end end kw'>end</span>
+</pre>
+    </td>
+  </tr>
+</table>
+</div>
+    
+      <div class="method_details ">
+  <h3 class="signature " id="fail_validation!-instance_method">
+  
+    - (<tt>Object</tt>) <strong>fail_validation!</strong>(details) 
+  
+
+  
+
+  
+</h3><div class="docstring">
+  <div class="discussion">
+    <p>Marks the failure of the validation of the operation.</p>
+
+
+  </div>
+</div>
+<div class="tags">
+  <p class="tag_title">Parameters:</p>
+<ul class="param">
+  
+    <li>
+      
+        <span class='name'>details</span>
+      
+      
+        <span class='type'>(<tt>Object</tt>)</span>
+      
+      
+      
+        &mdash;
+        <div class='inline'><p>The error(s) occurred.</p>
+</div>
+      
+    </li>
+  
+</ul>
+
+<p class="tag_title">Raises:</p>
+<ul class="raise">
+  
+    <li>
+      
+      
+        <span class='type'>(<tt><span class='object_link'><a href="Errors/ValidationFailure.html" title="Ballast::Errors::ValidationFailure (class)">Errors::ValidationFailure</a></span></tt>)</span>
+      
+      
+      
+    </li>
+  
+</ul>
+
+</div><table class="source_code">
+  <tr>
+    <td>
+      <pre class="lines">
+
+
+147
+148
+149</pre>
+    </td>
+    <td>
+      <pre class="code"><span class="info file"># File 'lib/ballast/service.rb', line 147</span>
+
+<span class='rubyid_def def kw'>def</span> <span class='rubyid_fail_validation! fid id'>fail_validation!</span><span class='lparen token'>(</span><span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
+  <span class='rubyid_raise identifier id'>raise</span><span class='lparen token'>(</span><span class='rubyid_Errors constant id'>Errors</span><span class='colon2 op'>::</span><span class='rubyid_ValidationFailure constant id'>ValidationFailure</span><span class='comma token'>,</span> <span class='rubyid_details identifier id'>details</span><span class='rparen token'>)</span>
 <span class='rubyid_end end kw'>end</span>
 </pre>
     </td>
@@ -1301,7 +1513,7 @@
 </div>
 
     <div id="footer">
-  Generated on Fri Feb  6 13:24:21 2015 by
+  Generated on Fri Feb  6 16:18:34 2015 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.2.0).
 </div>
