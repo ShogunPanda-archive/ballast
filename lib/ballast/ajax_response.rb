@@ -76,7 +76,7 @@ module Ballast
 
     # :nodoc:
     def choose_format(format)
-      (format || transport.params[:format] || transport.request.format || "json").to_sym
+      (format || transport.params[:format] || transport.request.format || "json").to_sym || :html
     end
 
     # :nodoc:

@@ -1,3 +1,7 @@
+### 2.2.2 / 2014-02-07
+
+* Minor fix in `Ballast::Service::Response.reply`.
+
 ### 2.2.1 / 2014-02-07
 
 * Minor fix in `Ballast::Service::Response.reply`.
