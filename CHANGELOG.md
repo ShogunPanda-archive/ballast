@@ -1,3 +1,7 @@
+### 2.2.1 / 2014-02-07
+
+* Minor fix in `Ballast::Service::Response.reply`.
+
 ### 2.2.0 / 2014-02-06
 
 * Removed `fail!(..., on_validation: true)` in favor of `fail_validation!(...)` inside `Ballast::Service`.

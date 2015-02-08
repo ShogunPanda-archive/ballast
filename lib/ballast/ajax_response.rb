@@ -57,9 +57,10 @@ module Ballast
       return if transport.performed?
 
       format, callback, content_type = format_reply(format)
-      data = (pretty_json ? Oj.dump(payload) : ActiveSupport::JSON.encode(payload)) if [:json, :jsonp, :text].include?(format)
+      content = prepare_content
+      content = (pretty_json ? Oj.dump(content) : ActiveSupport::JSON.encode(content)) if [:json, :jsonp, :text].include?(format)
 
-      transport.render(format => data, status: numeric_status, callback: callback, content_type: content_type)
+      transport.render(format => content, status: numeric_status, callback: callback, content_type: content_type)
     end
 
     private
@@ -79,7 +80,7 @@ module Ballast
     end
 
     # :nodoc:
-    def payload
+    def prepare_content
       {status: Rack::Utils.status_code(status), data: data, error: error}
     end
   end
