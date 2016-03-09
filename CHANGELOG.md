@@ -1,3 +1,7 @@
+### 2.2.3 / 2016-03-09
+
+* Updated dependencies to make it work with Ruby 2.3.0.
+
 ### 2.2.2 / 2014-02-07
 
 * Minor fix in `Ballast::Service::Response.reply`.
