@@ -499,14 +499,14 @@
 
 <span class='rubyid_def def kw'>def</span> <span class='rubyid_generate_robots_txt identifier id'>generate_robots_txt</span><span class='lparen token'>(</span><span class='rubyid_configuration identifier id'>configuration</span> <span class='assign token'>=</span> <span class='rubyid_nil nil kw'>nil</span><span class='rparen token'>)</span>
   <span class='rubyid_configuration identifier id'>configuration</span> <span class='opasgn op'>||=</span> <span class='lbrace token'>{</span><span class='string val'>&quot;*&quot;</span> <span class='assign token'>=</span><span class='gt op'>&gt;</span> <span class='string val'>&quot;/&quot;</span><span class='rbrace token'>}</span>
-  <span class='rubyid_rv identifier id'>rv</span> <span class='assign token'>=</span> <span class='rubyid_configuration identifier id'>configuration</span><span class='dot token'>.</span><span class='rubyid_reduce identifier id'>reduce</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='rubyid_accu identifier id'>accu</span><span class='comma token'>,</span> <span class='lparen token'>(</span><span class='rubyid_agent identifier id'>agent</span><span class='comma token'>,</span> <span class='rubyid_paths identifier id'>paths</span><span class='rparen token'>)</span><span class='bitor op'>|</span>
+  <span class='rubyid_rv identifier id'>rv</span> <span class='assign token'>=</span> <span class='rubyid_configuration identifier id'>configuration</span><span class='dot token'>.</span><span class='rubyid_reduce identifier id'>reduce</span><span class='lparen token'>(</span><span class='lbrack token'>[</span><span class='rbrack token'>]</span><span class='rparen token'>)</span> <span class='rubyid_do do kw'>do</span> <span class='bitor op'>|</span><span class='rubyid_accu identifier id'>accu</span><span class='comma token'>,</span> <span class='lparen token'>(</span><span class='rubyid_agent identifier id'>agent</span><span class='comma token'>,</span> <span class='rubyid_paths identifier id'>paths</span><span class='rparen token'>)</span><span class='bitor op'>|</span>
     <span class='rubyid_paths identifier id'>paths</span> <span class='assign token'>=</span> <span class='rubyid_paths identifier id'>paths</span><span class='dot token'>.</span><span class='rubyid_ensure_array identifier id'>ensure_array</span><span class='dot token'>.</span><span class='rubyid_map identifier id'>map</span> <span class='lbrace token'>{</span> <span class='bitor op'>|</span><span class='rubyid_e identifier id'>e</span><span class='bitor op'>|</span> <span class='dstring node'>&quot;Disallow: #{e}&quot;</span> <span class='rbrace token'>}</span>
 
     <span class='rubyid_accu identifier id'>accu</span> <span class='lshft op'>&lt;&lt;</span> <span class='dstring node'>&quot;User-agent: #{agent}\n#{paths.join(&quot;\n&quot;)}&quot;</span>
     <span class='rubyid_accu identifier id'>accu</span>
-  <span class='rbrace token'>}</span><span class='dot token'>.</span><span class='rubyid_join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot;\n\n&quot;</span><span class='rparen token'>)</span>
+  <span class='rubyid_end end kw'>end</span>
 
-  <span class='rubyid_render identifier id'>render</span><span class='lparen token'>(</span><span class='label val'>text:</span> <span class='rubyid_rv identifier id'>rv</span><span class='comma token'>,</span> <span class='label val'>content_type:</span> <span class='string val'>&quot;text/plain&quot;</span><span class='rparen token'>)</span>
+  <span class='rubyid_render identifier id'>render</span><span class='lparen token'>(</span><span class='label val'>text:</span> <span class='rubyid_rv identifier id'>rv</span><span class='dot token'>.</span><span class='rubyid_join identifier id'>join</span><span class='lparen token'>(</span><span class='string val'>&quot;\n\n&quot;</span><span class='rparen token'>)</span><span class='comma token'>,</span> <span class='label val'>content_type:</span> <span class='string val'>&quot;text/plain&quot;</span><span class='rparen token'>)</span>
 <span class='rubyid_end end kw'>end</span>
 </pre>
     </td>
@@ -658,7 +658,7 @@
 </div>
 
     <div id="footer">
-  Generated on Wed Mar  9 10:37:56 2016 by
+  Generated on Tue Mar 29 10:52:51 2016 by
   <a href="http://yardoc.org" title="Yay! A Ruby Documentation Tool" target="_parent">yard</a>
   0.8.7.6 (ruby-2.3.0).
 </div>
