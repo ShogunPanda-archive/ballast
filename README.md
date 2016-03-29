@@ -5,7 +5,6 @@
 [![Build Status](https://secure.travis-ci.org/ShogunPanda/ballast.png?branch=master)](https://travis-ci.org/ShogunPanda/ballast)
 [![Code Climate](https://codeclimate.com/github/ShogunPanda/ballast.png)](https://codeclimate.com/github/ShogunPanda/ballast)
 [![Coverage Status](https://coveralls.io/repos/ShogunPanda/ballast/badge.png)](https://coveralls.io/r/ShogunPanda/ballast)
-[![Bitdeli Trend](https://d2weczhvl823v0.cloudfront.net/ShogunPanda/ballast/trend.png)](https://bitdeli.com/free "Bitdeli Badge")
 
 A collection of base utilities for web frameworks.
 
