@@ -1,3 +1,7 @@
+### 2.2.4 / 2016-03-29
+
+* Update dependencies.
+
 ### 2.2.3 / 2016-03-09
 
 * Updated dependencies to make it work with Ruby 2.3.0.

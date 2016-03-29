@@ -48,8 +48,6 @@ module Ballast
     end
   end
 
-  private
-
   # :nodoc:
   def self.run_in_thread(&block)
     EM::Synchrony.defer do

@@ -85,7 +85,7 @@ module Ballast
       # @param message [String|NilClass] A message for authentication errors.
       # @param authenticator [Proc] A block to verify if authentication is valid.
       def authenticate_user(area: nil, title: nil, message: nil, &authenticator)
-        return if authenticate_with_http_basic { |username, password| authenticator.call(username, password) }
+        return if authenticate_with_http_basic(&authenticator)
 
         area ||= "Private Area"
         title ||= "Authentication required."

@@ -44,7 +44,9 @@ module Ballast
 
     # :nodoc:
     def load_section(root, section)
-      YAML.load_file("#{root}/config/#{section}.yml") rescue {}
+      YAML.load_file("#{root}/config/#{section}.yml")
+    rescue
+      {}
     end
   end
 end

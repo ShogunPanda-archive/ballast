@@ -65,13 +65,13 @@ module Ballast
       # @return [AjaxResponse] The AJAX response, which will include only the first error.
       def as_ajax_response(transport = nil)
         status, error_message =
-            if successful?
-              [:ok, nil]
-            elsif error.is_a?(Hash)
-              [error[:status], error[:error]]
-            else
-              [:unknown, error]
-            end
+          if successful?
+            [:ok, nil]
+          elsif error.is_a?(Hash)
+            [error[:status], error[:error]]
+          else
+            [:unknown, error]
+          end
 
         AjaxResponse.new(status: status, data: data, error: error_message, transport: transport)
       end
@@ -98,7 +98,7 @@ module Ballast
     # Marks the failure of the operation.
     #
     # @param details [Object] The error(s) occurred.
-    def self.fail!(details, on_validation: false)
+    def self.fail!(details)
       raise(Errors::Failure, details)
     end
 

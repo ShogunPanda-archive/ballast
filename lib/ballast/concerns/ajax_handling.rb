@@ -58,14 +58,14 @@ module Ballast
       # @param configuration [Hash|NilClass] An hash of agent and list of paths to include.
       def generate_robots_txt(configuration = nil)
         configuration ||= {"*" => "/"}
-        rv = configuration.reduce([]) { |accu, (agent, paths)|
+        rv = configuration.reduce([]) do |accu, (agent, paths)|
           paths = paths.ensure_array.map { |e| "Disallow: #{e}" }
 
           accu << "User-agent: #{agent}\n#{paths.join("\n")}"
           accu
-        }.join("\n\n")
+        end
 
-        render(text: rv, content_type: "text/plain")
+        render(text: rv.join("\n\n"), content_type: "text/plain")
       end
       alias_method :disallow_robots, :generate_robots_txt
     end

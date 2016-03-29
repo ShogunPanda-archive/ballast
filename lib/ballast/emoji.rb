@@ -42,10 +42,10 @@ module Ballast
         keys_method = :markup unless keys_method && tester.respond_to?(keys_method)
         values_method = :html unless values_method && tester.respond_to?(values_method)
 
-        ::Emoji.all.reduce({}) { |accu, icon|
+        ::Emoji.all.reduce({}) do |accu, icon|
           accu[invoke(icon, keys_method, options)] = invoke(icon, values_method, options)
           accu
-        }
+        end
       end
 
       # Returns the URL mapper for the emojis.

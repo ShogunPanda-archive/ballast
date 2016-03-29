@@ -11,7 +11,7 @@ describe Ballast::Concerns::Common do
   end
 
   class CommonMockService < Ballast::Service
-    def perform(params: params)
+    def perform(params: {})
       "OK"
     end
 

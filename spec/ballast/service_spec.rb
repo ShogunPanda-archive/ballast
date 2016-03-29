@@ -134,11 +134,23 @@ describe Ballast::Service do
     it "should raise a failure" do
       expect { DummyService.new.fail!("DETAILS") }.to raise_error(Ballast::Errors::Failure)
     end
+
+    it "should accept status and error keywords" do
+      expect { DummyService.new.fail!(status: "STATUS", error: "ERROR") }.to raise_error(Ballast::Errors::Failure) do |error|
+        expect(error.details).to eq({status: "STATUS", error: "ERROR"})
+      end
+    end
   end
 
   describe "#fail_validation!" do
     it "should raise a validation failure" do
       expect { DummyService.new.fail_validation!("DETAILS") }.to raise_error(Ballast::Errors::ValidationFailure)
+    end
+
+    it "should accept status and error keywords" do
+      expect { DummyService.new.fail_validation!(status: "STATUS", error: "ERROR") }.to raise_error(Ballast::Errors::ValidationFailure) do |error|
+        expect(error.details).to eq({status: "STATUS", error: "ERROR"})
+      end
     end
   end
 end

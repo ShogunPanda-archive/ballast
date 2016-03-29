@@ -45,16 +45,18 @@ describe Ballast::Configuration do
       before(:example) do
         expect(YAML).to receive(:load_file).with("ROOT/config/section_a.yml").and_return({"ENV" => {a: {b: 1}}, "OTHER" => {aa: 3}})
         expect(YAML).to receive(:load_file).with("ROOT/config/section-b.yml").and_return({"ENV" => {c: {d: 2}}, "OTHER" => {cc: 4}})
+        expect(YAML).to receive(:load_file).with("ROOT/config/section-c.yml").at_most(1).and_call_original
       end
 
       it "should load a list of sections" do
-        Ballast::Configuration.new("section_a", "section-b", root: "ROOT", environment: "ENV")
+        Ballast::Configuration.new("section_a", "section-b", "section-c", root: "ROOT", environment: "ENV")
       end
 
-      it "should only load specific environment" do
-        subject = Ballast::Configuration.new("section_a", "section-b", root: "ROOT", environment: "ENV")
+      it "should only load specific environment and fallback for missing files" do
+        subject = Ballast::Configuration.new("section_a", "section-b", "section-c", root: "ROOT", environment: "ENV")
         expect(subject["section_a"].keys).to eq(["a"])
         expect(subject["section_b"].keys).to eq(["c"])
+        expect(subject["section_c"].keys).to eq([])
       end
     end
 
