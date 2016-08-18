@@ -4,13 +4,11 @@
 [![Dependency Status](https://gemnasium.com/ShogunPanda/ballast.png?travis)](https://gemnasium.com/ShogunPanda/ballast)
 [![Build Status](https://secure.travis-ci.org/ShogunPanda/ballast.png?branch=master)](https://travis-ci.org/ShogunPanda/ballast)
 [![Code Climate](https://codeclimate.com/github/ShogunPanda/ballast.png)](https://codeclimate.com/github/ShogunPanda/ballast)
-[![Coverage Status](https://coveralls.io/repos/ShogunPanda/ballast/badge.png)](https://coveralls.io/r/ShogunPanda/ballast)
+[![Coverage Status](https://coveralls.io/repos/github/ShogunPanda/ballast/badge.svg?branch=master)](https://coveralls.io/github/ShogunPanda/ballast?branch=master)
 
 A collection of base utilities for web frameworks.
 
-http://sw.cowtech.it/ballast
-
-http://rdoc.info/gems/ballast
+https://sw.cowtech.it/ballast
 
 # Description
 
@@ -22,8 +20,12 @@ The second issue is handling AJAX actions in a short way. To solve this, ballast
 
 Finally, minor concerns are provided to scope CSS and handling errors.
 
+## API Documentation
+
+The API documentation can be found [here](https://sw.cowtech.it/ballast/docs).
+
 ## Contributing to ballast
- 
+
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
 * Fork the project.
