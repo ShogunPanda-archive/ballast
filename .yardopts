@@ -1,1 +1,1 @@
--m markdown --legacy
+-o ./docs -m markdown
