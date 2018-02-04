@@ -1,10 +1,9 @@
 # ballast
 
-[![Gem Version](https://badge.fury.io/rb/ballast.png)](http://badge.fury.io/rb/ballast)
-[![Dependency Status](https://gemnasium.com/ShogunPanda/ballast.png?travis)](https://gemnasium.com/ShogunPanda/ballast)
-[![Build Status](https://secure.travis-ci.org/ShogunPanda/ballast.png?branch=master)](https://travis-ci.org/ShogunPanda/ballast)
-[![Code Climate](https://codeclimate.com/github/ShogunPanda/ballast.png)](https://codeclimate.com/github/ShogunPanda/ballast)
-[![Coverage Status](https://coveralls.io/repos/github/ShogunPanda/ballast/badge.svg?branch=master)](https://coveralls.io/github/ShogunPanda/ballast?branch=master)
+[![Gem Version](https://img.shields.io/gem/v/ballast.svg)](https://rubygems.org/gems/ballast)
+[![Dependency Status](https://img.shields.io/gemnasium/ShogunPanda/ballast.svg)](https://gemnasium.com/ShogunPanda/ballast)
+[![Build Status](https://img.shields.io/travis/ShogunPanda/ballast.svg)](https://travis-ci.org/ShogunPanda/ballast)
+[![Coverage Status](https://img.shields.io/coveralls/github/ShogunPanda/ballast.svg)](https://coveralls.io/github/ShogunPanda/ballast)
 
 A collection of base utilities for web frameworks.
 
@@ -38,4 +37,4 @@ The API documentation can be found [here](https://sw.cowtech.it/ballast/docs).
 
 Copyright (C) 2013 and above Shogun (shogun@cowtech.it).
 
-Licensed under the MIT license, which can be found at http://www.opensource.org/licenses/mit-license.php.
+Licensed under the MIT license, which can be found at https://choosealicense.com/licenses/mit.
