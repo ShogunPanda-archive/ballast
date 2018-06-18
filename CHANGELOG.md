@@ -1,3 +1,12 @@
+### 2018-06-18 / 2.2.5
+
+* chore: End of development notice.
+* Updated license links and badges.
+* Updated docs location.
+* Updated docs.
+* Added missing copyright notes.
+* Updated Travis Gemfile.
+
 ### 2.2.4 / 2016-03-29
 
 * Update dependencies.
