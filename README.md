@@ -5,6 +5,10 @@
 [![Build Status](https://img.shields.io/travis/ShogunPanda/ballast.svg)](https://travis-ci.org/ShogunPanda/ballast)
 [![Coverage Status](https://img.shields.io/coveralls/github/ShogunPanda/ballast.svg)](https://coveralls.io/github/ShogunPanda/ballast)
 
+## END OF DEVELOPMENT NOTICE
+
+# This gem has been discontinued.
+
 A collection of base utilities for web frameworks.
 
 https://sw.cowtech.it/ballast
@@ -25,13 +29,13 @@ The API documentation can be found [here](https://sw.cowtech.it/ballast/docs).
 
 ## Contributing to ballast
 
-* Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
-* Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
-* Fork the project.
-* Start a feature/bugfix branch.
-* Commit and push until you are happy with your contribution.
-* Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
-* Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
+- Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet.
+- Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it.
+- Fork the project.
+- Start a feature/bugfix branch.
+- Commit and push until you are happy with your contribution.
+- Make sure to add tests for it. This is important so I don't break it in a future version unintentionally.
+- Please try not to mess with the Rakefile, version, or history. If you want to have your own version, or is otherwise necessary, that is fine, but please isolate to its own commit so I can cherry-pick around it.
 
 ## Copyright
 
