@@ -1,17 +1,8 @@
 # ballast
 
-[![Gem Version](https://img.shields.io/gem/v/ballast.svg)](https://rubygems.org/gems/ballast)
-[![Dependency Status](https://img.shields.io/gemnasium/ShogunPanda/ballast.svg)](https://gemnasium.com/ShogunPanda/ballast)
-[![Build Status](https://img.shields.io/travis/ShogunPanda/ballast.svg)](https://travis-ci.org/ShogunPanda/ballast)
-[![Coverage Status](https://img.shields.io/coveralls/github/ShogunPanda/ballast.svg)](https://coveralls.io/github/ShogunPanda/ballast)
-
-## END OF DEVELOPMENT NOTICE
-
-# This gem has been discontinued.
+## END OF DEVELOPMENT NOTICE - This gem has been discontinued
 
 A collection of base utilities for web frameworks.
-
-https://sw.cowtech.it/ballast
 
 # Description
 
